@@ -10,3 +10,8 @@
  - The brute force approach suggests two for loops giving 0(n2)
  - the introduction of a hash or map allows one to capture the value as the key in the kv store which later can be checked if the complement (i.e. the difference) between target value and the value being iterated.
  - This can be done in one pass, if the checks for equality are done before the hash map is further constructed. :fire:
+
+### Reverse words in a string
+- Without using any of the ES5+ javascript functions such as split, filter, reverse and join one can create two for loops (2n) and construct the reversed words
+- space requirements include two arrays
+- an improvement would include starting at the back of the string and repeating same first for loop to end up with words reversed on the first iteration
