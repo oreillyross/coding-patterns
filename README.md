@@ -16,3 +16,9 @@
 - Without using any of the ES5+ javascript functions such as split, filter, reverse and join one can create two for loops (2n) and construct the reversed words
 - space requirements include two arrays
 - an improvement would include starting at the back of the string and repeating same first for loop to end up with words reversed on the first iteration
+
+### Add two numbers
+- This problem expects you to know singly linked lists. 
+- Store a reference to the current (dummy) linked list so you can get to it after the while loop terminates 💥
+- It has a numbe of edgecases which can make it tricky. Remember the two input linked lists can be different lengths
+- The trickiest edge case is remembering at the end there might be a digit to carry over which needs to be added to Linked List which is returned.
