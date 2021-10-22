@@ -1,5 +1,11 @@
 # coding-patterns
 
+## General Patterns to start solving a problem
+
+* Start with Brute Force, even if you know it is not efficient it will lead to other considerations to solve the problem
+* Keeo track of the bwest answer so far in one pass of the problem, see if you can break it down into pieces
+* Consider early to use a hash map, even if you don't know how yet as it is used in solving many problems generally.
+
 ### 0 1 1 2 3 5 8 problem
 
 - The key to this is to remember that you need to start with two numbers you already know. Otherwise you have nothing to add. 
