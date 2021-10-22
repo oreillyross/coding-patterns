@@ -1,5 +1,7 @@
 # coding-patterns
 
+✔️ = marked as easy
+
 ## General Patterns to start solving a problem
 
 * Start with Brute Force, even if you know it is not efficient it will lead to other considerations to solve the problem
@@ -34,3 +36,9 @@
 - In an interview setting the easier option is to use the expand from middle technique and loop over the string (0(n^2) is best case
 - The brute force solution is easiest to solve it but very poor performance n^3
 - Be careful of the classic index +1 problem
+
+### Roman to Integer challenge ✔️
+ - This problem can be solved in a single for loop.
+ - create a hash of the roman numerals to numbers first
+ - Then play on the fact that you know that if a Roman Numeral of higher value comes before one of lower value that it must be that value otherwise its a combination number and you can then subtract the higher value from the smaller value to get the correct number, i.e. V - I = 4, X - I = 9 and so on.
+ 
