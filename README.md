@@ -28,3 +28,9 @@
 - Store a reference to the current (dummy) linked list so you can get to it after the while loop terminates 💥
 - It has a numbe of edgecases which can make it tricky. Remember the two input linked lists can be different lengths
 - The trickiest edge case is remembering at the end there might be a digit to carry over which needs to be added to Linked List which is returned.
+
+### Longest Palindromic substring
+- This problem can be solved using dynamic programming
+- In an interview setting the easier option is to use the expand from middle technique and loop over the string (0(n^2) is best case
+- The brute force solution is easiest to solve it but very poor performance n^3
+- Be careful of the classic index +1 problem
