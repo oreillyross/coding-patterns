@@ -46,4 +46,10 @@
 - Convert the number inputted to a string with toString()
 - have a start index and end index and loop until start half way through string, if at any time the values being compared do not match then return false
 - increment and finally return true once while loop exits.
+
+### Matching Parens
+- The classic solution involves adding the opening brace to a stack (using a array is fine with push)
+- If a closing brace is found you need to use a hash to get original opening brace and see if it matches the stack.pop value
+- if not return false, otherwise return true if the stack is empty at end of iteration of string
+
  
