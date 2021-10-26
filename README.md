@@ -2,6 +2,7 @@
 
 ✔️ = marked as easy
 
+
 ## General Patterns to start solving a problem
 
 * Start with Brute Force, even if you know it is not efficient it will lead to other considerations to solve the problem
@@ -51,5 +52,10 @@
 - The classic solution involves adding the opening brace to a stack (using a array is fine with push)
 - If a closing brace is found you need to use a hash to get original opening brace and see if it matches the stack.pop value
 - if not return false, otherwise return true if the stack is empty at end of iteration of string
+
+### Coin Change
+- This challenge expects one to use dynamic programming. Although it can be solved with recursion, the more performant solution uses the bottom-up approach.
+- Key to this is ensuring when you run through all combinations of coins for each amount that you onl store the minimum amount on each iteration. So Math.Min must feature.
+- Similarly to initialise the array you need to use Number.Max_Value as oppose to 0 for the coin change number of variations problem. (these are similar but different)
 
  
