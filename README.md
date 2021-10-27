@@ -1,6 +1,7 @@
 # coding-patterns
 
 ✔️ = marked as easy
+
 🚩 = solved with two pointers 
 
 
@@ -63,5 +64,4 @@
  - This problems expects you to do an in-place sort with no extra array in memory, so 0(1).
  - The time is 0(n) as you have to loop through and update right pointer until the value and previous value are not duplicates.
  - If new value found you can replace the value at left pointer index with new value, then increment left pointer.
- - You end up just having to return the left pointer which is the index + 1 after for loop gives number of unique entries.
- - 
+ - You end up just having to return the left pointer which is the index + 1 after for loop gives number of unique entries. 
