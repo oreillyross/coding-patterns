@@ -1,6 +1,7 @@
 # coding-patterns
 
 ✔️ = marked as easy
+🚩 = solved with two pointers 
 
 
 ## General Patterns to start solving a problem
@@ -58,4 +59,9 @@
 - Key to this is ensuring when you run through all combinations of coins for each amount that you onl store the minimum amount on each iteration. So Math.Min must feature.
 - Similarly to initialise the array you need to use Number.Max_Value as oppose to 0 for the coin change number of variations problem. (these are similar but different)
 
- 
+ ### [Remove duplicates from Sorted Array](https://leetcode.com/problems/remove-duplicates-from-sorted-array/) 🚩 ✔️
+ - This problems expects you to do an in-place sort with no extra array in memory, so 0(1).
+ - The time is 0(n) as you have to loop through and update right pointer until the value and previous value are not duplicates.
+ - If new value found you can replace the value at left pointer index with new value, then increment left pointer.
+ - You end up just having to return the left pointer which is the index + 1 after for loop gives number of unique entries.
+ - 
