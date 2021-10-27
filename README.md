@@ -4,6 +4,8 @@
 
 🚩 = solved with two pointers 
 
+🗃️ = Greedy Algorithm
+
 
 ## General Patterns to start solving a problem
 
@@ -11,7 +13,7 @@
 * Keeo track of the bwest answer so far in one pass of the problem, see if you can break it down into pieces
 * Consider early to use a hash map, even if you don't know how yet as it is used in solving many problems generally.
 
-### 0 1 1 2 3 5 8 problem
+### 0 1 1 2 3 5 8 problem 🗃️
 
 - The key to this is to remember that you need to start with two numbers you already know. Otherwise you have nothing to add. 
 - The recursive solution is WAAAY to ineficient, and a simple 0(n) for loop where you store the result in an array thus building up the Fibbonaci sequence.
