@@ -1,6 +1,7 @@
 # coding-patterns
 
 ✔️ = marked as easy
+🚴‍♂️ = hard
 
 🚩 = solved with two pointers 
 
@@ -67,3 +68,9 @@
  - The time is 0(n) as you have to loop through and update right pointer until the value and previous value are not duplicates.
  - If new value found you can replace the value at left pointer index with new value, then increment left pointer.
  - You end up just having to return the left pointer which is the index + 1 after for loop gives number of unique entries. 
+
+### [Median of two sorted arrays](https://leetcode.com/problems/median-of-two-sorted-arrays/) 🚴‍♂️
+- brute force approach is to concatenate the arrays, sort them and then divide by two,
+- Either return the sum of the median two values divided by two if its an even length merged array or return single odd middle value.
+- The array must be sorted to ensure you can simlpy look up middle value.
+
