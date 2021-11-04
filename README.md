@@ -14,7 +14,7 @@
 ## General Patterns to start solving a problem
 
 * Start with Brute Force, even if you know it is not efficient it will lead to other considerations to solve the problem
-* Keeo track of the bwest answer so far in one pass of the problem, see if you can break it down into pieces
+* Keep track of the best answer so far in one pass of the problem, see if you can break it down into pieces
 * Consider early to use a hash map, even if you don't know how yet as it is used in solving many problems generally.
 
 ### 0 1 1 2 3 5 8 problem 🗃️
@@ -36,7 +36,7 @@
 
 ### Add two numbers
 - This problem expects you to know singly linked lists. 
-- Store a reference to the current (dummy) linked list so you can get to it after the while loop terminates 💥
+- Store a reference to the current (dummy) linked list so you can get to it after the while loop terminates 
 - It has a numbe of edgecases which can make it tricky. Remember the two input linked lists can be different lengths
 - The trickiest edge case is remembering at the end there might be a digit to carry over which needs to be added to Linked List which is returned.
 
