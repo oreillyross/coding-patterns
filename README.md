@@ -1,11 +1,14 @@
 # coding-patterns
 
 ✔️ = marked as easy
+
 🚴‍♂️ = hard
 
 🚩 = solved with two pointers 
 
 🗃️ = Greedy Algorithm
+
+♻️ = recursive solution
 
 
 ## General Patterns to start solving a problem
@@ -73,4 +76,9 @@
 - brute force approach is to concatenate the arrays, sort them and then divide by two,
 - Either return the sum of the median two values divided by two if its an even length merged array or return single odd middle value.
 - The array must be sorted to ensure you can simlpy look up middle value.
+
+### [Sum of left Leaves](https://leetcode.com/problems/sum-of-left-leaves/) ♻️ ✔️
+- Many problems dealing with binary trees will involve a recursive solution
+- always remember the base case to ensure it exits
+- Remember the key is its only left leaves, so not all left nodes.
 
