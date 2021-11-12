@@ -16,6 +16,8 @@
 * Start with Brute Force, even if you know it is not efficient it will lead to other considerations to solve the problem
 * Keep track of the best answer so far in one pass of the problem, see if you can break it down into pieces
 * Consider early to use a hash map, even if you don't know how yet as it is used in solving many problems generally.
+* A depth first search of a graph uses a stack data structure behind the scenes
+* A breadth first search of a graph uses a queue data structure behind the scenes
 
 ### 0 1 1 2 3 5 8 problem 🗃️
 
