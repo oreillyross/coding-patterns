@@ -13,8 +13,8 @@
 
 ## Online tools to practice for technical interviews
 
-** [Structy](https://structy.net/) This site offers a online playground along with course videos and explanations for practicing data structures and algorithms
-** [TS Playground](https://www.typescriptlang.org/play?#code/Q) This is a good option for a technical interview if you have to code a solution to a problem using typescript.
+* [Structy](https://structy.net/) This site offers a online playground along with course videos and explanations for practicing data structures and algorithms
+* [TS Playground](https://www.typescriptlang.org/play?#code/Q) This is a good option for a technical interview if you have to code a solution to a problem using typescript.
 
 
 ## General Patterns to start solving a problem
