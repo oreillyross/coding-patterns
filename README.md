@@ -10,6 +10,8 @@
 
 ♻️ = recursive solution
 
+🔗 = Linked List
+
 
 ## Online tools to practice for technical interviews
 
@@ -89,4 +91,9 @@
 - Many problems dealing with binary trees will involve a recursive solution
 - always remember the base case to ensure it exits
 - Remember the key is its only left leaves, so not all left nodes.
+
+### [Remove linked list elements](https://leetcode.com/problems/remove-linked-list-elements/) ♻️ ✔️ 🔗
+- This can be solved recursively or iteratively
+- recursive base case is null
+- otherwise return either the head.next value to remove the current node if it is equal to the value to remove
 
