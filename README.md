@@ -27,6 +27,19 @@
 * A depth first search of a graph uses a stack data structure behind the scenes
 * A breadth first search of a graph uses a queue data structure behind the scenes
 
+## Data Structures
+
+### Graphs
+
+#### Depth first traversal
+- this can be done iteratively or recursively
+- it uses a stack as the underlying data structure
+- remember the adjacency list. Start with the node you have, passed in to function
+- Iterative - stack.length > 0, pop from stack, for of into adjacency list, push onto stack
+- Recursive - use node value, for of into G[node] adjacency list, recursively call function
+- be careful of directed versus undirected graphs, undirected graphs need a way to stop cyclic calls, so add a visited feature.
+
+
 ### 0 1 1 2 3 5 8 problem 🗃️
 
 - The key to this is to remember that you need to start with two numbers you already know. Otherwise you have nothing to add. 
