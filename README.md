@@ -116,4 +116,5 @@
 ### [Binary Tree Inorder traversal](https://leetcode.com/problems/binary-tree-inorder-traversal/) 
 - remember the rules, inorder is left tree first, then root, then right tree.
 - recursion is simplest, create a helper function to traverse.
+- This can also be solved iteratively using a stack.
 
