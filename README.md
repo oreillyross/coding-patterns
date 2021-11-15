@@ -113,3 +113,7 @@
 - recursive base case is null
 - otherwise return either the head.next value to remove the current node if it is equal to the value to remove
 
+### [Binary Tree Inorder traversal](https://leetcode.com/problems/binary-tree-inorder-traversal/) 
+- remember the rules, inorder is left tree first, then root, then right tree.
+- recursion is simplest, create a helper function to traverse.
+
