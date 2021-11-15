@@ -29,7 +29,7 @@
 
 ## Data Structures
 ### Trees
-- know the difference between inorder, preorder and postorder traversal
+- know the difference between inorder (left, root, right), preorder (root, left, right) and postorder (left, right, root) traversal, this applies to depth-first searches. 
 
 ### Graphs
 
