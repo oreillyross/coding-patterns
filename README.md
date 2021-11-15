@@ -28,6 +28,8 @@
 * A breadth first search of a graph uses a queue data structure behind the scenes
 
 ## Data Structures
+### Trees
+- know the difference between inorder, preorder and postorder traversal
 
 ### Graphs
 
