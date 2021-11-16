@@ -118,3 +118,10 @@
 - recursion is simplest, create a helper function to traverse.
 - This can also be solved iteratively using a stack.
 
+### [Reverse Integer](https://leetcode.com/problems/reverse-integer/)
+- This can be done without converting number to a string
+- Think about the base 10 fact of numbers, if you take the full number and % 10 it and then take that number * 10 you have the tail of the number
+- keep adding this to the result - so num + result
+- iterate through number with the number / 10 | 0 to make number smaller until it reaches 0 then exits loop
+- Math.pow is your friend to check 2^31 bounds
+
