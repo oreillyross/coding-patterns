@@ -125,3 +125,6 @@
 - iterate through number with the number / 10 | 0 to make number smaller until it reaches 0 then exits loop
 - Math.pow is your friend to check 2^31 bounds
 
+### [Container with most water](https://leetcode.com/problems/container-with-most-water/) 🚩
+- This is a classic two pointers problem, one at start and one at end
+- keep a maxArea value, update as you move either the left or right pointer based on which value is lower.
