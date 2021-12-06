@@ -128,3 +128,10 @@
 ### [Container with most water](https://leetcode.com/problems/container-with-most-water/) 🚩
 - This is a classic two pointers problem, one at start and one at end
 - keep a maxArea value, update as you move either the left or right pointer based on which value is lower.
+
+### [Merge two lists](https://leetcode.com/problems/merge-two-sorted-lists/)
+- Classic linked list problem
+- key to this is create a dummyNode upfront, then a seperate reference to the tail which gets updated.
+- The dummy head can return the next right at the end which is the new correct head with merged lists
+- then loop while both not null and check which is smaller, update the link with smaller node's val and increment that pointer,
+- watch out for the catch where you need to also update the tail to the next node, so a tail = tail.next call at end (inside) of while loop
