@@ -37,6 +37,7 @@
 
 - Use for...in to get access to all keys if given a object with adjacency list to represent graph. For iterative inspection of each node.
 - Use for...of to get the values of an object, so in this case it would be the adjacency list itself
+- Know how to convert an edge list (array of pairs) into an adjacency list, which is an object with keys and values of arrays representing the connections
 
 #### Depth first traversal
 - this can be done iteratively or recursively
