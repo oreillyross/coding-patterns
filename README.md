@@ -39,6 +39,9 @@
 - Use for...of to get the values of an object, so in this case it would be the adjacency list itself
 - Know how to convert an edge list (array of pairs) into an adjacency list, which is an object with keys and values of arrays representing the connections
 
+#### Cyle detection algorithm
+- use the white-grey-black pattern (have a visting, visited Set()
+
 #### Depth first traversal
 - this can be done iteratively or recursively
 - it uses a stack as the underlying data structure
