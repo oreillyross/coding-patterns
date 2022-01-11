@@ -94,6 +94,7 @@
 - The classic solution involves adding the opening brace to a stack (using a array is fine with push)
 - If a closing brace is found you need to use a hash to get original opening brace and see if it matches the stack.pop value
 - if not return false, otherwise return true if the stack is empty at end of iteration of string
+- A useful peek method to seee what is at the top of the stack, i.e. last item in the array. is the array method array.at(-1) === array[array.length - 1]
 
 ### [Coin Change](https://leetcode.com/problems/coin-change/)
 - The recursive solution, needs a memoization strategy
