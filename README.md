@@ -33,6 +33,14 @@
 ### Trees
 - know the difference between inorder (left, root, right), preorder (root, left, right) and postorder (left, right, root) traversal, this applies to depth-first searches. 
 
+### [Lefty nodes problem](https://structy.net/problems/premium/lefty-nodes)
+- Start with a helper function that takes a node, and a count of what level you are on
+- put the helper function inside the main function to make use of the closure behaviour of javascript to get access to the returned values array.
+- inside the helper function recursively call itself passing in the left and then the right nodes, and level + 1.
+- the base case is if node is null and you push a value if values.length === level.
+
+
+
 ### Graphs
 
 - Use for...in to get access to all keys if given a object with adjacency list to represent graph. For iterative inspection of each node.
