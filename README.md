@@ -43,14 +43,14 @@
 
 # Graphs
 
-- Use for...in to get access to all keys if given a object with adjacency list to represent graph. For iterative inspection of each node.
-- Use for...of to get the values of an object, so in this case it would be the adjacency list itself
-- Know how to convert an edge list (array of pairs) into an adjacency list, which is an object with keys and values of arrays representing the connections
+- Use <code>for ... in</code> to get access to all keys if given a object with adjacency list to represent graph. For iterative inspection of each node.
+- Use <code>for ... of</code> to get the values of an object, so in this case it would be the adjacency list itself
+- Know how to convert an edge list (array of pairs) into an adjacency list, which is an object with keys and values of arrays representing the connections.
 
 ## Cyle detection algorithm
 - use the white-grey-black pattern (have a visting, visited Set()
 
-## Depth first traversal
+## <p style="color: lightgreen">Depth first traversal</p>
 - this can be done iteratively or recursively
 - it uses a stack as the underlying data structure
 - remember the adjacency list. Start with the node you have, passed in to function
@@ -62,6 +62,7 @@
   - You will need a graph in the form of an object where the keys are nodes and the values are adjacency lists.
   - You get access to the adjacency lists and are inclusive of all islands by using the <code>for ... in call</code> on the graph.
 
+## <p style="color: lightgreen">Bipartite graphs and graph coloring</p>
 
 <hr/>
 
