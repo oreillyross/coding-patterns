@@ -41,16 +41,16 @@
 
 
 
-### Graphs
+# Graphs
 
 - Use for...in to get access to all keys if given a object with adjacency list to represent graph. For iterative inspection of each node.
 - Use for...of to get the values of an object, so in this case it would be the adjacency list itself
 - Know how to convert an edge list (array of pairs) into an adjacency list, which is an object with keys and values of arrays representing the connections
 
-#### Cyle detection algorithm
+## Cyle detection algorithm
 - use the white-grey-black pattern (have a visting, visited Set()
 
-#### Depth first traversal
+## Depth first traversal
 - this can be done iteratively or recursively
 - it uses a stack as the underlying data structure
 - remember the adjacency list. Start with the node you have, passed in to function
@@ -58,6 +58,12 @@
 - Recursive - use node value, for of into G[node] adjacency list, recursively call function
 - be careful of directed versus undirected graphs, undirected graphs need a way to stop cyclic calls, so add a visited feature.
 
+## <p style="color: lightgreen">Island hopping logic</p>
+  - You will need a graph in the form of an object where the keys are nodes and the values are adjacency lists.
+  - You get access to the adjacency lists and are inclusive of all islands by using the <code>for ... in call</code> on the graph.
+
+
+<hr/>
 
 ### 0 1 1 2 3 5 8 problem 🗃️
 
