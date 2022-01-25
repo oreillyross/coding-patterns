@@ -46,6 +46,15 @@
 - Use <code>for ... in</code> to get access to all keys if given a object with adjacency list to represent graph. For iterative inspection of each node.
 - Use <code>for ... of</code> to get the values of an object, so in this case it would be the adjacency list itself
 - Know how to convert an edge list (array of pairs) into an adjacency list, which is an object with keys and values of arrays representing the connections.
+### <em>edge list to adjacency list</em>
+- create helper function buildGraph, pass in edge list (array of sub arrays)
+- create empty graph object, rturn it at the end
+- iterate (<code>for ... of</code>) through every sub array
+- destructure the pairs of each sub array
+- add each destructured item to the graph object if not in the graph, initialise it as an empty adjacency array.
+* undirected graph -> push both items into each other's arrays.
+* directed graph -> push only the second item into first array.
+
 
 ## Cyle detection algorithm
 - use the white-grey-black pattern (have a visting, visited Set()
