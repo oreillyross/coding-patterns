@@ -82,7 +82,12 @@
 - start with the classic reduction of the input in your recursive calls.
 - where there is an array that needs to get smaller, rather pass in an extra argument, like i that keeps track of the position of the single element you are on.
 - Think of this problem in terms of a binary tree, that has two branches, the input with the element, and the input with out the element.
-- 
+
+### Duplicate value avoidance pattern
+ - Add a parameter to recursive function call, default to null.
+ - Carry out a check (if statement) before the recursive call to check.previous value with current value not the same.
+ - update it with the current value in the recursive calling of the function
+
 <hr/>
 
 ### 0 1 1 2 3 5 8 problem 🗃️
