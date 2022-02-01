@@ -75,6 +75,16 @@
 
 <hr/>
 
+# Dynamic Programming patterns
+
+## brute force
+
+- start with the classic reduction of the input in your recursive calls.
+- where there is an array that needs to get smaller, rather pass in an extra argument, like i that keeps track of the position of the single element you are on.
+- Think of this problem in terms of a binary tree, that has two branches, the input with the element, and the input with out the element.
+- 
+<hr/>
+
 ### 0 1 1 2 3 5 8 problem 🗃️
 
 - The key to this is to remember that you need to start with two numbers you already know. Otherwise you have nothing to add. 
