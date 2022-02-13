@@ -21,7 +21,11 @@
 ## Algorithms to know
 
 ### Merge sort and quick sort
-### 
+### Binary Search 
+ - The precondition to searching is that the array must be sorted.
+ - Key pieces are two pointers, one initially pointing to the first value (low pointer), the other pointing to the end of the array (high pointer).
+ - algorithmic step is to find the midpoint (floored for whole number), check if it matches the target value, or if its lower than target value, move low pointer 
+ to the midpoint index, if its higher, move the high pointer to the mid point index, repeat until target found or low matches high index. Then no match.
 
 ## Data Structures
 
