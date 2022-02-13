@@ -1,16 +1,5 @@
-# coding-patterns
+# coding-patterns to help as an aide-memoire
 
-✔️ = marked as easy
-
-🚴‍♂️ = hard
-
-🚩 = solved with two pointers 
-
-🗃️ = Greedy Algorithm
-
-♻️ = recursive solution
-
-🔗 = Linked List
 
 
 ## Online tools to practice for technical interviews
@@ -29,9 +18,18 @@
 * A depth first search of a graph uses a stack data structure behind the scenes
 * A breadth first search of a graph uses a queue data structure behind the scenes
 
+## Algorithms to know
+
+### Merge sort and quick sort
+### 
+
 ## Data Structures
+
 ### Trees
 - know the difference between inorder (left, root, right), preorder (root, left, right) and postorder (left, right, root) traversal, this applies to depth-first searches. 
+
+#### Binary tree
+
 
 ### [Lefty nodes problem](https://structy.net/problems/premium/lefty-nodes)
 - Start with a helper function that takes a node, and a count of what level you are on
