@@ -26,6 +26,14 @@
  - Key pieces are two pointers, one initially pointing to the first value (low pointer), the other pointing to the end of the array (high pointer).
  - algorithmic step is to find the midpoint (floored for whole number), check if it matches the target value, or if its lower than target value, move low pointer 
  to the midpoint index, if its higher, move the high pointer to the mid point index, repeat until target found or low matches high index. Then no match.
+ 
+ //while the two pointers dont cross
+  //find midpoint index
+  // check if target higher, move low pointer to midpoint + 1
+  // if target lower move high pointer to mid - 1 
+  // else it is equal to mid, reutnr mid as its the index
+  
+  //all else fails return -1
 
 ## Data Structures
 
