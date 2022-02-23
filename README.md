@@ -8,6 +8,7 @@
 * [TS Playground](https://www.typescriptlang.org/play?#code/Q) This is a good option for a technical interview if you have to code a solution to a problem using typescript.
 * [Geeks for Geeks] (https://practice.geeksforgeeks.org/)
 * [Interview Cake](https://www.interviewcake.com/)
+* [Leet code](https://leetcode.com/)
 
 
 ## General Patterns to start solving a problem
@@ -21,6 +22,7 @@
 ## Algorithms to know
 
 ### Merge sort and quick sort
+
 ### Binary Search 
  - The precondition to searching is that the array must be sorted.
  - Key pieces are two pointers, one initially pointing to the first value (low pointer), the other pointing to the end of the array (high pointer).
@@ -34,6 +36,11 @@
   // else it is equal to mid, reutnr mid as its the index
   
   //all else fails return -1
+
+### Topological order
+- Key to victory is to build a hash map of the parents and their connections, so numParents = {};
+- Also have an array called ready, which takes the nodes that have a count of 0 in the numParents object
+- Add the last node in ready to the order array, return this order array as the final result. 
 
 ## Data Structures
 
