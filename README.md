@@ -210,3 +210,4 @@
 - Then populate your empty 2D array based on the number of rows given
 - Begin iterating through the string and push the char into each row inside the grid.
 - check if your rowCount is at the end of numRows - 1 or if rowCount is at 0 then you need to reverse direction.
+- Once all rows have been populated you can for...of the rows and join each to a returned result string.
