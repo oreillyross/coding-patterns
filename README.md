@@ -202,3 +202,11 @@
 - The dummy head can return the next right at the end which is the new correct head with merged lists
 - then loop while both not null and check which is smaller, update the link with smaller node's val and increment that pointer,
 - watch out for the catch where you need to also update the tail to the next node, so a tail = tail.next call at end (inside) of while loop
+
+### [Zigzag Conversion] (https://leetcode.com/problems/zigzag-conversion/)
+- Think of this problem in ters of a 2D array, to give you the visual grid you need.
+- Key to this is tracking if you are going down or going up in the rows. This will give you the zig zag pattern.
+- Cover your edge cases first, either s is only one char, or length of s is shorter than number of rows given
+- Then populate your empty 2D array based on the number of rows given
+- Begin iterating through the string and push the char into each row inside the grid.
+- check if your rowCount is at the end of numRows - 1 or if rowCount is at 0 then you need to reverse direction.
