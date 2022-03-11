@@ -211,3 +211,16 @@
 - Begin iterating through the string and push the char into each row inside the grid.
 - check if your rowCount is at the end of numRows - 1 or if rowCount is at 0 then you need to reverse direction.
 - Once all rows have been populated you can for...of the rows and join each to a returned result string.
+
+### [Regular Expression Matching](https://leetcode.com/problems/regular-expression-matching/)
+- dynamic programming problem, solved wither top-down, recursive with memoization
+- or solved bottom up
+- the following algorithmic steps describe a top-down approach:
+ - create two pointers, i and j. recursively call function starting at 0 index for both
+ - base cases include i and j being out of bounds (i.e. at end of length of both strings) return true
+ - if j out of bounds, i.e. no more pattens to match return false
+ - if i in bounds and s[i] matches p[j], or its a '.' sign store this in a match var // either true or false
+ - Edge Case: if the next char is a '*' recursively call function with one of two decsions either advance j + 2, or i + 1
+ - The above call either repeats the char or it does not
+ - If there is a match (i.e match is true) then simply recursively call function incrementing each index (i +1, and j + 1)
+ - If the recursive function is inside the main function, make sure to kick it off with a function call passing (0,0)
