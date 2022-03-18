@@ -137,8 +137,8 @@
 - Be careful of the classic index +1 problem
 
 ### Roman to Integer challenge ✔️
- - This problem can be solved in a single for loop.
- - create a hash of the roman numerals to numbers first
+ - This problem can be solved in a **single for loop**.
+ - **create a hash** of the roman numerals to numbers first
  - Then play on the fact that you know that if a Roman Numeral of higher value comes before one of lower value that it must be that value otherwise its a combination number and you can then subtract the higher value from the smaller value to get the correct number, i.e. V - I = 4, X - I = 9 and so on.
 
 ### isPalindrome ✔️
