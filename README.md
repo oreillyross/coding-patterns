@@ -29,13 +29,15 @@
  - algorithmic step is to find the midpoint (floored for whole number), check if it matches the target value, or if its lower than target value, move low pointer 
  to the midpoint index, if its higher, move the high pointer to the mid point index, repeat until target found or low matches high index. Then no match.
  
- //while the two pointers dont cross
-  //find midpoint index
-  // check if target higher, move low pointer to midpoint + 1
-  // if target lower move high pointer to mid - 1 
-  // else it is equal to mid, reutnr mid as its the index
+     //while the two pointers dont cross
+      //find midpoint index
+      // check if target higher, move low pointer to midpoint + 1
+      // if target lower move high pointer to mid - 1 
+      // else it is equal to mid, reutnr mid as its the index
   
-  //all else fails return -1
+      //all else fails return -1
+
+
 
 ### Topological order
 - Key to victory is to build a hash map of the parents and their connections, so numParents = {};
@@ -60,9 +62,9 @@
 
 # Graphs
 
-- Use <code>for ... in</code> to get access to all keys if given a object with adjacency list to represent graph. For iterative inspection of each node.
-- Use <code>for ... of</code> to get the values of an object, so in this case it would be the adjacency list itself
-- Know how to convert an edge list (array of pairs) into an adjacency list, which is an object with keys and values of arrays representing the connections.
+* Use <code>for ... in</code> to get access to all keys if given a object with adjacency list to represent graph. For iterative inspection of each node.
+* Use <code>for ... of</code> to get the values of an object, so in this case it would be the adjacency list itself
+* Know how to convert an edge list (array of pairs) into an adjacency list, which is an object with keys and values of arrays representing the connections.
 ### <em>edge list to adjacency list</em>
 - create helper function buildGraph, pass in edge list (array of sub arrays)
 - create empty graph object, rturn it at the end
@@ -131,10 +133,10 @@
 - The trickiest edge case is remembering at the end there might be a digit to carry over which needs to be added to Linked List which is returned.
 
 ### Longest Palindromic substring
-- This problem can be solved using dynamic programming
-- In an interview setting the easier option is to use the expand from middle technique and loop over the string (0(n^2) is best case
-- The brute force solution is easiest to solve it but very poor performance n^3
-- Be careful of the classic index +1 problem
+1. This problem can be solved using dynamic programming
+2. In an interview setting the easier option is to use the expand from middle technique and loop over the string (0(n^2) is best case
+3. The brute force solution is easiest to solve it but very poor performance n^3
+4. Be careful of the classic index +1 problem
 
 ### Roman to Integer challenge ✔️
  - This problem can be solved in a **single for loop**.
@@ -233,3 +235,11 @@
  - the algorithm either increases left pointer if sum of two values at each pointer is less than target
  - or it decreases right pointer if sum is greater than target
  - or returns tuple of indexes if a match is found
+
+ ### [Three Sum problem](https://leetcode.com/problems/3sum/)
+ * This is a combination of the Two sum problem.
+ * The first step is to sort the incoming list, be explicit about the sorting function otherwise it won't sort properly on integers
+    ```javascript
+      nums.sort( (a, b) => a - b)
+    ```
+ * Once sorted loop over nums and within your loop carry out the Two sum logic, with __2 pointers__
