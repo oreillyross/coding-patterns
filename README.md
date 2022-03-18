@@ -224,3 +224,12 @@
  - The above call either repeats the char or it does not
  - If there is a match (i.e match is true) then simply recursively call function incrementing each index (i +1, and j + 1)
  - If the recursive function is inside the main function, make sure to kick it off with a function call passing (0,0)
+ 
+ ### [Two Sum II Sorted array](https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/)
+ - The solution recognizes the fact array is sorted and that a solution will always exist. 
+ - Uses two pointers approach
+ - while loop for left < right
+ - one pointer starts at index 0, the other pointer starts at end of array
+ - the algorithm either increases left pointer if sum of two values at each pointer is less than target
+ - or it decreases right pointer if sum is greater than target
+ - or returns tuple of indexes if a match is found
