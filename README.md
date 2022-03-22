@@ -249,3 +249,51 @@
       nums.sort( (a, b) => a - b)
     ```
  * Once sorted loop over nums and within your loop carry out the Two sum logic, with __2 pointers__
+
+ ### [Letter Combinations problem](https://leetcode.com/problems/letter-combinations-of-a-phone-number/)
+ * Uses backtracking pattern
+ * recursively build the tree
+ * the base case is when your current string length is equal to the length of input, i.e all letters used
+ * recursively build letters for each character iterated over.
+ * O(n*4^n) not ideal.
+ ```javascript
+        var letterCombinations = function(digits) {
+          
+          const hash = {
+              2: ["a","b", "c"],
+              3: ["d","e", "f"],
+              4: ["g","h", "i"],
+              5: ["j","k", "l"],
+              6: ["m","n", "o"],
+              7: ["p","q", "r", "s"],
+              8: ["t","u", "v"],
+              9: ["w","x", "y", "z"]
+          };
+          
+          const output = [];
+          
+          const build = (i, currStr, store) => {
+              
+              if (store.has(currStr)) return currStr;
+              
+              if (currStr.length === digits.length) {
+                  store.add(currStr);
+                  output.push(currStr);
+                  return;
+              }
+
+              const letters = hash[digits[i]];
+              
+              for (letter of letters) {
+                  build(i + 1, currStr + letter, store);
+                  
+              }
+          }
+          
+          if (digits) {
+              build(0, "", new Set())
+          }
+          
+          return output;
+      };
+```
