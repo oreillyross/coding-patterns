@@ -20,7 +20,42 @@
 * A depth first search of a graph uses a stack data structure behind the scenes
 * A breadth first search of a graph uses a queue data structure behind the scenes
 
+
 ## Algorithms to know
+
+### Two pointers
+* A common strategy for keeping track in array and string based problems
+* Two pointers can be used to track slices of a string, the below snippet highlights a use case
+
+```javascript
+            const uncompress = (s) => {
+            
+            let left = 0;
+            let right = 0;
+            const output = [];
+            
+            const isNumber = new RegExp(/\d/)
+            
+            for (let i = 0; i < s.length; i++) {
+                if (isNumber.test(s[i])) {
+                    right += 1;
+                    continue;
+                }
+                const times = s.slice(left, right);
+                output.push(s[i].repeat(times));
+                left = right + 1;
+                right = left;
+            }
+            
+            
+            
+            return output.join('')
+            };
+
+
+            uncompress("2c3a1t");
+```
+
 
 ### Backtracking
 * This is common in problems which require a bruteforce approach. 
