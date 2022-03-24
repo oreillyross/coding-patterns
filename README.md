@@ -63,7 +63,34 @@
 * upon reaching the leaf nodes you can _backtrack_ up the tree to the root node to get each and every variation.
 * problems solved with this approach include the [Letter Combinations](https://leetcode.com/problems/letter-combinations-of-a-phone-number/) problem from Leetcode.
 * use a recursive function inside your main function to build the result recursively.
-### Merge sort and quick sort
+### <p style="color: lightgreen">Sorting Algorithms</p>
+
+#### Insertion sort
+* This has an O(n^2) complexity because of the two for loops.
+* Key to this is iterating over the unsorted array starting from the first element, and doing the sorting in-place.
+* Then store the first element to compare inside the second for loop
+* the second for loop starts at j -1, so the previous current element, and while j initialised to i - 1 is >= 0 and the current element is bigger than current
+ move the element to the right;
+ * finally after exiting this for loop replace element at j + 1 to the current value.
+ * return the (now) sorted array
+
+ ```javascript
+            function sortList(unsortedList) {
+                
+            // insertion sort algorithm
+                for (let i = 1; i < unsortedList.length; i++) {
+                let current = unsortedList[i];
+                let j;
+                for (j = i - 1; j >= 0 && unsortedList[j] > current; j--) {
+                    unsortedList[j + 1] = unsortedList[j];
+                }
+                unsortedList[j +1] = current;  
+                }
+                
+                return unsortedList;
+                
+            }
+ ```
 
 ### Binary Search 
  - The precondition to searching is that the array must be sorted.
