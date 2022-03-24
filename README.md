@@ -151,6 +151,12 @@
 
 <hr/>
 
+### Calculating complexity
+- Terms that can be used to describe complexity include: 
+    * Maximal efficient solution
+    * linear complexity O(n)
+    * Multi-linear comlpexity O(n+m), this would be the case where two __for loops__ follow each other.
+
 ### 0 1 1 2 3 5 8 problem 🗃️
 
 - The key to this is to remember that you need to start with two numbers you already know. Otherwise you have nothing to add. 
