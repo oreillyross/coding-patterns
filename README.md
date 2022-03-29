@@ -17,6 +17,7 @@
 * Start with Brute Force, even if you know it is not efficient it will lead to other considerations to solve the problem
 * Keep track of the best answer so far in one pass of the problem, see if you can break it down into pieces
 * Consider early to use a hash map, even if you don't know how yet as it is used in solving many problems generally.
+    - If your brute force solution results in a nested __for loop__ this should indicate you can almost certainly use a hashmap O(1) lookup to reduce the complexity from O(n^2) to O(n). Use the ```if (num in hash)``` check 
 * A depth first search of a graph uses a stack data structure behind the scenes
 * A breadth first search of a graph uses a queue data structure behind the scenes
 
