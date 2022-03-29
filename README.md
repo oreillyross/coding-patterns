@@ -416,3 +416,35 @@
           return output;
       };
 ```
+
+### [Remove Nth Node from end of list](https://leetcode.com/problems/remove-nth-node-from-end-of-list/)
+* This is a __singly linked list problem__
+* It uses the __two pointer pattern__
+* Make sure to declare a dummy node upfront
+* Solution in javascript below
+```javascript
+    var removeNthFromEnd = function(head, n) {
+        
+        // dummy node is the node added before the head node, and has a null value.
+        const dummyHead = new ListNode(null);
+        dummyHead.next = head;
+
+        let left = dummyHead;
+        let right = head;
+        // need to iterate through linked list to set the correct right pointer to the node at + n space apart
+        while (right && n > 0) {
+            right = right.next;
+            n -= 1;
+        }
+        // classic linked list iteration, stop when right pointer is at null, i.e. just past the end
+        while (right) {
+            left = left.next;
+            right = right.next;
+        }
+        
+        // by setting left node pointer to the next.next node it will remove the node inthe middle.
+        left.next = left.next.next;
+        
+        return dummyHead.next;
+};
+```
