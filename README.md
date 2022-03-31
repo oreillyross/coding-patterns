@@ -10,6 +10,7 @@
 * [Interview Cake](https://www.interviewcake.com/)
 * [Leet code](https://leetcode.com/)
 * [Neet code](https://www.youtube.com/channel/UC_mYaQAE6-71rjSN6CeCA-g) A youtube channel from a a guy who is now a Google engineer who created videos in python of many Leet code challenges
+* [Algo.monster] A site which distills essential algorithms, data structures and techniques for interviewing. Created by former Google engineers.
 
 
 ## General Patterns to start solving a problem
