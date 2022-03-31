@@ -142,19 +142,42 @@
 ```
 
 ### Binary Search 
- - The precondition to searching is that the array must be sorted.
+ - The precondition to searching is that the __array must be sorted__.
  - Key pieces are two pointers, one initially pointing to the first value (low pointer), the other pointing to the end of the array (high pointer).
  - algorithmic step is to find the midpoint (floored for whole number), check if it matches the target value, or if its lower than target value, move low pointer 
  to the midpoint index, if its higher, move the high pointer to the mid point index, repeat until target found or low matches high index. Then no match.
+ - This gives a complexity of __O(log n)__ runtime.
  
-     //while the two pointers dont cross
-      //find midpoint index
-      // check if target higher, move low pointer to midpoint + 1
-      // if target lower move high pointer to mid - 1 
-      // else it is equal to mid, reutnr mid as its the index
+    - pseudo code steps    
+     ```
+       * while the two pointers dont cross
+       * find midpoint index
+       * check if target higher, move low pointer to midpoint + 1
+       * if target lower move high pointer to mid - 1 
+       * else it is equal to mid, return mid as its the index
   
-      //all else fails return -1
-
+       * all else fails return -1
+    ```
+    ```javascript
+        function binarySearch(arr, target) {
+    
+            let left = 0;
+            let right = arr.length - 1;
+            while (left <= right) {
+            const mid = left + Math.trunc((right - left) / 2);
+            if (arr[mid] < target) {
+                left = mid + 1;
+            } else if (arr[mid] > target) {
+                right = mid - 1;
+            } else {
+                return mid;
+            }
+            }
+    
+          return -1;
+        
+        }
+    ```
 
 
 ### Topological order
