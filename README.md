@@ -178,7 +178,31 @@
         
         }
     ```
+* The binary search can also consist of a __find boundary__ element, which is essentially finding the 
+next True element (or the first true element) in a true or false array.
+* The condition or check at the midpoint element might indicate a true or false condition, whereby you
+  update the boundary index and shift the left or right pointer accordingly. 
+  * The below [Minimum in Rotated Sorted array](https://algo.monster/problems/min_in_rotated_sorted_array) is a good example.
 
+  ```javascript
+    function findMinRotated(arr) {
+    let left = 0;
+    let right = arr.length - 1;
+    let boundary_index = -1;
+    while (left <= right) {
+        let mid = left + Math.trunc((right - left) / 2);
+        // if <= last element, then belongs to lower half
+        if (arr[mid] <= arr[arr.length - 1]) {
+            boundary_index = mid;
+            right = mid - 1;
+        } else {
+            left = mid + 1;
+        }
+    }
+    return boundary_index;
+}
+  
+  ```
 
 ### Topological order
 - Key to victory is to build a hash map of the parents and their connections, so numParents = {};
