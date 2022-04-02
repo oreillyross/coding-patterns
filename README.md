@@ -149,7 +149,7 @@
  - This gives a complexity of __O(log n)__ runtime.
  
     - pseudo code steps    
-     ```
+```
        * while the two pointers dont cross
        * find midpoint index
        * check if target higher, move low pointer to midpoint + 1
@@ -157,8 +157,8 @@
        * else it is equal to mid, return mid as its the index
   
        * all else fails return -1
-    ```
-    ```javascript
+```
+```javascript
         function binarySearch(arr, target) {
     
             let left = 0;
@@ -177,14 +177,14 @@
           return -1;
         
         }
-    ```
+```
 * The binary search can also consist of a __find boundary__ element, which is essentially finding the 
 next True element (or the first true element) in a true or false array.
 * The condition or check at the midpoint element might indicate a true or false condition, whereby you
   update the boundary index and shift the left or right pointer accordingly. 
   * The below [Minimum in Rotated Sorted array](https://algo.monster/problems/min_in_rotated_sorted_array) is a good example.
 
-  ```javascript
+```javascript
     function findMinRotated(arr) {
     let left = 0;
     let right = arr.length - 1;
@@ -202,7 +202,7 @@ next True element (or the first true element) in a true or false array.
     return boundary_index;
 }
   
-  ```
+```
 
 ### Topological order
 - Key to victory is to build a hash map of the parents and their connections, so numParents = {};
@@ -213,6 +213,10 @@ next True element (or the first true element) in a true or false array.
 
 ### Trees
 - know the difference between inorder (left, root, right), preorder (root, left, right) and postorder (left, right, root) traversal, this applies to depth-first searches. 
+
+#### Balanced binary tree
+* Determine if a tree is balanced. The definition of a balanced tree is the following:
+  * The left and right subtrees of every node should differ by no more than 1 in height. 
 
 #### Binary tree
 
