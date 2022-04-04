@@ -272,7 +272,39 @@ next True element (or the first true element) in a true or false array.
   * The left and right subtrees of every node should differ by no more than 1 in height. 
 
 #### Binary tree
+- Needs to meet three conditions:
+    - Have only one root,
+    - have a unique path between root to leaf node
+    - each node can have 0, 1 or at most two children.
 
+    __Remember an Empty tree is also a valid binary tree__
+
+
+### [DFS Return all node values](https://structy.net/problems/depth-first-values)
+
+   - There are two ways to approach this problem.
+    - It forms the basis of DFS algorithm.
+    
+    * __iterative__
+        - Either iteratively, use a stack to push the root node
+        - Then while stack.length then push value onto values array
+        - recursively call dfs for left and right nodes if they exist
+        - finally return values array.
+    * __recursive__ 
+        - think about your return values. in this case its an array
+        - base case is empty node, return empty array.
+        - return the value, then spread out the collection of dfs calls on left and then right.
+
+```javascript
+    const depthFirstValues = (root) => {
+      return dfcount(root)
+    };
+
+    const dfcount = (node) => {
+      if (!node) return [];
+      return [node.val, ...dfcount(node.left), ...dfcount(node.right)]
+    }
+```
 
 ### [Lefty nodes problem](https://structy.net/problems/premium/lefty-nodes)
 - Start with a helper function that takes a node, and a count of what level you are on
@@ -280,6 +312,34 @@ next True element (or the first true element) in a true or false array.
 - inside the helper function recursively call itself passing in the left and then the right nodes, and level + 1.
 - the base case is if node is null and you push a value if values.length === level.
 
+## Binary Search trees
+ - A type of binary tree with these properties
+  - An empty tree is a valid BST
+  - Non-empty tree left < root > right
+  - left and right subtrees are all BST themselves
+
+### Valid Binary Search Tree
+
+```
+    Pseudo Code
+    1. think about return values, i.e. all same type of boolean being bubble up through tree. true && false
+    2. Think about state that needs to be mainteind through each recursive call, the min and max value range for a node to be BST true
+    3. Try not to nest your resucrsive function in main function to avoid namespace collisions and call stack errors.
+```
+
+``` javascript
+        function dfs(node, min, max) {
+            
+                if (!node) return true;
+
+                if (!(min <= node.val && node.val <= max)) return false;
+                return dfs(node.left, min, node.val) && dfs(node.right, node.val, max);
+            }
+
+        function validBst(root) {
+            return dfs(root, -Infinity, Infinity) 
+        }
+```
 
 
 # Graphs
