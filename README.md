@@ -204,6 +204,59 @@ next True element (or the first true element) in a true or false array.
   
 ```
 
+#### Serializing and deserializing an Array
+
+``` 
+  PSEUDO CODE:
+    - to serialise: 
+        - create a result array, 
+        - recursively call a dfs function, passing the next node in, and a reference to the result array to be populated inside recursive call.
+        - return array as joined " ";
+        Normally in the recursive call you think about the return value, and what state, in this case we only worry about the state, which is array passed in as reference.
+        - base case is leaf node, if (!node) push 'x' to array and return void.
+        - push the node.val and then 
+        - recursively call function passing the left and right nodes in calls respectively, along with state.
+    - to deserialise:
+        - Use the trick of creating an iterator from the string split as array, the arr[Symbol.iterator]() will do it 
+        - pass this in as the only argument to dfs function for deserialising,
+        - inside the function first get the next value by calling iterator.next(),
+        - if it is an 'x' char then simply return void, as its a leaf node, // base case to get out of recursion
+        - otherwise create a new Node, passing parseInt(value, 10)
+        - then with that node call left and right recursive calls passing result back to curr.left or curr right.
+        - then return the current node, which goes back into recursive call.
+```
+
+```javascript
+    function serialize(root) {
+        const res = [];
+        dfs_serialize(root, res);
+        return res.join(" ");
+    }
+
+    const dfs_serialize = (node, res) => {
+    if (!node) {
+        res.push("x");
+        return;
+    }
+    res.push(node.val)
+    dfs_serialize(node.left, res)  
+    dfs_serialize(node.right, res)
+    }
+
+    function deserialize(s) {
+        return dfs_deserialize(s.split(" ")[Symbol.iterator]())
+    }
+
+    const dfs_deserialize = (nodes) => {
+        const {value} = nodes.next();
+        if (value === "x") return;
+        const newNode = new Node(parseInt(value, 10))
+        newNode.left = dfs_deserialize(nodes)
+        newNode.right = dfs_deserialize(nodes)
+        return newNode;
+    };
+```
+
 ### Topological order
 - Key to victory is to build a hash map of the parents and their connections, so numParents = {};
 - Also have an array called ready, which takes the nodes that have a count of 0 in the numParents object
