@@ -19,8 +19,7 @@
 * Keep track of the best answer so far in one pass of the problem, see if you can break it down into pieces
 * Consider early to use a hash map, even if you don't know how yet as it is used in solving many problems generally.
     - If your brute force solution results in a nested __for loop__ this should indicate you can almost certainly use a hashmap O(1) lookup to reduce the complexity from O(n^2) to O(n). Use the ```if (num in hash)``` check 
-* A depth first search of a graph uses a stack data structure behind the scenes
-* A breadth first search of a graph uses a queue data structure behind the scenes
+
 
 
 ## Algorithms to know
@@ -343,6 +342,8 @@ next True element (or the first true element) in a true or false array.
 
 
 # Graphs
+* A depth first search of a graph uses a stack data structure behind the scenes
+* A breadth first search of a graph uses a queue data structure behind the scenes
 
 * Use <code>for ... in</code> to get access to all keys if given a object with adjacency list to represent graph. For iterative inspection of each node.
 * Use <code>for ... of</code> to get the values of an object, so in this case it would be the adjacency list itself
