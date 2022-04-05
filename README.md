@@ -339,7 +339,17 @@ next True element (or the first true element) in a true or false array.
             return dfs(root, -Infinity, Infinity) 
         }
 ```
+### Invert BST
+    - Think about return value, which is inverted subtree, swopping left with right
+    - Use the class Node constructor to return a new Node and pass in the root.val, then swop the left and right node in constructor function and recursively call function on each left and right nodes now swopped.
+    - also check upfront for !node and simpy return void.
 
+```javascript
+    function invertBinaryTree(node) {
+        if (!node) return;
+        return new Node(node.val, invertBinaryTree(node.right), invertBinaryTree(node.left));
+    }
+```
 
 # Graphs
 * A depth first search of a graph uses a stack data structure behind the scenes
