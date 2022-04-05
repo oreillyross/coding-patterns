@@ -339,16 +339,37 @@ next True element (or the first true element) in a true or false array.
             return dfs(root, -Infinity, Infinity) 
         }
 ```
-### Invert BST
-    - Think about return value, which is inverted subtree, swopping left with right
-    - Use the class Node constructor to return a new Node and pass in the root.val, then swop the left and right node in constructor function and recursively call function on each left and right nodes now swopped.
-    - also check upfront for !node and simpy return void.
+### <p style="color: lightgreen">Invert BST</p>
+- Think about return value, which is inverted subtree, swopping left with right
+- Use the class Node constructor to return a new Node and pass in the root.val, then swop the left and right node in constructor function and recursively call function on each left and right nodes now swopped.
+- also check upfront for !node and simply return void.
 
 ```javascript
     function invertBinaryTree(node) {
         if (!node) return;
         return new Node(node.val, invertBinaryTree(node.right), invertBinaryTree(node.left));
     }
+```
+
+### <p style="color: lightgreen">kth smallest number</p>
+  - This can be solved using a inorder traversal, given the properties of a BST, the left most node is the smallest
+  - Keep a global count, which is incremented each time a left node is visited.
+  - when count === k you have found the kth smallest node, return its value.
+
+```javascript
+        function kthSmallest(bst, k) {
+        let count = 0;
+
+        const dfs = (node, k) => {
+            if (!node) return null;
+            let left = dfs(node.left, k);
+            if (left) return left;
+            count++;
+            if (count === k) return node.val;
+            return dfs(node.right, k);  
+        }
+        return dfs(bst, k);  
+        }
 ```
 
 # Graphs
