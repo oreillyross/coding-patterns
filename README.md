@@ -289,6 +289,11 @@ In essence when solving a problem with recursion either use the return value (pa
 
 #### <p style="color:lightgreen">Combinatorial search on trees</p>
 
+- Three steps:
+1. Identify the state(s)
+2. Draw the state-space-tree
+3. DFS/backtrack on the state space tree
+   
 ##### Backtracking template
 ```javascript
     function dfs(node, state) {
