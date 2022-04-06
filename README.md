@@ -287,6 +287,25 @@ next True element (or the first true element) in a true or false array.
 
 In essence when solving a problem with recursion either use the return value (partition and merge) or store a global variable that is updated based on each recursive call.
 
+#### <p style="color:lightgreen">Combinatorial search on trees</p>
+
+##### Backtracking template
+```javascript
+    function dfs(node, state) {
+        if __state__ is a solution {
+            report(state) // add state to final result list
+            return
+        }
+
+        for (child of children) {
+            if child is a part of a potential solution
+            state.add(child) // make move
+            dfs(child, state)
+            state.remove(child) // backtrack
+        }
+    }
+```    
+
 #### Balanced binary tree
 * Determine if a tree is balanced. The definition of a balanced tree is the following:
   * The left and right subtrees of every node should differ by no more than 1 in height. 
