@@ -184,7 +184,7 @@ next True element (or the first true element) in a true or false array.
   update the boundary index and shift the left or right pointer accordingly. 
   * The below [Minimum in Rotated Sorted array](https://algo.monster/problems/min_in_rotated_sorted_array) is a good example.
 
-  ```javascript
+```javascript
     function findMinRotated(arr) {
     let left = 0;
     let right = arr.length - 1;
@@ -202,7 +202,7 @@ next True element (or the first true element) in a true or false array.
     return boundary_index;
 }
   
-  ```
+```
 
 ### Topological order
 - Key to victory is to build a hash map of the parents and their connections, so numParents = {};
@@ -213,6 +213,27 @@ next True element (or the first true element) in a true or false array.
 
 ### Trees
 - know the difference between inorder (left, root, right), preorder (root, left, right) and postorder (left, right, root) traversal, this applies to depth-first searches. 
+* Key to reasoning about tree like structures is to think from the perspective of a node. get inside recursive leap of faith logic.
+
+```
+  // TEMPLATE FOR DFS on TREE
+    function dfs(node, state) {
+        if node is null
+          ...
+          return
+        left = dfs(node.left, state)  
+        right = dfs(node.right, state)  
+        ...
+        return ...
+    }
+
+```
+
+ __<span style="color: lightgreen">Two things</span>__ to decide on when thinking through recursion
+ 1. The return value (passing value up from child to parent)
+ 2. Identifying the state (passing value down from parent to child)
+
+In essence when solving a problem with recursion either use the return value (partition and merge) or store a global variable that is updated based on each recursive call.
 
 #### Binary tree
 
