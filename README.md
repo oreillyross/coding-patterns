@@ -19,8 +19,7 @@
 * Keep track of the best answer so far in one pass of the problem, see if you can break it down into pieces
 * Consider early to use a hash map, even if you don't know how yet as it is used in solving many problems generally.
     - If your brute force solution results in a nested __for loop__ this should indicate you can almost certainly use a hashmap O(1) lookup to reduce the complexity from O(n^2) to O(n). Use the ```if (num in hash)``` check 
-* A depth first search of a graph uses a stack data structure behind the scenes
-* A breadth first search of a graph uses a queue data structure behind the scenes
+
 
 
 ## Algorithms to know
@@ -149,7 +148,7 @@
  - This gives a complexity of __O(log n)__ runtime.
  
     - pseudo code steps    
-     ```
+```
        * while the two pointers dont cross
        * find midpoint index
        * check if target higher, move low pointer to midpoint + 1
@@ -157,8 +156,8 @@
        * else it is equal to mid, return mid as its the index
   
        * all else fails return -1
-    ```
-    ```javascript
+```
+```javascript
         function binarySearch(arr, target) {
     
             let left = 0;
@@ -177,7 +176,7 @@
           return -1;
         
         }
-    ```
+```
 * The binary search can also consist of a __find boundary__ element, which is essentially finding the 
 next True element (or the first true element) in a true or false array.
 * The condition or check at the midpoint element might indicate a true or false condition, whereby you
@@ -202,6 +201,59 @@ next True element (or the first true element) in a true or false array.
     return boundary_index;
 }
   
+```
+
+#### Serializing and deserializing an Array
+
+``` 
+  PSEUDO CODE:
+    - to serialise: 
+        - create a result array, 
+        - recursively call a dfs function, passing the next node in, and a reference to the result array to be populated inside recursive call.
+        - return array as joined " ";
+        Normally in the recursive call you think about the return value, and what state, in this case we only worry about the state, which is array passed in as reference.
+        - base case is leaf node, if (!node) push 'x' to array and return void.
+        - push the node.val and then 
+        - recursively call function passing the left and right nodes in calls respectively, along with state.
+    - to deserialise:
+        - Use the trick of creating an iterator from the string split as array, the arr[Symbol.iterator]() will do it 
+        - pass this in as the only argument to dfs function for deserialising,
+        - inside the function first get the next value by calling iterator.next(),
+        - if it is an 'x' char then simply return void, as its a leaf node, // base case to get out of recursion
+        - otherwise create a new Node, passing parseInt(value, 10)
+        - then with that node call left and right recursive calls passing result back to curr.left or curr right.
+        - then return the current node, which goes back into recursive call.
+```
+
+```javascript
+    function serialize(root) {
+        const res = [];
+        dfs_serialize(root, res);
+        return res.join(" ");
+    }
+
+    const dfs_serialize = (node, res) => {
+    if (!node) {
+        res.push("x");
+        return;
+    }
+    res.push(node.val)
+    dfs_serialize(node.left, res)  
+    dfs_serialize(node.right, res)
+    }
+
+    function deserialize(s) {
+        return dfs_deserialize(s.split(" ")[Symbol.iterator]())
+    }
+
+    const dfs_deserialize = (nodes) => {
+        const {value} = nodes.next();
+        if (value === "x") return;
+        const newNode = new Node(parseInt(value, 10))
+        newNode.left = dfs_deserialize(nodes)
+        newNode.right = dfs_deserialize(nodes)
+        return newNode;
+    };
 ```
 
 ### Topological order
@@ -235,8 +287,44 @@ next True element (or the first true element) in a true or false array.
 
 In essence when solving a problem with recursion either use the return value (partition and merge) or store a global variable that is updated based on each recursive call.
 
-#### Binary tree
+#### Balanced binary tree
+* Determine if a tree is balanced. The definition of a balanced tree is the following:
+  * The left and right subtrees of every node should differ by no more than 1 in height. 
 
+#### Binary tree
+- Needs to meet three conditions:
+    - Have only one root,
+    - have a unique path between root to leaf node
+    - each node can have 0, 1 or at most two children.
+
+    __Remember an Empty tree is also a valid binary tree__
+
+
+### [DFS Return all node values](https://structy.net/problems/depth-first-values)
+
+   - There are two ways to approach this problem.
+    - It forms the basis of DFS algorithm.
+    
+    * __iterative__
+        - Either iteratively, use a stack to push the root node
+        - Then while stack.length then push value onto values array
+        - recursively call dfs for left and right nodes if they exist
+        - finally return values array.
+    * __recursive__ 
+        - think about your return values. in this case its an array
+        - base case is empty node, return empty array.
+        - return the value, then spread out the collection of dfs calls on left and then right.
+
+```javascript
+    const depthFirstValues = (root) => {
+      return dfcount(root)
+    };
+
+    const dfcount = (node) => {
+      if (!node) return [];
+      return [node.val, ...dfcount(node.left), ...dfcount(node.right)]
+    }
+```
 
 ### [Lefty nodes problem](https://structy.net/problems/premium/lefty-nodes)
 - Start with a helper function that takes a node, and a count of what level you are on
@@ -244,9 +332,70 @@ In essence when solving a problem with recursion either use the return value (pa
 - inside the helper function recursively call itself passing in the left and then the right nodes, and level + 1.
 - the base case is if node is null and you push a value if values.length === level.
 
+## Binary Search trees
+ - A type of binary tree with these properties
+  - An empty tree is a valid BST
+  - Non-empty tree left < root > right
+  - left and right subtrees are all BST themselves
 
+### Valid Binary Search Tree
+
+```
+    Pseudo Code
+    1. think about return values, i.e. all same type of boolean being bubble up through tree. true && false
+    2. Think about state that needs to be mainteind through each recursive call, the min and max value range for a node to be BST true
+    3. Try not to nest your resucrsive function in main function to avoid namespace collisions and call stack errors.
+```
+
+``` javascript
+        function dfs(node, min, max) {
+            
+                if (!node) return true;
+
+                if (!(min <= node.val && node.val <= max)) return false;
+                return dfs(node.left, min, node.val) && dfs(node.right, node.val, max);
+            }
+
+        function validBst(root) {
+            return dfs(root, -Infinity, Infinity) 
+        }
+```
+### <p style="color: lightgreen">Invert BST</p>
+- Think about return value, which is inverted subtree, swopping left with right
+- Use the class Node constructor to return a new Node and pass in the root.val, then swop the left and right node in constructor function and recursively call function on each left and right nodes now swopped.
+- also check upfront for !node and simply return void.
+
+```javascript
+    function invertBinaryTree(node) {
+        if (!node) return;
+        return new Node(node.val, invertBinaryTree(node.right), invertBinaryTree(node.left));
+    }
+```
+
+### <p style="color: lightgreen">kth smallest number</p>
+  - This can be solved using a inorder traversal, given the properties of a BST, the left most node is the smallest
+  - Keep a global count, which is incremented each time a left node is visited.
+  - when count === k you have found the kth smallest node, return its value.
+
+```javascript
+        function kthSmallest(bst, k) {
+        let count = 0;
+
+        const dfs = (node, k) => {
+            if (!node) return null;
+            let left = dfs(node.left, k);
+            if (left) return left;
+            count++;
+            if (count === k) return node.val;
+            return dfs(node.right, k);  
+        }
+        return dfs(bst, k);  
+        }
+```
 
 # Graphs
+* A depth first search of a graph uses a stack data structure behind the scenes
+* A breadth first search of a graph uses a queue data structure behind the scenes
 
 * Use <code>for ... in</code> to get access to all keys if given a object with adjacency list to represent graph. For iterative inspection of each node.
 * Use <code>for ... of</code> to get the values of an object, so in this case it would be the adjacency list itself
