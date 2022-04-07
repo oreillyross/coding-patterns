@@ -311,6 +311,25 @@ In essence when solving a problem with recursion either use the return value (pa
     }
 ```    
 
+Some real javascript code to demonstrate:
+
+```javascript
+    function dfs(root, path, res) {
+        if (root.children.every(c => !c)) {
+        res.push(path.join("->"))
+        return;
+        }
+        
+        for (let child of root.children) {
+        if (child) {
+            path.push(child.val);
+            dfs(child, path, res);
+            path.pop();
+        }
+        }
+    }
+```
+
 #### Balanced binary tree
 * Determine if a tree is balanced. The definition of a balanced tree is the following:
   * The left and right subtrees of every node should differ by no more than 1 in height. 
