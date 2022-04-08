@@ -289,6 +289,10 @@ In essence when solving a problem with recursion either use the return value (pa
 
 #### <p style="color:lightgreen">Combinatorial search on trees</p>
 
+Think about the problem as using a binary tree as a framework to generate all possible subsets. Whilst you don't code the Binary tree nodes, you can use the same recursive DFS techniques to visit all the possible combinations.
+
+- Generally the height of the tree = the number of input n's. The complexity can be generalised for n to be O(2^n) in time and space. 
+
 - Three steps:
 1. Identify the state(s)
 2. Draw the state-space-tree
@@ -330,6 +334,41 @@ Some real javascript code to demonstrate:
     }
 ```
 
+### Solving the permutation problem with pseudocode
+
+1. Identify the states, so you need to know the full path, and when it has been reached to record this, pass it along, and second state is to know which letters have been used.
+2. DRAW THE TREE (State-space-tree).
+3. Apply DFS and backtrack template.
+    - base case is when path.length == letters.length
+    - then append the path to res (found one path), and return
+    - then __for__ over the letters and check if used, continue, otherwise path.push the letter, mark it as used and recursively call the dfs function.
+    - then backtrack, pop letter from path and mark letter[i] as false 
+    - finally call the function first time, passing [] for path, Array(letters.length).fill(false)
+    and return res
+
+```javascript
+    function permutations(letters) {
+        const res = [];
+        dfs([], Array(letters.length).fill(false), res)
+        return res;
+        
+        function dfs(path, used, res){
+            if (path.length === letters.length) {
+            res.push(path.join(""));
+            return;
+        }  
+        for(let i = 0; i < letters.length; i++) {
+          if (used[i]) continue;
+          path.push(letters[i]);
+          used[i] = true;
+          dfs(path, used, res);
+          path.pop();
+          used[i] = false;
+        }
+        return res;
+    }
+  }
+```    
 #### Balanced binary tree
 * Determine if a tree is balanced. The definition of a balanced tree is the following:
   * The left and right subtrees of every node should differ by no more than 1 in height. 
