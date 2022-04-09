@@ -372,7 +372,47 @@ Some real javascript code to demonstrate:
         return res;
     }
   }
-```    
+```
+#### [Generate parenthesis](https://leetcode.com/problems/generate-parentheses/)
+
+This is a classic combinatorial problem which requirss searching all combinations and backtracking using dfs.
+- Think about your base aase to populate one valid path. This is where drawing the state-space tree will help. 
+- In this case it is when the accumulated path is equal to the 2 braces (2) * n;
+- Update result, and return
+- then the two recursive cases are either validly inserting a open brace or inserting a valid close brace.
+- Then recursively call function, updating state, which is count of open or closed brace
+- and backtrack, after recursive call, so pop()
+
+__see below code__ 
+
+```javascript
+    var generateParenthesis = function(n) {
+        
+        let result = [];
+        const gen = (braces = [], open = 0, closed = 0) => {
+            
+        if (braces.length === 2 * n) {
+            result.push(braces.join(""));
+            return;
+        } 
+            
+        if (open < n && open >= closed) {
+            braces.push("(");
+            gen(braces, open + 1, closed);
+            braces.pop();
+        }
+            
+        if (closed < n & open >= closed) {
+            braces.push(")");
+            gen(braces, open, closed + 1);
+            braces.pop();
+        } 
+        }
+        gen();
+        return result;
+    };
+```
+
 #### Balanced binary tree
 * Determine if a tree is balanced. The definition of a balanced tree is the following:
   * The left and right subtrees of every node should differ by no more than 1 in height. 
