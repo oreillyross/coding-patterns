@@ -98,7 +98,7 @@
  * Because it needs to split the arrays to some base case (when only one element exists) recursion is a good implementation
  * alternatively it can be solved using the bottom-up approach
  * The complexity is O(n log n), which is efficient
- * The algorithm requires two functions, one which takes two sorted arrays and returns one osrted array, a second function which recursively divides arrays.
+ * The algorithm requires two functions, one which takes two sorted arrays and returns one sorted array, a second function which recursively divides arrays.
  * The below details the general algorithm in javascript
 
 ```javascript
@@ -213,10 +213,15 @@ next True element (or the first true element) in a true or false array.
 
 ### Trees
 - know the difference between inorder (left, root, right), preorder (root, left, right) and postorder (left, right, root) traversal, this applies to depth-first searches. 
+  - __Post order traversal__
+    - This is used to determine if a tree is balanced.
+    -  
+
 
 #### Balanced binary tree
 * Determine if a tree is balanced. The definition of a balanced tree is the following:
   * The left and right subtrees of every node should differ by no more than 1 in height. 
+  * Use the post-order traversal (left, right, root)
 
 #### Binary tree
 
