@@ -413,6 +413,45 @@ __see below code__
     };
 ```
 
+### [Word Break (Combinatorial problem using memoization)](https://algo.monster/problems/word_break)
+
+- This problem calls for using one state variable i, and then the state-space-tree is the words array choices one can make
+- There will be some overlapping subproblems which can be memoized
+
+```javascript
+        function wordBreak(s, words) {
+            // used to store the previous solutions found in teh decision state-space-tree
+            const memo = {};
+            // kick off the function call, returning the result wither true or false, pass in previous args, as well as 0, to track the recursive end condition
+            return dfs(s, words, 0, memo)
+            
+        }
+
+        const dfs = (s, words, i, memo) => {
+        // base case is if the length of the string is equal to the index i, then all options can fit in the original string
+        if (i === s.length) return true;
+        // short-circuit call if already seen this solution in the state-space-tree
+        if (i in memo) return memo[i];  
+            
+        // track the found state
+        let found = false;
+        // classic dfs search algorithm, for...of with recursive call based on condition
+        for (let word of words) {
+            // start at the ith index and slice until the end of string, i.e whatever still needs to be checked
+            // check if the string starts with the word, each word in list will be checked
+            // if it does then recursively call the dfs function to check the rest of the string, and increase i to just after the previously found word in string
+            if (s.slice(i).startsWith(word)) {
+            if (dfs(s, words, i + word.length, memo)) {
+                found = true;
+                break;  
+            };
+            }
+        }  
+        memo[i] = found;
+        return found;  
+        }
+```
+
 #### Balanced binary tree
 * Determine if a tree is balanced. The definition of a balanced tree is the following:
   * The left and right subtrees of every node should differ by no more than 1 in height. 
@@ -520,11 +559,16 @@ __see below code__
         }
 ```
 
+## Heap
+A heap data structure is a type of binary tree, which is mostly complete. Being mostly complete (i.e. leaf nodes are on the far left) allows for O(log n) lookup, and O(log n) insert and delete. 
+A min and max heap, means the heap is mostly sorted, all levels are sorted, but not necessarily the values oneach level. This allows one to quickly start at the top (min heap will be smallest to largest going down) and find the node you are looking for, the real power over a normal a sorted array is that the insert and delete
+
 # Graphs
 * A depth first search of a graph uses a stack data structure behind the scenes
 * A breadth first search of a graph uses a queue data structure behind the scenes
 
 * Use <code>for ... in</code> to get access to all keys if given a object with adjacency list to represent graph. For iterative inspection of each node.
+
 * Use <code>for ... of</code> to get the values of an object, so in this case it would be the adjacency list itself
 * Know how to convert an edge list (array of pairs) into an adjacency list, which is an object with keys and values of arrays representing the connections.
 ### <em>edge list to adjacency list</em>
