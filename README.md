@@ -564,7 +564,7 @@ __see below code__
 - while queue has a length keep iterating. First for over the n count of current queue and push into a new level array,
 - then for of the children, and push them into queue
 - finally after push new level into result array,
-- finllay exit while loop and return multidimensional array
+- finally exit while loop and return multidimensional array
 
 ```javascript
         function levelOrderTraversal(root) {
@@ -586,6 +586,8 @@ __see below code__
             return result;
         }
 ```
+### Zizag level order traversal(https://leetcode.com/problems/binary-tree-zigzag-level-order-traversal/)
+This is the same as above with some slight changes (adding a boolean flag)
 
 ## Heap
 A heap data structure is a type of binary tree, which is mostly complete. Being mostly complete (i.e. leaf nodes are on the far left) allows for O(log n) lookup, and O(log n) insert and delete. 
