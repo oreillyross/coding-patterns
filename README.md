@@ -559,6 +559,34 @@ __see below code__
         }
 ```
 
+### [Breadth first search, return level order elements in a multidimensional array](https://algo.monster/problems/binary_tree_level_order_traversal)
+- Key to vistory is apply the usual BFS template, which is using a queue, then shift on the queue (underlying array)
+- while queue has a length keep iterating. First for over the n count of current queue and push into a new level array,
+- then for of the children, and push them into queue
+- finally after push new level into result array,
+- finllay exit while loop and return multidimensional array
+
+```javascript
+        function levelOrderTraversal(root) {
+            
+            const queue = [root];
+            const result = [];
+            while (queue.length) {
+                const level = [];
+                const n = queue.length
+                for (let i = 0; i < n; i++) {
+                const node = queue.shift();
+                level.push(node.val);
+                for(let child of [node.left, node.right]) {
+                    if (child) queue.push(child);
+                }
+                }
+            result.push(level);  
+            }
+            return result;
+        }
+```
+
 ## Heap
 A heap data structure is a type of binary tree, which is mostly complete. Being mostly complete (i.e. leaf nodes are on the far left) allows for O(log n) lookup, and O(log n) insert and delete. 
 A min and max heap, means the heap is mostly sorted, all levels are sorted, but not necessarily the values oneach level. This allows one to quickly start at the top (min heap will be smallest to largest going down) and find the node you are looking for, the real power over a normal a sorted array is that the insert and delete
