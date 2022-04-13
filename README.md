@@ -69,12 +69,7 @@ Be able to define, describe and demonstrate through examples the following conce
 ```
 
 
-### Backtracking
-* This is common in problems which require a bruteforce approach. 
-* Think of the problem in terms of a decision tree which branches out exponentially, i.e. based on the number of inputs
-* upon reaching the leaf nodes you can _backtrack_ up the tree to the root node to get each and every variation.
-* problems solved with this approach include the [Letter Combinations](https://leetcode.com/problems/letter-combinations-of-a-phone-number/) problem from Leetcode.
-* use a recursive function inside your main function to build the result recursively.
+
 ### <p style="color: lightgreen">Sorting Algorithms</p>
 
 #### Insertion sort
@@ -312,7 +307,15 @@ Think about the problem as using a binary tree as a framework to generate all po
 1. Identify the state(s)
 2. Draw the state-space-tree
 3. DFS/backtrack on the state space tree
-   
+
+  ### Backtracking
+* This is common in problems which require a bruteforce approach.
+* Think of the problem in terms of a decision tree which branches out exponentially, i.e. based on the number of inputs
+* upon reaching the leaf nodes you can _backtrack_ up the tree to the root node to get each and every variation.
+* problems solved with this approach include the [Letter Combinations](https://leetcode.com/problems/letter-combinations-of-a-phone-number/) problem from Leetcode.
+
+* use a recursive function inside your main function to build the result recursively.
+
 ##### Backtracking template
 ```javascript
     function dfs(node, state) {
