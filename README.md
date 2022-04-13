@@ -611,7 +611,18 @@ A min and max heap, means the heap is mostly sorted, all levels are sorted, but 
 * A depth first search of a graph uses a stack data structure behind the scenes
 * A breadth first search of a graph uses a queue data structure behind the scenes
 
-* Use <code>for ... in</code> to get access to all keys if given a object with adjacency list to represent graph. For iterative inspection of each node.
+* Use <code>for ... in</code> to get access to all keys if given a object with __adjacency list__ to represent graph. For iterative inspection of each node.
+
+```javascript
+  // Usually take in an adjacency list as input.
+  {
+      a: [b,c],
+      b: [d],
+      c: [b, e],
+      e: []
+  }
+```
+The terminology differs slightly with trees. When talking about graphs we say vist each __neighbor__, as technically they are not __children__ like in trees which have a acyclic top down structure.
 
 * Use <code>for ... of</code> to get the values of an object, so in this case it would be the adjacency list itself
 * Know how to convert an edge list (array of pairs) into an adjacency list, which is an object with keys and values of arrays representing the connections.
