@@ -108,7 +108,7 @@ Be able to define, describe and demonstrate through examples the following conce
  * Because it needs to split the arrays to some base case (when only one element exists) recursion is a good implementation
  * alternatively it can be solved using the bottom-up approach
  * The complexity is O(n log n), which is efficient
- * The algorithm requires two functions, one which takes two sorted arrays and returns one osrted array, a second function which recursively divides arrays.
+ * The algorithm requires two functions, one which takes two sorted arrays and returns one sorted array, a second function which recursively divides arrays.
  * The below details the general algorithm in javascript
 
 ```javascript
@@ -276,6 +276,10 @@ next True element (or the first true element) in a true or false array.
 
 ### Trees
 - know the difference between inorder (left, root, right), preorder (root, left, right) and postorder (left, right, root) traversal, this applies to depth-first searches. 
+  - __Post order traversal__
+    - This is used to determine if a tree is balanced.
+    -  
+
 * Key to reasoning about tree like structures is to think from the perspective of a node. get inside recursive leap of faith logic.
 
 ```
@@ -300,6 +304,10 @@ In essence when solving a problem with recursion either use the return value (pa
 
 #### <p style="color:lightgreen">Combinatorial search on trees</p>
 
+Think about the problem as using a binary tree as a framework to generate all possible subsets. Whilst you don't code the Binary tree nodes, you can use the same recursive DFS techniques to visit all the possible combinations.
+
+- Generally the height of the tree = the number of input n's. The complexity can be generalised for n to be O(2^n) in time and space. 
+
 - Three steps:
 1. Identify the state(s)
 2. Draw the state-space-tree
@@ -322,9 +330,143 @@ In essence when solving a problem with recursion either use the return value (pa
     }
 ```    
 
+Some real javascript code to demonstrate:
+
+```javascript
+    function dfs(root, path, res) {
+        if (root.children.every(c => !c)) {
+        res.push(path.join("->"))
+        return;
+        }
+        
+        for (let child of root.children) {
+        if (child) {
+            path.push(child.val);
+            dfs(child, path, res);
+            path.pop();
+        }
+        }
+    }
+```
+
+### Solving the permutation problem with pseudocode
+
+1. Identify the states, so you need to know the full path, and when it has been reached to record this, pass it along, and second state is to know which letters have been used.
+2. DRAW THE TREE (State-space-tree).
+3. Apply DFS and backtrack template.
+    - base case is when path.length == letters.length
+    - then append the path to res (found one path), and return
+    - then __for__ over the letters and check if used, continue, otherwise path.push the letter, mark it as used and recursively call the dfs function.
+    - then backtrack, pop letter from path and mark letter[i] as false 
+    - finally call the function first time, passing [] for path, Array(letters.length).fill(false)
+    and return res
+
+```javascript
+    function permutations(letters) {
+        const res = [];
+        dfs([], Array(letters.length).fill(false), res)
+        return res;
+        
+        function dfs(path, used, res){
+            if (path.length === letters.length) {
+            res.push(path.join(""));
+            return;
+        }  
+        for(let i = 0; i < letters.length; i++) {
+          if (used[i]) continue;
+          path.push(letters[i]);
+          used[i] = true;
+          dfs(path, used, res);
+          path.pop();
+          used[i] = false;
+        }
+        return res;
+    }
+  }
+```
+#### [Generate parenthesis](https://leetcode.com/problems/generate-parentheses/)
+
+This is a classic combinatorial problem which requirss searching all combinations and backtracking using dfs.
+- Think about your base aase to populate one valid path. This is where drawing the state-space tree will help. 
+- In this case it is when the accumulated path is equal to the 2 braces (2) * n;
+- Update result, and return
+- then the two recursive cases are either validly inserting a open brace or inserting a valid close brace.
+- Then recursively call function, updating state, which is count of open or closed brace
+- and backtrack, after recursive call, so pop()
+
+__see below code__ 
+
+```javascript
+    var generateParenthesis = function(n) {
+        
+        let result = [];
+        const gen = (braces = [], open = 0, closed = 0) => {
+            
+        if (braces.length === 2 * n) {
+            result.push(braces.join(""));
+            return;
+        } 
+            
+        if (open < n && open >= closed) {
+            braces.push("(");
+            gen(braces, open + 1, closed);
+            braces.pop();
+        }
+            
+        if (closed < n & open >= closed) {
+            braces.push(")");
+            gen(braces, open, closed + 1);
+            braces.pop();
+        } 
+        }
+        gen();
+        return result;
+    };
+```
+
+### [Word Break (Combinatorial problem using memoization)](https://algo.monster/problems/word_break)
+
+- This problem calls for using one state variable i, and then the state-space-tree is the words array choices one can make
+- There will be some overlapping subproblems which can be memoized
+
+```javascript
+        function wordBreak(s, words) {
+            // used to store the previous solutions found in teh decision state-space-tree
+            const memo = {};
+            // kick off the function call, returning the result wither true or false, pass in previous args, as well as 0, to track the recursive end condition
+            return dfs(s, words, 0, memo)
+            
+        }
+
+        const dfs = (s, words, i, memo) => {
+        // base case is if the length of the string is equal to the index i, then all options can fit in the original string
+        if (i === s.length) return true;
+        // short-circuit call if already seen this solution in the state-space-tree
+        if (i in memo) return memo[i];  
+            
+        // track the found state
+        let found = false;
+        // classic dfs search algorithm, for...of with recursive call based on condition
+        for (let word of words) {
+            // start at the ith index and slice until the end of string, i.e whatever still needs to be checked
+            // check if the string starts with the word, each word in list will be checked
+            // if it does then recursively call the dfs function to check the rest of the string, and increase i to just after the previously found word in string
+            if (s.slice(i).startsWith(word)) {
+            if (dfs(s, words, i + word.length, memo)) {
+                found = true;
+                break;  
+            };
+            }
+        }  
+        memo[i] = found;
+        return found;  
+        }
+```
+
 #### Balanced binary tree
 * Determine if a tree is balanced. The definition of a balanced tree is the following:
   * The left and right subtrees of every node should differ by no more than 1 in height. 
+  * Use the post-order traversal (left, right, root)
 
 #### Binary tree
 - Needs to meet three conditions:
@@ -428,11 +570,46 @@ In essence when solving a problem with recursion either use the return value (pa
         }
 ```
 
+### [Breadth first search, return level order elements in a multidimensional array](https://algo.monster/problems/binary_tree_level_order_traversal)
+- Key to vistory is apply the usual BFS template, which is using a queue, then shift on the queue (underlying array)
+- while queue has a length keep iterating. First for over the n count of current queue and push into a new level array,
+- then for of the children, and push them into queue
+- finally after push new level into result array,
+- finally exit while loop and return multidimensional array
+
+```javascript
+        function levelOrderTraversal(root) {
+            
+            const queue = [root];
+            const result = [];
+            while (queue.length) {
+                const level = [];
+                const n = queue.length
+                for (let i = 0; i < n; i++) {
+                const node = queue.shift();
+                level.push(node.val);
+                for(let child of [node.left, node.right]) {
+                    if (child) queue.push(child);
+                }
+                }
+            result.push(level);  
+            }
+            return result;
+        }
+```
+### Zizag level order traversal(https://leetcode.com/problems/binary-tree-zigzag-level-order-traversal/)
+This is the same as above with some slight changes (adding a boolean flag)
+
+## Heap
+A heap data structure is a type of binary tree, which is mostly complete. Being mostly complete (i.e. leaf nodes are on the far left) allows for O(log n) lookup, and O(log n) insert and delete. 
+A min and max heap, means the heap is mostly sorted, all levels are sorted, but not necessarily the values oneach level. This allows one to quickly start at the top (min heap will be smallest to largest going down) and find the node you are looking for, the real power over a normal a sorted array is that the insert and delete
+
 # Graphs
 * A depth first search of a graph uses a stack data structure behind the scenes
 * A breadth first search of a graph uses a queue data structure behind the scenes
 
 * Use <code>for ... in</code> to get access to all keys if given a object with adjacency list to represent graph. For iterative inspection of each node.
+
 * Use <code>for ... of</code> to get the values of an object, so in this case it would be the adjacency list itself
 * Know how to convert an edge list (array of pairs) into an adjacency list, which is an object with keys and values of arrays representing the connections.
 ### <em>edge list to adjacency list</em>
