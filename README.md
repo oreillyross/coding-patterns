@@ -621,19 +621,26 @@ A min and max heap, means the heap is mostly sorted, all levels are sorted, but 
       c: [b, e],
       e: []
   }
-```
-The terminology differs slightly with trees. When talking about graphs we say vist each __neighbor__, as technically they are not __children__ like in trees which have a acyclic top down structure.
+// but it can also take and edge list, which needs to be converted to an adjacency list first
+// A list where the index represents the node and the value at that index is a list of the node's neighbors:
+  const graph = [[0, 1], [1, 2], [1, 3], [2, 3]];
 
-* Use <code>for ... of</code> to get the values of an object, so in this case it would be the adjacency list itself
-* Know how to convert an edge list (array of pairs) into an adjacency list, which is an object with keys and values of arrays representing the connections.
+```
+
 ### <em>edge list to adjacency list</em>
 - create helper function buildGraph, pass in edge list (array of sub arrays)
-- create empty graph object, rturn it at the end
+- create empty graph object, return it at the end
 - iterate (<code>for ... of</code>) through every sub array
 - destructure the pairs of each sub array
 - add each destructured item to the graph object if not in the graph, initialise it as an empty adjacency array.
 * undirected graph -> push both items into each other's arrays.
 * directed graph -> push only the second item into first array.
+
+The terminology differs slightly with trees. When talking about graphs we say vist each __neighbor__, as technically they are not __children__ like in trees which have a acyclic top down structure.
+
+* Use <code>for ... of</code> to get the values of an object, so in this case it would be the adjacency list itself
+
+
 
 
 ## Cyle detection algorithm
@@ -655,7 +662,7 @@ The terminology differs slightly with trees. When talking about graphs we say vi
 
 <hr/>
 
-# Dynamic Programming patterns
+# <p style="color: hotpink">Dynamic Programming patterns</p>
 
 ## brute force
 
