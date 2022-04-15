@@ -654,6 +654,38 @@ The terminology differs slightly with trees. When talking about graphs we say vi
 - Recursive - use node value, for of into G[node] adjacency list, recursively call function
 - be careful of directed versus undirected graphs, undirected graphs need a way to stop cyclic calls, so add a visited feature.
 
+## <p style="color: lightgreen">Breadth first traversal</p>
+* This can only be done iteratively using a queue, along with its shift() and push methods
+* The below code demonstrates a use case, finding the shortest path, as it traverses level by level.
+
+```javascript
+      
+      const graph = {
+        0: [1, 2],
+        1: [0, 2, 3],
+        2: [0, 1],
+        3: [1]
+      }
+ 
+     function shortestPath(graph, r, c) {
+        
+            const queue = [[r, 0]];
+            const visited = new Set([r]);
+            while (queue.length) {
+              const [node, distance] = queue.shift();
+              if (node === c) return distance;
+              for(let neighbor of graph[node]) {
+                  if (!visited.has(neighbor)) {
+                    visited.add(neighbor)
+                    queue.push([neighbor, distance + 1]);  
+                  }
+               }
+            }
+      }
+    
+    shortestPath(graph, 0,3))
+```
+
 ## <p style="color: lightgreen">Island hopping logic</p>
   - You will need a graph in the form of an object where the keys are nodes and the values are adjacency lists.
   - You get access to the adjacency lists and are inclusive of all islands by using the <code>for ... in call</code> on the graph.
