@@ -646,6 +646,58 @@ The terminology differs slightly with trees. When talking about graphs we say vi
 ## Cyle detection algorithm
 - use the white-grey-black pattern (have a visting, visited Set()
 
+### Generic cycle detection algo
+
+```javascript
+   const shortestPath = (edges, nodeA, nodeB) => {
+     const graph = buildGraph(edges)
+     // 1. ADD VISITED SET INITIALISED WITH FIRST NODE IN BRACKETS
+     const visited = new Set([nodeA])
+     // 2. PASS IT ALONG IN ALL BFT CALLS
+     bft(graph, nodeA, visited)
+   };
+
+   const bft = (graph, node, visited) => {
+
+     const queue = [node];
+     while(queue.length) {
+       const node = queue.shift();
+       for(let neighbor of graph[node]) {
+         // 3. DO THE CHECK ONLY AT THE TIME YOU WOULD ADD IT TO THE QUEUE
+         if (!visited.has(neighbor)) {
+           queue.push(neighbor)
+           // 4. ADD IT TO THE VISITED SET AS WELL AFTER ADDING TO QUEUE
+           visited.add(neighbor)
+         }
+       }
+     }
+   }
+
+
+   const buildGraph = (edges) => {
+     const graph = {};
+
+     for(let pair of edges) {
+       const [a,b] = pair;
+       if (!graph[a]) graph[a] = [];
+       if (!graph[b]) graph[b] = [];
+       graph[a].push(b)
+       graph[b].push(a)
+     }
+     return graph;
+   }
+
+   const edges = [
+     ['w', 'x'],
+     ['x', 'y'],
+     ['z', 'y'],
+     ['z', 'v'],
+     ['w', 'v']
+   ];
+
+   shortestPath(edges, 'w', 'z'); // -> 2
+```
+
 ## <p style="color: lightgreen">Depth first traversal</p>
 - this can be done iteratively or recursively
 - it uses a stack as the underlying data structure
