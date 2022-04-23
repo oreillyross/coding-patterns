@@ -755,7 +755,68 @@ Sometimes you will be presented with a grid graph, such as
     ```
 
     This pattern apperas for problems such as __flood fill__ or __connected islands__ problem.
-    - Use a nested for loop to iterate over every row and column and then apply a recursive pattern of exploring every neighbor, using a combination of visited logic and the delta pattern.
+    - Use a nested for loop to iterate over every row and column and then apply a recursive pattern of exploring every neighbor, using a combination of visited logic and the delta pattern (up, down, left, right).
+
+        ```javascript
+        /* 
+        #1 Iterative code as part of main algorithm
+        #2 Cycle detection logic
+        #3 Recursive logic to visit all neighbours
+        
+        */
+        const islandCount = (grid) => {
+        let count = 0;
+        //#2 declare an empty set to store string representation of r + c locations
+        const visited = new Set();
+        
+        //#1 iterate with nested for loops
+        for(let r = 0; r < grid.length; r++) {
+            for(let c = 0; c < grid[0].length; c++) {
+            //#3 call it first time to kick things off
+            // returns true or false, if true it means we have an island
+            if (explore(grid, r, c, visited)) count += 1;
+            }
+        }
+        return count;
+        };
+
+
+        const explore = (grid, r, c, visited) => {
+        //#1 check if we are going outside of the grid graph at any point
+        const rowInBounds = 0 <= r && r < grid.length;
+        const colInbounds = 0 <= c && c < grid[0].length;
+        if (!rowInBounds || !colInbounds) return false;
+        
+        //#3 first base case, if we have got to a dead end
+        if (grid[r][c] === 'W') return false;
+        
+        const pos = `${r},${c}`
+        if (visited.has(pos)) return false;
+        visited.add(pos);
+        
+        //#3 recursively call the function on all the neighbors going up down, left and right
+        explore(grid, r + 1, c, visited)
+        explore(grid, r - 1, c, visited)
+        explore(grid, r, c + 1, visited)
+        explore(grid, r, c - 1, visited)
+        
+        //#1 if the call gets to this point then we can return true as we have succesfully traversed 
+        // a L land island.
+        return true;
+        }
+
+
+        const grid = [
+        ['W', 'L', 'W', 'W', 'W'],
+        ['W', 'L', 'W', 'W', 'W'],
+        ['W', 'W', 'W', 'L', 'W'],
+        ['W', 'W', 'L', 'L', 'W'],
+        ['L', 'W', 'W', 'L', 'L'],
+        ['L', 'L', 'W', 'W', 'W'],
+        ];
+
+        islandCount(grid); // -> 3
+```
 ## <p style="color: lightgreen">Bipartite graphs and graph coloring</p>
 
 <hr/>
