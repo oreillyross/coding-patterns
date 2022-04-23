@@ -741,7 +741,21 @@ The terminology differs slightly with trees. When talking about graphs we say vi
 ## <p style="color: lightgreen">Island hopping logic</p>
   - You will need a graph in the form of an object where the keys are nodes and the values are adjacency lists.
   - You get access to the adjacency lists and are inclusive of all islands by using the <code>for ... in call</code> on the graph.
+## <p style="color: lightgreen">Grid Graph problems</p>
+Sometimes you will be presented with a grid graph, such as 
+    ```
+    [
+        [W,W,L,W],
+        [L,W,L,W],
+        [W,W,L,W],
+        [L,L,L,W],
+        [L,W,L,W],
+        
+    ]
+    ```
 
+    This pattern apperas for problems such as __flood fill__ or __connected islands__ problem.
+    - Use a nested for loop to iterate over every row and column and then apply a recursive pattern of exploring every neighbor, using a combination of visited logic and the delta pattern.
 ## <p style="color: lightgreen">Bipartite graphs and graph coloring</p>
 
 <hr/>
