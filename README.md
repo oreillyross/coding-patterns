@@ -757,7 +757,7 @@ Sometimes you will be presented with a grid graph, such as
     This pattern apperas for problems such as __flood fill__ or __connected islands__ problem.
     - Use a nested for loop to iterate over every row and column and then apply a recursive pattern of exploring every neighbor, using a combination of visited logic and the delta pattern (up, down, left, right).
 
-        ```javascript
+```javascript
         /* 
         #1 Iterative code as part of main algorithm
         #2 Cycle detection logic
