@@ -12,12 +12,10 @@
 * [Neet code](https://www.youtube.com/channel/UC_mYaQAE6-71rjSN6CeCA-g) A youtube channel from a a guy who is now a Google engineer who created videos in python of many Leet code challenges
 * [Algo.monster] A site which distills essential algorithms, data structures and techniques for interviewing. Created by former Google engineers.
 
-General Programming concepts:
+# General Programming concepts:
 Be able to define, describe and demonstrate through examples the following concepts:
 
 1. Closure
-
-
 2. Partially applied function
 3. Currying
 4. Higher Order Functions
