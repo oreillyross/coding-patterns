@@ -754,7 +754,7 @@ Sometimes you will be presented with a grid graph, such as
     ]
 ```
 
-This pattern apperas for problems such as **flood fill** or **connected islands** problem.
+This pattern appears for problems such as **flood fill** or **connected islands** problem.
 
     - Use a nested for loop to iterate over every row and column and then apply a recursive pattern of exploring every neighbor, using a combination of visited logic and the delta pattern (up, down, left, right).
 
