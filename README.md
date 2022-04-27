@@ -70,6 +70,7 @@ Two pointers come in a number of forms:
     - opposite direction (used for Two sum sorted)
     - sliding window (used for Longest substring without repeating characters)
 
+Two pointers often allows us to move from the brute force solution of nested for...loops O(n^2) to a more efficient linear time complexity of O(n) passing only once through iterable data structure.
 
 #### Floyds cycle finding algorithm 
 
