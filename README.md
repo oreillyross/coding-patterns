@@ -65,9 +65,16 @@ Be able to define, describe and demonstrate through examples the following conce
 
             uncompress("2c3a1t");
 ```
+Two pointers come in a number of forms:
+    - same direction (used for Remove duplicates)
+    - opposite direction (used for Two sum sorted)
+    - sliding window (used for Longest substring without repeating characters)
 
 
+#### Floyds cycle finding algorithm 
 
+This algo uses the two pointer pattern on a linked list to detect if there is a cycle.
+A problem where this is used to solve is called __[Happy Number](https://algo.monster/problems/happy_number)__
 ### <p style="color: lightgreen">Sorting Algorithms</p>
 
 #### Insertion sort
