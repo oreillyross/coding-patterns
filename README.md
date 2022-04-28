@@ -66,11 +66,32 @@ Be able to define, describe and demonstrate through examples the following conce
             uncompress("2c3a1t");
 ```
 Two pointers come in a number of forms:
-    - same direction (used for Remove duplicates)
+    - same direction (used for Remove duplicates), or fast, slow pointers.
     - opposite direction (used for Two sum sorted)
     - sliding window (used for Longest substring without repeating characters)
 
 Two pointers often allows us to move from the brute force solution of nested for...loops O(n^2) to a more efficient linear time complexity of O(n) passing only once through iterable data structure.
+
+### <p style="color: lightgreen">Find middle node of linked list</p> 
+This solution uses a fast and slow pointer, the fast pointer moves twice as fast, which intuitively means the slow pointer will be half way to the end, then return the slow pointer's val when fast pointer hits end of linked list.
+
+```javascript
+               class Node {
+                   constructor(val, next = null) {
+                       this.val = val;
+                       this.next = next;
+                   }
+               }
+
+               function middleOfLinkedList(head) {
+                   let slow = fast = head;
+                   while (fast && fast.next) {
+                       fast = fast.next.next;
+                       slow = slow.next;
+                   }
+                   return slow.val;
+               }
+```
 
 #### Floyds cycle finding algorithm 
 
