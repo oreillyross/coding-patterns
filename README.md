@@ -10,7 +10,7 @@
 * [Interview Cake](https://www.interviewcake.com/)
 * [Leet code](https://leetcode.com/)
 * [Neet code](https://www.youtube.com/channel/UC_mYaQAE6-71rjSN6CeCA-g) A youtube channel from a a guy who is now a Google engineer who created videos in python of many Leet code challenges
-* [Algo.monster] A site which distills essential algorithms, data structures and techniques for interviewing. Created by former Google engineers.
+* [Algo.monster](https://algo.monster/) A site which distills essential algorithms, data structures and techniques for interviewing. Created by former Google engineers.
 
 # General Programming concepts:
 Be able to define, describe and demonstrate through examples the following concepts:
@@ -850,6 +850,14 @@ This pattern appears for problems such as **flood fill** or **connected islands*
 <hr/>
 
 # <p style="color: hotpink">Dynamic Programming patterns</p>
+
+### Pattern of recurrence
+
+This is used for bottom up approach to solving dp problems. The recurrence relation can be formulated as such:
+
+```
+      dp[i] = dp[i - 1] + dp[i - 2];
+```
 
 ## brute force
 
