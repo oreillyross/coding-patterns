@@ -858,6 +858,43 @@ This is used for bottom up approach to solving dp problems. The recurrence relat
 ```
       dp[i] = dp[i - 1] + dp[i - 2];
 ```
+### [House Robber](https://algo.monster/problems/house_robber)
+This is a sequence type dp problem that can be solved with the pattern of recurrence. The keywords max, and array indicate solved using dp.
+The below uses a bottom up (tabulation) approach to get the answer
+#### Pseudocode
+
+- fill an array n length with 0's
+- fill first index with current
+- then decide second element with Max of first or second element
+- for...loop n times, apply reccurence pattern.
+- Either use nums value, and previous 2, or don't use and use adjacent
+- return the last item in dp array which will hold maximum value
+- handle edge case of 0 elements, return 0 or less than 2 items return Max of nums
+
+```javascript
+        function rob(nums) {
+            
+            // edge case if no items
+            if (nums.length === 0) return 0;
+            // base case if only 1 or two items, can only select the max from both
+            if (nums.length < 2) {
+            return Math.max(nums)
+            }
+            const n = nums.length
+            // start with 0s at each house
+            const dp = Array(n).fill(0);
+            // populate first house, and second house is max of either itself or previous house. Adjacent house cannot be counted together
+            dp[0] = nums[0];
+            dp[1] = Math.max(nums[0], nums[1]);
+            // iterate and apply pattern of recurrence
+            for (let i = 2; i < n; i++) {
+            // make sure you are taking previous values from dp list not from nums array. as the dp array values are ones being changed.
+            dp[i] = Math.max(dp[i - 1], (nums[i] + dp[i - 2]));
+            }
+            return dp[dp.length - 1];
+        }
+
+```
 
 ## brute force
 
