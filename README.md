@@ -944,6 +944,56 @@ This is part of the sequence type DP problems. The below solution uses a recrusi
     * linear complexity O(n)
     * Multi-linear comlpexity O(n+m), this would be the case where two __for loops__ follow each other.
 
+ ## Dynamic programming - grid format problems 
+ 
+ ### [Number of paths](https://algo.monster/problems/robot_unique_path)
+   #### approach
+   1. think about r and c being passed in every recursive call, default r = 0, c = 0, think about return type
+   2. Test for out of bounds to the right and down, r === graph.length, c === graph[0].length, return 0, ensure you cano only index into grid if in bounds
+   3. base case is if r === grid.length - 1, and c === grid[0].length - 1 , return 1, one way to traverse
+   4. recursively call function, with r + 1, then another call with c + 1
+   5. make sure you add them together, to sum number of ways.
+   6. memoize function recording r and c as string in memo
+
+```javascript
+      // recursive solution top-down with memoization
+      function uniquePaths(m, n) {
+
+        const traverse = (r,c, memo = {}) => {
+            const pos = `${r},${c}`
+            if (pos in memo) return memo[pos]
+            if (r > m || c > n) return 0;
+            if (r ===m && c === n)  return 1;
+            return memo[pos] = traverse(r + 1, c) + traverse(r, c + 1);  
+          }
+
+          return traverse(1,1)
+      }
+```
+
+The grid type dp probem can also be solved with bootom up approach using tabulation.
+__NOTE__ using new Array(SIZE_ROW_OR_COL).fill(1) syntax
+
+```javascript
+      function uniquePaths(m, n) {
+
+        const dp = [];
+        for (let i = 0; i < m; i++) {
+          dp.push([...new Array(n).fill(1)])
+        }
+
+        for (let i = 1; i < m; i++) {
+          for (let j = 1; j < n; j++) {
+            dp[i][j] = dp[i - 1][j] + dp[i][j - 1];
+
+          }
+        }
+
+        return dp[m - 1][n - 1]
+      }
+```
+ 
+
 ## <div style="color: lightgreen; text-decoration: underline">Coding problems and their solutions (mostly taken from Leet code)</div>
 
 ### 0 1 1 2 3 5 8 problem 🗃️
