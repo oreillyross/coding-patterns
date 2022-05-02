@@ -895,6 +895,35 @@ The below uses a bottom up (tabulation) approach to get the answer
         }
 
 ```
+### [Coin Change](https://algo.monster/problems/coin_change)
+This is part of the sequence type DP problems. The below solution uses a recrusive pattern.
+
+```javascript
+  // the recursive function call is separated from main logic as it could be the case that one of the calls results in Infinity, which means no solution could be found and -1 needs to be returned as final answer.
+  function coinChange(coins, amount) {
+            const answer = _minChange(coins, amount);
+            return answer === Infinity ? -1 : answer;
+         }
+        // Recursive call with memoization
+         const _minChange = (coins, amount, memo = {}) => {
+             // two base cases, either coin could not be used, more than amount
+             if (amount < 0) return Infinity; 
+             // or it is exact amount, so return from recursive call. Outside recursive call 1 is added to account for the edge in grpah.
+             if (amount === 0) return 0;
+ 
+             if (amount in memo) return memo[amount];
+
+             let minChange = Infinity;
+             // iterate over all coins and recursively call function to get either base case.
+             for (let coin of coins) {
+               const numCoins = 1 + _minChange(coins, amount - coin, memo)
+               // Min value logic to ensure on ly the minimum branch (edges) counted gets returned from the recursive calls.
+               minChange = Math.min(numCoins, minChange); 
+             }
+             // clever javascript trick, not intuitive but does assignment and return in on line.
+             return memo[amount] = minChange;
+         }
+```
 
 ## brute force
 
