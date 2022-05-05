@@ -933,7 +933,7 @@ This is part of the sequence type DP problems. The below solution uses a recrusi
 
 ### Duplicate value avoidance pattern
  - Add a parameter to recursive function call, default to null.
- - Carry out a check (if statement) before the recursive call to check.previous value with current value not the same.
+ - Carry out a check (if statement) before the recursive call to check previous value with current value not the same.
  - update it with the current value in the recursive calling of the function
 
 <hr/>
@@ -992,7 +992,40 @@ __NOTE__ using new Array(SIZE_ROW_OR_COL).fill(1) syntax
         return dp[m - 1][n - 1]
       }
 ```
- 
+## Dynamic programming - Dynamic number of subproblems
+
+### [Longest increasing subsequence](https://algo.monster/problems/longest_increasing_subsequence)
+- The usual time complexity is O(n^2).
+- There is a way to get O(nlogn) but in a normal interview setting this should not be expected
+- The below solution solves this dp problem using a recursive approach but it can also be solved bottom up approach (tabulation) and a nested for loop
+
+```javascript
+         function longestSubLen(nums) {
+             // kick the recursive calls off, 
+             // pass in the array, the ith index starting at begining of array,
+             // the length of the array, as this is used to decide the base case, reaching end of array.
+             // and start with -Infinity so that at least first element is included in count
+             return calculate(nums, 0, nums.length, -Infinity)
+         }
+          
+         const calculate = (arr, i, n, prev) => {
+           // base case return 0 once end of array reached
+           if (i === n) return 0;
+
+           // either exclude current value, and recursively call
+           let exclude = calculate(arr, i + 1, n, prev)
+           
+           // or include it only if the value is actually greater than previous value
+           let include = 0;
+           if (arr[i] > prev) {
+             include = 1 + calculate(arr, i + 1, n, arr[i])
+           }
+           // finally return the current max value.
+           return Math.max(exclude, include)
+         }
+```
+
+
 
 ## <div style="color: lightgreen; text-decoration: underline">Coding problems and their solutions (mostly taken from Leet code)</div>
 
