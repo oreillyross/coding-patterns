@@ -10,14 +10,12 @@
 * [Interview Cake](https://www.interviewcake.com/)
 * [Leet code](https://leetcode.com/)
 * [Neet code](https://www.youtube.com/channel/UC_mYaQAE6-71rjSN6CeCA-g) A youtube channel from a a guy who is now a Google engineer who created videos in python of many Leet code challenges
-* [Algo.monster] A site which distills essential algorithms, data structures and techniques for interviewing. Created by former Google engineers.
+* [Algo.monster](https://algo.monster/) A site which distills essential algorithms, data structures and techniques for interviewing. Created by former Google engineers.
 
-General Programming concepts:
+# General Programming concepts:
 Be able to define, describe and demonstrate through examples the following concepts:
 
 1. Closure
-
-
 2. Partially applied function
 3. Currying
 4. Higher Order Functions
@@ -75,9 +73,38 @@ Be able to define, describe and demonstrate through examples the following conce
 
             uncompress("2c3a1t");
 ```
+Two pointers come in a number of forms:
+    - same direction (used for Remove duplicates), or fast, slow pointers.
+    - opposite direction (used for Two sum sorted)
+    - sliding window (used for Longest substring without repeating characters)
 
+Two pointers often allows us to move from the brute force solution of nested for...loops O(n^2) to a more efficient linear time complexity of O(n) passing only once through iterable data structure.
 
+### <p style="color: lightgreen">Find middle node of linked list</p> 
+This solution uses a fast and slow pointer, the fast pointer moves twice as fast, which intuitively means the slow pointer will be half way to the end, then return the slow pointer's val when fast pointer hits end of linked list.
 
+```javascript
+               class Node {
+                   constructor(val, next = null) {
+                       this.val = val;
+                       this.next = next;
+                   }
+               }
+
+               function middleOfLinkedList(head) {
+                   let slow = fast = head;
+                   while (fast && fast.next) {
+                       fast = fast.next.next;
+                       slow = slow.next;
+                   }
+                   return slow.val;
+               }
+```
+
+#### Floyds cycle finding algorithm 
+
+This algo uses the two pointer pattern on a linked list to detect if there is a cycle.
+A problem where this is used to solve is called __[Happy Number](https://algo.monster/problems/happy_number)__
 ### <p style="color: lightgreen">Sorting Algorithms</p>
 
 #### Insertion sort
@@ -631,9 +658,13 @@ A min and max heap, means the heap is mostly sorted, all levels are sorted, but 
       c: [b, e],
       e: []
   }
-```
-The terminology differs slightly with trees. When talking about graphs we say vist each __neighbor__, as technically they are not __children__ like in trees which have a acyclic top down structure.
+// but it can also take and edge list, which needs to be converted to an adjacency list first
+// A list where the index represents the node and the value at that index is a list of the node's neighbors:
+  const graph = [[0, 1], [1, 2], [1, 3], [2, 3]];
 
+```
+
+<<<<<<< HEAD
 * Use <code>for ... of</code> to get the values of an object, so in this case it would be the adjacency list itself
 * Know how to convert an edge list (array of pairs) into an adjacency list, which is an object with keys and values of arrays representing the connections.
   
@@ -641,18 +672,78 @@ The terminology differs slightly with trees. When talking about graphs we say vi
 
   * Use the node (value etc.) as soon as it pops or shifts from dfs/bfs search
   
+=======
+>>>>>>> 129055dabc2a5dbca2bcdae1e22624874a3f60a4
 ### <em>edge list to adjacency list</em>
 - create helper function buildGraph, pass in edge list (array of sub arrays)
-- create empty graph object, rturn it at the end
+- create empty graph object, return it at the end
 - iterate (<code>for ... of</code>) through every sub array
 - destructure the pairs of each sub array
 - add each destructured item to the graph object if not in the graph, initialise it as an empty adjacency array.
 * undirected graph -> push both items into each other's arrays.
 * directed graph -> push only the second item into first array.
 
+The terminology differs slightly with trees. When talking about graphs we say vist each __neighbor__, as technically they are not __children__ like in trees which have a acyclic top down structure.
+
+* Use <code>for ... of</code> to get the values of an object, so in this case it would be the adjacency list itself
+
+
+
 
 ## Cyle detection algorithm
 - use the white-grey-black pattern (have a visting, visited Set()
+
+### Generic cycle detection algo
+
+```javascript
+   const shortestPath = (edges, nodeA, nodeB) => {
+     const graph = buildGraph(edges)
+     // 1. ADD VISITED SET INITIALISED WITH FIRST NODE IN BRACKETS
+     const visited = new Set([nodeA])
+     // 2. PASS IT ALONG IN ALL BFT CALLS
+     bft(graph, nodeA, visited)
+   };
+
+   const bft = (graph, node, visited) => {
+
+     const queue = [node];
+     while(queue.length) {
+       const node = queue.shift();
+       for(let neighbor of graph[node]) {
+         // 3. DO THE CHECK ONLY AT THE TIME YOU WOULD ADD IT TO THE QUEUE
+         if (!visited.has(neighbor)) {
+           queue.push(neighbor)
+           // 4. ADD IT TO THE VISITED SET AS WELL AFTER ADDING TO QUEUE
+           visited.add(neighbor)
+         }
+       }
+     }
+   }
+
+
+   const buildGraph = (edges) => {
+     const graph = {};
+
+     for(let pair of edges) {
+       const [a,b] = pair;
+       if (!graph[a]) graph[a] = [];
+       if (!graph[b]) graph[b] = [];
+       graph[a].push(b)
+       graph[b].push(a)
+     }
+     return graph;
+   }
+
+   const edges = [
+     ['w', 'x'],
+     ['x', 'y'],
+     ['z', 'y'],
+     ['z', 'v'],
+     ['w', 'v']
+   ];
+
+   shortestPath(edges, 'w', 'z'); // -> 2
+```
 
 ## <p style="color: lightgreen">Depth first traversal</p>
 - this can be done iteratively or recursively
@@ -662,57 +753,197 @@ The terminology differs slightly with trees. When talking about graphs we say vi
 - Recursive - use node value, for of into G[node] adjacency list, recursively call function
 - be careful of directed versus undirected graphs, undirected graphs need a way to stop cyclic calls, so add a visited feature.
 
-```javascript
-    function dfs(root, visited = new Set()) {
-        for (const neighbor of get_neighbors(root)) {
-            if (visited.has(neighbor)) continue;
-            visited.add(neighbor);
-            dfs(neighbor, visited)
-        }
-    }
-```
-
 ## <p style="color: lightgreen">Breadth first traversal</p>
-- The BFS is very similar to BFS in trees, except we also keep track of visited and **for...of** each adjacency array in adjacency list
+* This can only be done iteratively using a queue, along with its shift() and push methods
+* The below code demonstrates a use case, finding the shortest path, as it traverses level by level.
 
 ```javascript
-        function bfs(root) {
-            // create a queue with root as first vertex
-            const queue = [root];
-            // create a visited Set to track visisted vertices
-            const visited = new Set();
-            // if tracking levels then create a counter for level set to 0
-
-            // while queue has elements keep going
+      
+      const graph = {
+        0: [1, 2],
+        1: [0, 2, 3],
+        2: [0, 1],
+        3: [1]
+      }
+ 
+     function shortestPath(graph, r, c) {
+        
+            const queue = [[r, 0]];
+            const visited = new Set([r]);
             while (queue.length) {
-                // shift element, can do something with it if required
-                const node = queue.shift();
-                    // for...of neighbors, 
-                for (let neighbor of get_neighbors(node)) {
-                    // if visited continue
-                    if (visited.has(neighbor)) continue;
-                // otherwise push the vertex to queue and visited.
-                    queue.push(neighbor)
+              const [node, distance] = queue.shift();
+              if (node === c) return distance;
+              for(let neighbor of graph[node]) {
+                  if (!visited.has(neighbor)) {
                     visited.add(neighbor)
-                }
-
+                    queue.push([neighbor, distance + 1]);  
+                  }
+               }
             }
-        }
+      }
+    
+    shortestPath(graph, 0,3))
 ```
-  
 
 ## <p style="color: lightgreen">Island hopping logic</p>
   - You will need a graph in the form of an object where the keys are nodes and the values are adjacency lists.
   - You get access to the adjacency lists and are inclusive of all islands by using the <code>for ... in call</code> on the graph.
+## <p style="color: lightgreen">Grid Graph problems</p>
+Sometimes you will be presented with a grid graph, such as 
+```
+    [
+        [W,W,L,W],
+        [L,W,L,W],
+        [W,W,L,W],
+        [L,L,L,W],
+        [L,W,L,W],
+        
+    ]
+```
 
+This pattern appears for problems such as **flood fill** or **connected islands** problem.
+
+    - Use a nested for loop to iterate over every row and column and then apply a recursive pattern of exploring every neighbor, using a combination of visited logic and the delta pattern (up, down, left, right).
+
+```javascript
+        /* 
+        #1 Iterative code as part of main algorithm
+        #2 Cycle detection logic
+        #3 Recursive logic to visit all neighbours
+        
+        */
+        const islandCount = (grid) => {
+        let count = 0;
+        //#2 declare an empty set to store string representation of r + c locations
+        const visited = new Set();
+        
+        //#1 iterate with nested for loops
+        for(let r = 0; r < grid.length; r++) {
+            for(let c = 0; c < grid[0].length; c++) {
+            //#3 call it first time to kick things off
+            // returns true or false, if true it means we have an island
+            if (explore(grid, r, c, visited)) count += 1;
+            }
+        }
+        return count;
+        };
+
+
+        const explore = (grid, r, c, visited) => {
+        //#1 check if we are going outside of the grid graph at any point
+        const rowInBounds = 0 <= r && r < grid.length;
+        const colInbounds = 0 <= c && c < grid[0].length;
+        if (!rowInBounds || !colInbounds) return false;
+        
+        //#3 first base case, if we have got to a dead end
+        if (grid[r][c] === 'W') return false;
+        
+        const pos = `${r},${c}`
+        if (visited.has(pos)) return false;
+        visited.add(pos);
+        
+        //#3 recursively call the function on all the neighbors going up down, left and right
+        explore(grid, r + 1, c, visited)
+        explore(grid, r - 1, c, visited)
+        explore(grid, r, c + 1, visited)
+        explore(grid, r, c - 1, visited)
+        
+        //#1 if the call gets to this point then we can return true as we have succesfully traversed 
+        // a L land island.
+        return true;
+        }
+
+
+        const grid = [
+        ['W', 'L', 'W', 'W', 'W'],
+        ['W', 'L', 'W', 'W', 'W'],
+        ['W', 'W', 'W', 'L', 'W'],
+        ['W', 'W', 'L', 'L', 'W'],
+        ['L', 'W', 'W', 'L', 'L'],
+        ['L', 'L', 'W', 'W', 'W'],
+        ];
+
+        islandCount(grid); // -> 3
+```
 ## <p style="color: lightgreen">Bipartite graphs and graph coloring</p>
 
 <hr/>
 
+# <p style="color: hotpink">Dynamic Programming patterns</p>
 
+### Pattern of recurrence
 
+This is used for bottom up approach to solving dp problems. The recurrence relation can be formulated as such:
 
-# Dynamic Programming patterns
+```
+      dp[i] = dp[i - 1] + dp[i - 2];
+```
+### [House Robber](https://algo.monster/problems/house_robber)
+This is a sequence type dp problem that can be solved with the pattern of recurrence. The keywords max, and array indicate solved using dp.
+The below uses a bottom up (tabulation) approach to get the answer
+#### Pseudocode
+
+- fill an array n length with 0's
+- fill first index with current
+- then decide second element with Max of first or second element
+- for...loop n times, apply reccurence pattern.
+- Either use nums value, and previous 2, or don't use and use adjacent
+- return the last item in dp array which will hold maximum value
+- handle edge case of 0 elements, return 0 or less than 2 items return Max of nums
+
+```javascript
+        function rob(nums) {
+            
+            // edge case if no items
+            if (nums.length === 0) return 0;
+            // base case if only 1 or two items, can only select the max from both
+            if (nums.length < 2) {
+            return Math.max(nums)
+            }
+            const n = nums.length
+            // start with 0s at each house
+            const dp = Array(n).fill(0);
+            // populate first house, and second house is max of either itself or previous house. Adjacent house cannot be counted together
+            dp[0] = nums[0];
+            dp[1] = Math.max(nums[0], nums[1]);
+            // iterate and apply pattern of recurrence
+            for (let i = 2; i < n; i++) {
+            // make sure you are taking previous values from dp list not from nums array. as the dp array values are ones being changed.
+            dp[i] = Math.max(dp[i - 1], (nums[i] + dp[i - 2]));
+            }
+            return dp[dp.length - 1];
+        }
+
+```
+### [Coin Change](https://algo.monster/problems/coin_change)
+This is part of the sequence type DP problems. The below solution uses a recrusive pattern.
+
+```javascript
+  // the recursive function call is separated from main logic as it could be the case that one of the calls results in Infinity, which means no solution could be found and -1 needs to be returned as final answer.
+  function coinChange(coins, amount) {
+            const answer = _minChange(coins, amount);
+            return answer === Infinity ? -1 : answer;
+         }
+        // Recursive call with memoization
+         const _minChange = (coins, amount, memo = {}) => {
+             // two base cases, either coin could not be used, more than amount
+             if (amount < 0) return Infinity; 
+             // or it is exact amount, so return from recursive call. Outside recursive call 1 is added to account for the edge in grpah.
+             if (amount === 0) return 0;
+ 
+             if (amount in memo) return memo[amount];
+
+             let minChange = Infinity;
+             // iterate over all coins and recursively call function to get either base case.
+             for (let coin of coins) {
+               const numCoins = 1 + _minChange(coins, amount - coin, memo)
+               // Min value logic to ensure on ly the minimum branch (edges) counted gets returned from the recursive calls.
+               minChange = Math.min(numCoins, minChange); 
+             }
+             // clever javascript trick, not intuitive but does assignment and return in on line.
+             return memo[amount] = minChange;
+         }
+```
 
 ## brute force
 
@@ -722,7 +953,7 @@ The terminology differs slightly with trees. When talking about graphs we say vi
 
 ### Duplicate value avoidance pattern
  - Add a parameter to recursive function call, default to null.
- - Carry out a check (if statement) before the recursive call to check.previous value with current value not the same.
+ - Carry out a check (if statement) before the recursive call to check previous value with current value not the same.
  - update it with the current value in the recursive calling of the function
 
 <hr/>
@@ -732,6 +963,89 @@ The terminology differs slightly with trees. When talking about graphs we say vi
     * Maximal efficient solution
     * linear complexity O(n)
     * Multi-linear comlpexity O(n+m), this would be the case where two __for loops__ follow each other.
+
+ ## Dynamic programming - grid format problems 
+ 
+ ### [Number of paths](https://algo.monster/problems/robot_unique_path)
+   #### approach
+   1. think about r and c being passed in every recursive call, default r = 0, c = 0, think about return type
+   2. Test for out of bounds to the right and down, r === graph.length, c === graph[0].length, return 0, ensure you cano only index into grid if in bounds
+   3. base case is if r === grid.length - 1, and c === grid[0].length - 1 , return 1, one way to traverse
+   4. recursively call function, with r + 1, then another call with c + 1
+   5. make sure you add them together, to sum number of ways.
+   6. memoize function recording r and c as string in memo
+
+```javascript
+      // recursive solution top-down with memoization
+      function uniquePaths(m, n) {
+
+        const traverse = (r,c, memo = {}) => {
+            const pos = `${r},${c}`
+            if (pos in memo) return memo[pos]
+            if (r > m || c > n) return 0;
+            if (r ===m && c === n)  return 1;
+            return memo[pos] = traverse(r + 1, c) + traverse(r, c + 1);  
+          }
+
+          return traverse(1,1)
+      }
+```
+
+The grid type dp probem can also be solved with bootom up approach using tabulation.
+__NOTE__ using new Array(SIZE_ROW_OR_COL).fill(1) syntax
+
+```javascript
+      function uniquePaths(m, n) {
+
+        const dp = [];
+        for (let i = 0; i < m; i++) {
+          dp.push([...new Array(n).fill(1)])
+        }
+
+        for (let i = 1; i < m; i++) {
+          for (let j = 1; j < n; j++) {
+            dp[i][j] = dp[i - 1][j] + dp[i][j - 1];
+
+          }
+        }
+
+        return dp[m - 1][n - 1]
+      }
+```
+## Dynamic programming - Dynamic number of subproblems
+
+### [Longest increasing subsequence](https://algo.monster/problems/longest_increasing_subsequence)
+- The usual time complexity is O(n^2).
+- There is a way to get O(nlogn) but in a normal interview setting this should not be expected
+- The below solution solves this dp problem using a recursive approach but it can also be solved bottom up approach (tabulation) and a nested for loop
+
+```javascript
+         function longestSubLen(nums) {
+             // kick the recursive calls off, 
+             // pass in the array, the ith index starting at begining of array,
+             // the length of the array, as this is used to decide the base case, reaching end of array.
+             // and start with -Infinity so that at least first element is included in count
+             return calculate(nums, 0, nums.length, -Infinity)
+         }
+          
+         const calculate = (arr, i, n, prev) => {
+           // base case return 0 once end of array reached
+           if (i === n) return 0;
+
+           // either exclude current value, and recursively call
+           let exclude = calculate(arr, i + 1, n, prev)
+           
+           // or include it only if the value is actually greater than previous value
+           let include = 0;
+           if (arr[i] > prev) {
+             include = 1 + calculate(arr, i + 1, n, arr[i])
+           }
+           // finally return the current max value.
+           return Math.max(exclude, include)
+         }
+```
+
+
 
 ## <div style="color: lightgreen; text-decoration: underline">Coding problems and their solutions (mostly taken from Leet code)</div>
 
