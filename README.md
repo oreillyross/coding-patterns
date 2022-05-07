@@ -31,7 +31,15 @@ Be able to define, describe and demonstrate through examples the following conce
 * Consider early to use a hash map, even if you don't know how yet as it is used in solving many problems generally.
     - If your brute force solution results in a nested __for loop__ this should indicate you can almost certainly use a hashmap O(1) lookup to reduce the complexity from O(n^2) to O(n). Use the ```if (num in hash)``` check 
 
+## Javascript built-in functions and utilities
 
+#### Sorting numbers in javascript
+```javascript
+  let numArray: number[] = [1400, 9, 80, 45];
+
+  const sorted = numArray.sort((a, b) => a - b);
+
+```
 
 ## Algorithms to know
 
@@ -604,12 +612,14 @@ __see below code__
 This is the same as above with some slight changes (adding a boolean flag)
 
 ## Heap
+
 A heap data structure is a type of binary tree, which is mostly complete. Being mostly complete (i.e. leaf nodes are on the far left) allows for O(log n) lookup, and O(log n) insert and delete. 
 A min and max heap, means the heap is mostly sorted, all levels are sorted, but not necessarily the values oneach level. This allows one to quickly start at the top (min heap will be smallest to largest going down) and find the node you are looking for, the real power over a normal a sorted array is that the insert and delete
 
 # Graphs
-* A depth first search of a graph uses a stack data structure behind the scenes
-* A breadth first search of a graph uses a queue data structure behind the scenes
+
+> * A depth first search of a graph uses a stack data structure behind the scenes
+> * A breadth first search of a graph uses a queue data structure behind the scenes
 
 * Use <code>for ... in</code> to get access to all keys if given a object with __adjacency list__ to represent graph. For iterative inspection of each node.
 
@@ -626,6 +636,11 @@ The terminology differs slightly with trees. When talking about graphs we say vi
 
 * Use <code>for ... of</code> to get the values of an object, so in this case it would be the adjacency list itself
 * Know how to convert an edge list (array of pairs) into an adjacency list, which is an object with keys and values of arrays representing the connections.
+  
+### Think from the point of a node
+
+  * Use the node (value etc.) as soon as it pops or shifts from dfs/bfs search
+  
 ### <em>edge list to adjacency list</em>
 - create helper function buildGraph, pass in edge list (array of sub arrays)
 - create empty graph object, rturn it at the end
@@ -647,6 +662,45 @@ The terminology differs slightly with trees. When talking about graphs we say vi
 - Recursive - use node value, for of into G[node] adjacency list, recursively call function
 - be careful of directed versus undirected graphs, undirected graphs need a way to stop cyclic calls, so add a visited feature.
 
+```javascript
+    function dfs(root, visited = new Set()) {
+        for (const neighbor of get_neighbors(root)) {
+            if (visited.has(neighbor)) continue;
+            visited.add(neighbor);
+            dfs(neighbor, visited)
+        }
+    }
+```
+
+## <p style="color: lightgreen">Breadth first traversal</p>
+- The BFS is very similar to BFS in trees, except we also keep track of visited and **for...of** each adjacency array in adjacency list
+
+```javascript
+        function bfs(root) {
+            // create a queue with root as first vertex
+            const queue = [root];
+            // create a visited Set to track visisted vertices
+            const visited = new Set();
+            // if tracking levels then create a counter for level set to 0
+
+            // while queue has elements keep going
+            while (queue.length) {
+                // shift element, can do something with it if required
+                const node = queue.shift();
+                    // for...of neighbors, 
+                for (let neighbor of get_neighbors(node)) {
+                    // if visited continue
+                    if (visited.has(neighbor)) continue;
+                // otherwise push the vertex to queue and visited.
+                    queue.push(neighbor)
+                    visited.add(neighbor)
+                }
+
+            }
+        }
+```
+  
+
 ## <p style="color: lightgreen">Island hopping logic</p>
   - You will need a graph in the form of an object where the keys are nodes and the values are adjacency lists.
   - You get access to the adjacency lists and are inclusive of all islands by using the <code>for ... in call</code> on the graph.
@@ -654,6 +708,9 @@ The terminology differs slightly with trees. When talking about graphs we say vi
 ## <p style="color: lightgreen">Bipartite graphs and graph coloring</p>
 
 <hr/>
+
+
+
 
 # Dynamic Programming patterns
 
@@ -723,7 +780,7 @@ The terminology differs slightly with trees. When talking about graphs we say vi
 - if not return false, otherwise return true if the stack is empty at end of iteration of string
 - A useful peek method to seee what is at the top of the stack, i.e. last item in the array. is the array method array.at(-1) === array[array.length - 1]
 
-### [Coin Change](https://leetcode.com/problems/coin-change/)
+### [Coin Change](https://leetcode.com/problems/coin-change/ "Bottom up versus dynamic programming problem")
 - The recursive solution, needs a memoization strategy
 - Keep a count of current coin, so track an i index
 - This challenge expects one to use dynamic programming. Although it can be solved with recursion, the more performant solution uses the bottom-up approach.
