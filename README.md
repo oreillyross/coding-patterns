@@ -1012,6 +1012,52 @@ __NOTE__ using new Array(SIZE_ROW_OR_COL).fill(1) syntax
         return dp[m - 1][n - 1]
       }
 ```
+
+## [Maximal Square](https://leetcode.com/problems/maximal-square/) Key [dp, grid]
+- Neet code solution: https://www.youtube.com/watch?v=6X7Ha2PrDmM
+- The brute force approach uses nested for...loops to check each [r][c] iterating around it. Results in O(m·n)^2
+- The dp approach uses an auxilliary array to build up the problem from bottom-up.
+- see the typescript example below with comments to explain and things to watch out for.
+
+```typescript
+      function maximalSquare(matrix: string[][]): number {
+          // first get the length of the rows
+          const m = matrix.length;
+          // and the length of the cols
+          const n = matrix[0].length;
+
+          // build the auxilliary array, watch out for out of bounds of by one error
+          // note we add 1 to the rows and cols when building the dp[][] array
+          const dp = Array(m + 1).fill(0).map(() => Array(n + 1).fill(0));
+          // start with assuming zero and build up
+          let max = 0;
+          // iterate through the rows
+          for (let i = 1; i <= m; i++) {
+              // and cols
+              for(let j = 1; j <= n; j++) {
+                  // check the original matrix, only consider valid entries where the top-left block has a one
+                  if (matrix[i - 1][j - 1] === "1") {
+                      // this is the key line, it is the pattern of reccurence
+                      // complete the dp table with the minimum of the previous assessed entries.
+                      // catch here is to assess the actual dp table NOT the original matrix. Here you are building up numbers
+                      // return the minimum of the top-left, top and left entries, then add 1
+                      // another CATCH, do not forget to add 1, to indicate you found another square
+                      dp[i][j] = Math.min(Number(dp[i - 1][j]), Number(dp[i][j - 1]), Number(dp[i - 1][j - 1])) + 1;
+                      // update the max size square length, classic max sum logic here
+                      max = Math.max(max, dp[i][j])
+
+                  } 
+              }
+          }
+          // finally return the square length as a square, so the max value squared.
+          return max ** 2;
+
+      };
+
+      maximalSquare(
+      [["1","0","1","0","0"],["1","0","1","1","1"],["1","1","1","1","1"],["1","0","0","1","0"]])
+```
+
 ## Dynamic programming - Dynamic number of subproblems
 
 ### [Longest increasing subsequence](https://algo.monster/problems/longest_increasing_subsequence)
