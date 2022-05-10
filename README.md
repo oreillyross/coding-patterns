@@ -1044,7 +1044,42 @@ __NOTE__ using new Array(SIZE_ROW_OR_COL).fill(1) syntax
            return Math.max(exclude, include)
          }
 ```
+### [Triangle](https://leetcode.com/problems/triangle/) [dp, recursion, memoization]
 
+```javascript
+      /**
+       * @param {number[][]} triangle
+       * @return {number}
+       */
+      var minimumTotal = function(triangle) {
+          
+          // the recursive function inside main function to close over the triangle 2D array.
+          
+          const dfs = (i,level, memo = {}) => {
+              
+              // memoization requires both the ith position in sub array and level. 
+              const pos = `${i},${level}`;
+              // base case once recursion reaches bottom level of triangle, or last subarray entry
+              if (level === triangle.length) {
+                  return 0
+              }
+              
+              if (pos in memo) return memo[pos]
+              
+              
+              const next_level = level + 1;
+              // magic happens here, return the minimum of the ith and ith +1 index, plus last known value.
+              return memo[pos] = Math.min(dfs(i, next_level, memo),
+              dfs(i + 1, next_level, memo)) + triangle[level][i]
+              
+          }
+          // kick off recursion starting at top of triangle
+          return dfs(0,0);
+      };
+
+      minimumTotal(
+      [[2],[3,4],[6,5,7],[4,1,8,3]]) // 11
+```
 
 
 ## <div style="color: lightgreen; text-decoration: underline">Coding problems and their solutions (mostly taken from Leet code)</div>
