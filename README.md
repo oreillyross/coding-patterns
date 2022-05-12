@@ -348,7 +348,6 @@ Think about the problem as using a binary tree as a framework to generate all po
 * Think of the problem in terms of a decision tree which branches out exponentially, i.e. based on the number of inputs
 * upon reaching the leaf nodes you can _backtrack_ up the tree to the root node to get each and every variation.
 * problems solved with this approach include the [Letter Combinations](https://leetcode.com/problems/letter-combinations-of-a-phone-number/) problem from Leetcode.
-
 * use a recursive function inside your main function to build the result recursively.
 
 ##### Backtracking template
@@ -422,6 +421,34 @@ Some real javascript code to demonstrate:
     }
   }
 ```
+#### <p style="color:lightgreen">Exhaustive recursion</p>
+
+This problem requires one to think about applying a decision tree to the inputs. Follow the steps for normal recursion where you identify the return value from the recursive call as well as the state you will recursively pass into the function, __note__ that this state must get smaller and eventually result in a base case which allows you to return from the recursion.
+- Start with identifying base case, this is the case where you know the solution without calculating any subproblems.
+- __EXHAUSTIVE RECURSION__ Here you need to include your decision tree logic, i.e. either include the element or exclude the element being exhausitvely recursed.
+- Recursively call the function on excluded elements.
+- __EXHAUSTIVE RECURSION__ Apply the __for...of (or map)__ over the excluded elements and create another set with excluded elements included.
+
+```javascript example
+
+const subsets = (elements) => {
+   // base case is when no elemtns exist return empty subset
+   if (!elements.length) return [[]]
+  
+  // either take the first letter, or don't take the first letter
+   const first = elements[0];
+   const rest = subsets(elements.slice(1))
+   const restWithFirst = rest.map(a => [first, ...a])
+  
+   return [...restWithFirst, ...rest]
+  
+};
+
+subsets(['a', 'b']);
+
+```
+
+
 #### [Generate parenthesis](https://leetcode.com/problems/generate-parentheses/)
 
 This is a classic combinatorial problem which requirss searching all combinations and backtracking using dfs.
