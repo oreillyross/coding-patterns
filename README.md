@@ -1,4 +1,6 @@
+<p align="center">
 # coding-patterns to help as an aide-memoire
+</p>
 
 
 
