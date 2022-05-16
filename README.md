@@ -972,6 +972,43 @@ This is part of the sequence type DP problems. The below solution uses a recrusi
          }
 ```
 
+### [Largest divisible subset](https://leetcode.com/problems/largest-divisible-subset/)
+
+#### Things to take away
+- determine if a number divides by another use % operator and === 0 check.
+- the bottom up approach needs some sort of data structure to build up the solution, usually an array.
+
+```javascript
+//SOLUTION USES BOTTOM UP DP APPROACH
+function findLargestSubset(nums) {
+  
+  // the problem requires a sorted set of distinct numbers for the DP algorithm 
+  nums.sort((a,b) => a - b);
+  // often in DP bottom up will require some state, usually an array to keep answers
+  const maxSubsets = [];
+  for (let i = 0; i < nums.length; i++) {
+    // restart the max subset count each time the largst next value in nums is assessed
+    let maxSubset = 0;
+    // assess each value (that is smaller due to sorting) from largest next value by dividing it
+    for(let j = 0; j < i; j++) {
+      // this console log shows how answer is built up  
+      console.log(`${nums[i]} divided by ${nums[j]} = ${nums[i] % nums[j]}, i:${i}, j:${j}, maxSubsets is ${maxSubsets}`);     
+      // check last largest value, against all previous (smaller) values if they divide with no remainder  
+      if (nums[i] % nums[j] === 0) {
+          maxSubset = Math.max(maxSubset, maxSubsets[j])
+      }
+    }
+    // the plus one is important
+    maxSubsets.push(maxSubset + 1)
+  }
+  return Math.max(...maxSubsets)
+
+}
+
+console.log(findLargestSubset([1,2,4,8]))
+
+```
+
 ## brute force
 
 - start with the classic reduction of the input in your recursive calls.
