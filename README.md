@@ -664,7 +664,6 @@ A min and max heap, means the heap is mostly sorted, all levels are sorted, but 
 
 ```
 
-<<<<<<< HEAD
 * Use <code>for ... of</code> to get the values of an object, so in this case it would be the adjacency list itself
 * Know how to convert an edge list (array of pairs) into an adjacency list, which is an object with keys and values of arrays representing the connections.
   
@@ -672,8 +671,6 @@ A min and max heap, means the heap is mostly sorted, all levels are sorted, but 
 
   * Use the node (value etc.) as soon as it pops or shifts from dfs/bfs search
   
-=======
->>>>>>> 129055dabc2a5dbca2bcdae1e22624874a3f60a4
 ### <em>edge list to adjacency list</em>
 - create helper function buildGraph, pass in edge list (array of sub arrays)
 - create empty graph object, return it at the end
