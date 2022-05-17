@@ -757,6 +757,33 @@ In essence when solving a problem with recursion either use the return value (pa
 
 ## Dynamic programming - Dynamic number of subproblems
 
+
+###[Minimum perfect squares](https://leetcode.com/problems/perfect-squares/)
+- things to take away
+  - the starting index should be 1, otherwise you have a endless loop as n - 0 is always same, not decreasing
+  - the Math.sqrt(n) ensures you only do just enough work based on perfect square in for...loop. Make sure it is less than or equal.
+  - Classic dfs (recursion), you loop over all numbers, and pass in the difference of sum from current square into recursive call.
+  - Think about the return values, which is counting the edges, so how many perfect squares to get to original answer.
+  - Base case is if n is 0. Thie can be visualised as a branching tree problem (state-space tree)
+
+```javascript
+    var numSquares = function(n, memo = {}) {
+        
+        if (n in memo) return memo[n];
+        
+        if ( n === 0 ) return 0;
+        
+        let min = Infinity;
+        for (let i = 1; i <= Math.sqrt(n); i++) {
+            const square = i * i;
+            const squares = 1 + numSquares(n - square, memo);
+            min = Math.min(min, squares);
+        }
+        
+        return memo[n] = min;
+};
+```
+
 ### [Longest increasing subsequence](https://algo.monster/problems/longest_increasing_subsequence)
 - The usual time complexity is O(n^2).
 - There is a way to get O(nlogn) but in a normal interview setting this should not be expected
