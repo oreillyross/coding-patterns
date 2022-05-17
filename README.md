@@ -1,4 +1,6 @@
-# coding-patterns to help as an aide-memoire
+<p align="center">
+<h1> coding-patterns to help as an aide-memoire </h1>
+</p>
 
 
 
@@ -12,24 +14,21 @@
 * [Neet code](https://www.youtube.com/channel/UC_mYaQAE6-71rjSN6CeCA-g) A youtube channel from a a guy who is now a Google engineer who created videos in python of many Leet code challenges
 * [Algo.monster](https://algo.monster/) A site which distills essential algorithms, data structures and techniques for interviewing. Created by former Google engineers.
 
+------------
+
 # General Programming concepts:
 Be able to define, describe and demonstrate through examples the following concepts:
 
-1. Closure
+1. Closure 
 2. Partially applied function
 3. Currying
 4. Higher Order Functions
 5. Event loop
+
+Will Sentance has a great course on this on the [Frontend Masters platform](https://frontendmasters.com/teachers/will-sentance/)
    
 
-## General Patterns to start solving a problem
-
-* Start with Brute Force, even if you know it is not efficient it will lead to other considerations to solve the problem
-* Keep track of the best answer so far in one pass of the problem, see if you can break it down into pieces
-* Consider early to use a hash map, even if you don't know how yet as it is used in solving many problems generally.
-    - If your brute force solution results in a nested __for loop__ this should indicate you can almost certainly use a hashmap O(1) lookup to reduce the complexity from O(n^2) to O(n). Use the ```if (num in hash)``` check 
-
-## Javascript built-in functions and utilities
+## Javascript built-in functions and utilities to help solve coding challenges
 
 #### Sorting numbers in javascript
 ```javascript
@@ -38,6 +37,75 @@ Be able to define, describe and demonstrate through examples the following conce
   const sorted = numArray.sort((a, b) => a - b);
 
 ```
+
+#### Serializing and deserializing an Array
+
+``` 
+  PSEUDO CODE:
+    - to serialise: 
+        - create a result array, 
+        - recursively call a dfs function, passing the next node in, and a reference to the result array to be populated inside recursive call.
+        - return array as joined " ";
+        Normally in the recursive call you think about the return value, and what state, in this case we only worry about the state, which is array passed in as reference.
+        - base case is leaf node, if (!node) push 'x' to array and return void.
+        - push the node.val and then 
+        - recursively call function passing the left and right nodes in calls respectively, along with state.
+    - to deserialise:
+        - Use the trick of creating an iterator from the string split as array, the arr[Symbol.iterator]() will do it 
+        - pass this in as the only argument to dfs function for deserialising,
+        - inside the function first get the next value by calling iterator.next(),
+        - if it is an 'x' char then simply return void, as its a leaf node, // base case to get out of recursion
+        - otherwise create a new Node, passing parseInt(value, 10)
+        - then with that node call left and right recursive calls passing result back to curr.left or curr right.
+        - then return the current node, which goes back into recursive call.
+```
+
+```javascript
+    function serialize(root) {
+        const res = [];
+        dfs_serialize(root, res);
+        return res.join(" ");
+    }
+
+    const dfs_serialize = (node, res) => {
+    if (!node) {
+        res.push("x");
+        return;
+    }
+    res.push(node.val)
+    dfs_serialize(node.left, res)  
+    dfs_serialize(node.right, res)
+    }
+
+    function deserialize(s) {
+        return dfs_deserialize(s.split(" ")[Symbol.iterator]())
+    }
+
+    const dfs_deserialize = (nodes) => {
+        const {value} = nodes.next();
+        if (value === "x") return;
+        const newNode = new Node(parseInt(value, 10))
+        newNode.left = dfs_deserialize(nodes)
+        newNode.right = dfs_deserialize(nodes)
+        return newNode;
+    };
+```
+---------
+
+## General Patterns to start solving a problem
+
+* Start with Brute Force approach, even if you know it is not efficient it will lead to other considerations to solve the problem
+* Keep track of the best answer so far in one pass of the problem, see if you can break it down into pieces
+* Consider early to use a hash map, even if you don't know how yet as it is used in solving many problems generally.
+    - If your brute force solution results in a nested __for loop__ this should indicate you can almost certainly use a hashmap O(1) lookup to reduce the complexity from O(n^2) to O(n). Use the ```if (num in hash)``` check 
+
+### Calculating complexity
+- Terms that can be used to describe complexity include: 
+    * Maximal efficient solution
+    * linear complexity O(n)
+    * Multi-linear comlpexity O(n+m), this would be the case where two __for loops__ follow each other.
+
+------------
 
 ## Algorithms to know
 
@@ -73,6 +141,7 @@ Be able to define, describe and demonstrate through examples the following conce
 
             uncompress("2c3a1t");
 ```
+
 Two pointers come in a number of forms:
     - same direction (used for Remove duplicates), or fast, slow pointers.
     - opposite direction (used for Two sum sorted)
@@ -104,10 +173,14 @@ This solution uses a fast and slow pointer, the fast pointer moves twice as fast
 #### Floyds cycle finding algorithm 
 
 This algo uses the two pointer pattern on a linked list to detect if there is a cycle.
+
 A problem where this is used to solve is called __[Happy Number](https://algo.monster/problems/happy_number)__
-### <p style="color: lightgreen">Sorting Algorithms</p>
+
+
+## <p style="color: lightgreen">Sorting Algorithms</p>
 
 #### Insertion sort
+
 * This has an O(n^2) complexity because of the two for loops.
 * Key to this is iterating over the unsorted array starting from the first element, and doing the sorting in-place.
 * Then store the first element to compare inside the second for loop
@@ -134,6 +207,7 @@ A problem where this is used to solve is called __[Happy Number](https://algo.mo
             }
  ```
  #### <p style="color: lightblue">Merge sort</p>
+ 
  * This algorithm uses a __`Divide and conquer`__ strategy
  * Because it needs to split the arrays to some base case (when only one element exists) recursion is a good implementation
  * alternatively it can be solved using the bottom-up approach
@@ -182,6 +256,7 @@ A problem where this is used to solve is called __[Happy Number](https://algo.mo
 ```
 
 ### Binary Search 
+
  - The precondition to searching is that the __array must be sorted__.
  - Key pieces are two pointers, one initially pointing to the first value (low pointer), the other pointing to the end of the array (high pointer).
  - algorithmic step is to find the midpoint (floored for whole number), check if it matches the target value, or if its lower than target value, move low pointer 
@@ -244,63 +319,12 @@ next True element (or the first true element) in a true or false array.
   
 ```
 
-#### Serializing and deserializing an Array
-
-``` 
-  PSEUDO CODE:
-    - to serialise: 
-        - create a result array, 
-        - recursively call a dfs function, passing the next node in, and a reference to the result array to be populated inside recursive call.
-        - return array as joined " ";
-        Normally in the recursive call you think about the return value, and what state, in this case we only worry about the state, which is array passed in as reference.
-        - base case is leaf node, if (!node) push 'x' to array and return void.
-        - push the node.val and then 
-        - recursively call function passing the left and right nodes in calls respectively, along with state.
-    - to deserialise:
-        - Use the trick of creating an iterator from the string split as array, the arr[Symbol.iterator]() will do it 
-        - pass this in as the only argument to dfs function for deserialising,
-        - inside the function first get the next value by calling iterator.next(),
-        - if it is an 'x' char then simply return void, as its a leaf node, // base case to get out of recursion
-        - otherwise create a new Node, passing parseInt(value, 10)
-        - then with that node call left and right recursive calls passing result back to curr.left or curr right.
-        - then return the current node, which goes back into recursive call.
-```
-
-```javascript
-    function serialize(root) {
-        const res = [];
-        dfs_serialize(root, res);
-        return res.join(" ");
-    }
-
-    const dfs_serialize = (node, res) => {
-    if (!node) {
-        res.push("x");
-        return;
-    }
-    res.push(node.val)
-    dfs_serialize(node.left, res)  
-    dfs_serialize(node.right, res)
-    }
-
-    function deserialize(s) {
-        return dfs_deserialize(s.split(" ")[Symbol.iterator]())
-    }
-
-    const dfs_deserialize = (nodes) => {
-        const {value} = nodes.next();
-        if (value === "x") return;
-        const newNode = new Node(parseInt(value, 10))
-        newNode.left = dfs_deserialize(nodes)
-        newNode.right = dfs_deserialize(nodes)
-        return newNode;
-    };
-```
-
 ### Topological order
 - Key to victory is to build a hash map of the parents and their connections, so numParents = {};
 - Also have an array called ready, which takes the nodes that have a count of 0 in the numParents object
 - Add the last node in ready to the order array, return this order array as the final result. 
+
+------------
 
 ## Data Structures
 
@@ -310,7 +334,7 @@ next True element (or the first true element) in a true or false array.
     - This is used to determine if a tree is balanced.
     -  
 
-* Key to reasoning about tree like structures is to think from the perspective of a node. get inside recursive leap of faith logic.
+* Key to reasoning about tree like structures is to think from the perspective of a node. Get inside recursive leap of faith logic.
 
 ```
   // TEMPLATE FOR DFS on TREE
@@ -326,180 +350,6 @@ next True element (or the first true element) in a true or false array.
 
 ```
 
- __<span style="color: lightgreen">Two things</span>__ to decide on when thinking through recursion
- 1. The return value (passing value up from child to parent)
- 2. Identifying the state (passing value down from parent to child)
-
-In essence when solving a problem with recursion either use the return value (partition and merge) or store a global variable that is updated based on each recursive call.
-
-#### <p style="color:lightgreen">Combinatorial search on trees</p>
-
-Think about the problem as using a binary tree as a framework to generate all possible subsets. Whilst you don't code the Binary tree nodes, you can use the same recursive DFS techniques to visit all the possible combinations.
-
-- Generally the height of the tree = the number of input n's. The complexity can be generalised for n to be O(2^n) in time and space. 
-
-- Three steps:
-1. Identify the state(s)
-2. Draw the state-space-tree
-3. DFS/backtrack on the state space tree
-
-  ### Backtracking
-* This is common in problems which require a bruteforce approach.
-* Think of the problem in terms of a decision tree which branches out exponentially, i.e. based on the number of inputs
-* upon reaching the leaf nodes you can _backtrack_ up the tree to the root node to get each and every variation.
-* problems solved with this approach include the [Letter Combinations](https://leetcode.com/problems/letter-combinations-of-a-phone-number/) problem from Leetcode.
-
-* use a recursive function inside your main function to build the result recursively.
-
-##### Backtracking template
-```javascript
-    function dfs(node, state) {
-        if __state__ is a solution {
-            report(state) // add state to final result list
-            return
-        }
-
-        for (child of children) {
-            if child is a part of a potential solution
-            state.add(child) // make move
-            dfs(child, state)
-            state.remove(child) // backtrack
-        }
-    }
-```    
-
-Some real javascript code to demonstrate:
-
-```javascript
-    function dfs(root, path, res) {
-        if (root.children.every(c => !c)) {
-        res.push(path.join("->"))
-        return;
-        }
-        
-        for (let child of root.children) {
-        if (child) {
-            path.push(child.val);
-            dfs(child, path, res);
-            path.pop();
-        }
-        }
-    }
-```
-
-### Solving the permutation problem with pseudocode
-
-1. Identify the states, so you need to know the full path, and when it has been reached to record this, pass it along, and second state is to know which letters have been used.
-2. DRAW THE TREE (State-space-tree).
-3. Apply DFS and backtrack template.
-    - base case is when path.length == letters.length
-    - then append the path to res (found one path), and return
-    - then __for__ over the letters and check if used, continue, otherwise path.push the letter, mark it as used and recursively call the dfs function.
-    - then backtrack, pop letter from path and mark letter[i] as false 
-    - finally call the function first time, passing [] for path, Array(letters.length).fill(false)
-    and return res
-
-```javascript
-    function permutations(letters) {
-        const res = [];
-        dfs([], Array(letters.length).fill(false), res)
-        return res;
-        
-        function dfs(path, used, res){
-            if (path.length === letters.length) {
-            res.push(path.join(""));
-            return;
-        }  
-        for(let i = 0; i < letters.length; i++) {
-          if (used[i]) continue;
-          path.push(letters[i]);
-          used[i] = true;
-          dfs(path, used, res);
-          path.pop();
-          used[i] = false;
-        }
-        return res;
-    }
-  }
-```
-#### [Generate parenthesis](https://leetcode.com/problems/generate-parentheses/)
-
-This is a classic combinatorial problem which requirss searching all combinations and backtracking using dfs.
-- Think about your base aase to populate one valid path. This is where drawing the state-space tree will help. 
-- In this case it is when the accumulated path is equal to the 2 braces (2) * n;
-- Update result, and return
-- then the two recursive cases are either validly inserting a open brace or inserting a valid close brace.
-- Then recursively call function, updating state, which is count of open or closed brace
-- and backtrack, after recursive call, so pop()
-
-__see below code__ 
-
-```javascript
-    var generateParenthesis = function(n) {
-        
-        let result = [];
-        const gen = (braces = [], open = 0, closed = 0) => {
-            
-        if (braces.length === 2 * n) {
-            result.push(braces.join(""));
-            return;
-        } 
-            
-        if (open < n && open >= closed) {
-            braces.push("(");
-            gen(braces, open + 1, closed);
-            braces.pop();
-        }
-            
-        if (closed < n & open >= closed) {
-            braces.push(")");
-            gen(braces, open, closed + 1);
-            braces.pop();
-        } 
-        }
-        gen();
-        return result;
-    };
-```
-
-### [Word Break (Combinatorial problem using memoization)](https://algo.monster/problems/word_break)
-
-- This problem calls for using one state variable i, and then the state-space-tree is the words array choices one can make
-- There will be some overlapping subproblems which can be memoized
-
-```javascript
-        function wordBreak(s, words) {
-            // used to store the previous solutions found in teh decision state-space-tree
-            const memo = {};
-            // kick off the function call, returning the result wither true or false, pass in previous args, as well as 0, to track the recursive end condition
-            return dfs(s, words, 0, memo)
-            
-        }
-
-        const dfs = (s, words, i, memo) => {
-        // base case is if the length of the string is equal to the index i, then all options can fit in the original string
-        if (i === s.length) return true;
-        // short-circuit call if already seen this solution in the state-space-tree
-        if (i in memo) return memo[i];  
-            
-        // track the found state
-        let found = false;
-        // classic dfs search algorithm, for...of with recursive call based on condition
-        for (let word of words) {
-            // start at the ith index and slice until the end of string, i.e whatever still needs to be checked
-            // check if the string starts with the word, each word in list will be checked
-            // if it does then recursively call the dfs function to check the rest of the string, and increase i to just after the previously found word in string
-            if (s.slice(i).startsWith(word)) {
-            if (dfs(s, words, i + word.length, memo)) {
-                found = true;
-                break;  
-            };
-            }
-        }  
-        memo[i] = found;
-        return found;  
-        }
-```
 
 #### Balanced binary tree
 * Determine if a tree is balanced. The definition of a balanced tree is the following:
@@ -864,11 +714,397 @@ This pattern appears for problems such as **flood fill** or **connected islands*
 ```
 ## <p style="color: lightgreen">Bipartite graphs and graph coloring</p>
 
-<hr/>
+-----------
+
+# <p style="color: hotpink">Hash maps</p>
+
+### Two sums problem 
+ - The brute force approach suggests two for loops giving 0(n2)
+ - the introduction of a hash or map allows one to capture the value as the key in the kv store which later can be checked if the complement (i.e. the difference) between target value and the value being iterated.
+ - This can be done in one pass, if the checks for equality are done before the hash map is further constructed. 
+
 
 # <p style="color: hotpink">Dynamic Programming patterns</p>
 
-### Pattern of recurrence
+## Recursion (top-down, with memoization)
+
+ __<span style="color: lightgreen">Two things</span>__ to decide on when thinking through recursion
+ 1. The return value (passing value up from child to parent)
+ 2. Identifying the state (passing value down from parent to child)
+
+In essence when solving a problem with recursion either use the return value (partition and merge) or store a global variable that is updated based on each recursive call.
+
+## brute force
+
+- start with the classic reduction of the input in your recursive calls.
+- where there is an array that needs to get smaller, rather pass in an extra argument, like i that keeps track of the position of the single element you are on.
+- Think of this problem in terms of a binary tree, that has two branches, the input with the element, and the input without the element.
+
+### Duplicate value avoidance pattern
+ - Add a parameter to recursive function call, default to null.
+ - Carry out a check (if statement) before the recursive call to check previous value with current value not the same.
+ - update it with the current value in the recursive calling of the function
+
+------------
+### 0 1 1 2 3 5 8 problem 🗃️ Dynamic Programming using recursion with memoization, or bottom up.
+
+- The key to this is to remember that you need to start with two numbers you already know. Otherwise you have nothing to add. 
+- The recursive solution is WAAAY to ineficient, and a simple 0(n) for loop where you store the result in an array thus building up the Fibbonaci sequence.
+- If you do use a recursive solution, definitely make sure you use memoization strategy, 
+- If you want to look clever (or dumb) pull out Benet's formula to calculate the Fibonacci sequence.
+
+----
+
+## Dynamic programming - Dynamic number of subproblems
+
+### [Longest increasing subsequence](https://algo.monster/problems/longest_increasing_subsequence)
+- The usual time complexity is O(n^2).
+- There is a way to get O(nlogn) but in a normal interview setting this should not be expected
+- The below solution solves this dp problem using a recursive approach but it can also be solved bottom up approach (tabulation) and a nested for loop
+
+```javascript
+         function longestSubLen(nums) {
+             // kick the recursive calls off, 
+             // pass in the array, the ith index starting at begining of array,
+             // the length of the array, as this is used to decide the base case, reaching end of array.
+             // and start with -Infinity so that at least first element is included in count
+             return calculate(nums, 0, nums.length, -Infinity)
+         }
+          
+         const calculate = (arr, i, n, prev) => {
+           // base case return 0 once end of array reached
+           if (i === n) return 0;
+
+           // either exclude current value, and recursively call
+           let exclude = calculate(arr, i + 1, n, prev)
+           
+           // or include it only if the value is actually greater than previous value
+           let include = 0;
+           if (arr[i] > prev) {
+             include = 1 + calculate(arr, i + 1, n, arr[i])
+           }
+           // finally return the current max value.
+           return Math.max(exclude, include)
+         }
+```
+### [Triangle](https://leetcode.com/problems/triangle/) [dp, recursion, memoization]
+
+```javascript
+      /**
+       * @param {number[][]} triangle
+       * @return {number}
+       */
+      var minimumTotal = function(triangle) {
+          
+          // the recursive function inside main function to close over the triangle 2D array.
+          
+          const dfs = (i,level, memo = {}) => {
+              
+              // memoization requires both the ith position in sub array and level. 
+              const pos = `${i},${level}`;
+              // base case once recursion reaches bottom level of triangle, or last subarray entry
+              if (level === triangle.length) {
+                  return 0
+              }
+              
+              if (pos in memo) return memo[pos]
+              
+              
+              const next_level = level + 1;
+              // magic happens here, return the minimum of the ith and ith +1 index, plus last known value.
+              return memo[pos] = Math.min(dfs(i, next_level, memo),
+              dfs(i + 1, next_level, memo)) + triangle[level][i]
+              
+          }
+          // kick off recursion starting at top of triangle
+          return dfs(0,0);
+      };
+
+      minimumTotal(
+      [[2],[3,4],[6,5,7],[4,1,8,3]]) // 11
+```
+
+#### <p style="color:lightgreen">Combinatorial search on trees</p>
+
+Think about the problem as using a binary tree as a framework to generate all possible subsets. Whilst you don't code the Binary tree nodes, you can use the same recursive DFS techniques to visit all the possible combinations.
+
+- Generally the height of the tree = the number of input n's. The complexity can be generalised for n to be O(2^n) in time and space. 
+
+- Three steps:
+1. Identify the state(s)
+2. Draw the state-space-tree
+3. DFS/backtrack on the state space tree
+
+  ### Backtracking
+* This is common in problems which require a bruteforce approach.
+* Think of the problem in terms of a decision tree which branches out exponentially, i.e. based on the number of inputs
+* upon reaching the leaf nodes you can _backtrack_ up the tree to the root node to get each and every variation.
+* problems solved with this approach include the [Letter Combinations](https://leetcode.com/problems/letter-combinations-of-a-phone-number/) problem from Leetcode.
+* use a recursive function inside your main function to build the result recursively.
+
+##### Backtracking template pseudocode
+```javascript
+    function dfs(node, state) {
+        if __state__ is a solution {
+            report(state) // add state to final result list
+            return
+        }
+
+        for (child of children) {
+            if child is a part of a potential solution
+            state.add(child) // make move
+            dfs(child, state)
+            state.remove(child) // backtrack
+        }
+    }
+```    
+
+##### Javascript code to demonstrate above backtracking 
+
+```javascript
+    function dfs(root, path, res) {
+        if (root.children.every(c => !c)) {
+        res.push(path.join("->"))
+        return;
+        }
+        
+        for (let child of root.children) {
+        if (child) {
+            path.push(child.val);
+            dfs(child, path, res);
+            path.pop();
+        }
+        }
+    }
+```
+
+### Solving the permutation problem with pseudocode
+
+1. Identify the states, so you need to know the full path, and when it has been reached to record this, pass it along, and second state is to know which letters have been used.
+2. DRAW THE TREE (State-space-tree).
+3. Apply DFS and backtrack template.
+    - base case is when path.length == letters.length
+    - then append the path to res (found one path), and return
+    - then __for__ over the letters and check if used, continue, otherwise path.push the letter, mark it as used and recursively call the dfs function.
+    - then backtrack, pop letter from path and mark letter[i] as false 
+    - finally call the function first time, passing [] for path, Array(letters.length).fill(false)
+    and return res
+
+```javascript
+    function permutations(letters) {
+        const res = [];
+        dfs([], Array(letters.length).fill(false), res)
+        return res;
+        
+        function dfs(path, used, res){
+            if (path.length === letters.length) {
+            res.push(path.join(""));
+            return;
+        }  
+        for(let i = 0; i < letters.length; i++) {
+          if (used[i]) continue;
+          path.push(letters[i]);
+          used[i] = true;
+          dfs(path, used, res);
+          path.pop();
+          used[i] = false;
+        }
+        return res;
+    }
+  }
+```
+
+ ### [Letter Combinations problem](https://leetcode.com/problems/letter-combinations-of-a-phone-number/)
+ * Uses backtracking pattern
+ * recursively build the tree
+ * the base case is when your current string length is equal to the length of input, i.e all letters used
+ * recursively build letters for each character iterated over.
+ * O(n*4^n) not ideal.
+ ```javascript
+        var letterCombinations = function(digits) {
+          
+          const hash = {
+              2: ["a","b", "c"],
+              3: ["d","e", "f"],
+              4: ["g","h", "i"],
+              5: ["j","k", "l"],
+              6: ["m","n", "o"],
+              7: ["p","q", "r", "s"],
+              8: ["t","u", "v"],
+              9: ["w","x", "y", "z"]
+          };
+          
+          const output = [];
+          
+          const build = (i, currStr, store) => {
+              
+              if (store.has(currStr)) return currStr;
+              
+              if (currStr.length === digits.length) {
+                  store.add(currStr);
+                  output.push(currStr);
+                  return;
+              }
+
+              const letters = hash[digits[i]];
+              
+              for (letter of letters) {
+                  build(i + 1, currStr + letter, store);
+                  
+              }
+          }
+          
+          if (digits) {
+              build(0, "", new Set())
+          }
+          
+          return output;
+      };
+```
+
+### [Coin Change](https://algo.monster/problems/coin_change)
+This is part of the sequence type DP problems. The below solution uses a recrusive pattern.
+
+```javascript
+  // the recursive function call is separated from main logic as it could be the case that one of the calls results in Infinity, which means no solution could be found and -1 needs to be returned as final answer.
+  function coinChange(coins, amount) {
+            const answer = _minChange(coins, amount);
+            return answer === Infinity ? -1 : answer;
+         }
+        // Recursive call with memoization
+         const _minChange = (coins, amount, memo = {}) => {
+             // two base cases, either coin could not be used, more than amount
+             if (amount < 0) return Infinity; 
+             // or it is exact amount, so return from recursive call. Outside recursive call 1 is added to account for the edge in grpah.
+             if (amount === 0) return 0;
+ 
+             if (amount in memo) return memo[amount];
+
+             let minChange = Infinity;
+             // iterate over all coins and recursively call function to get either base case.
+             for (let coin of coins) {
+               const numCoins = 1 + _minChange(coins, amount - coin, memo)
+               // Min value logic to ensure on ly the minimum branch (edges) counted gets returned from the recursive calls.
+               minChange = Math.min(numCoins, minChange); 
+             }
+             // clever javascript trick, not intuitive but does assignment and return in on line.
+             return memo[amount] = minChange;
+         }
+```
+
+#### <p style="color:lightgreen">Exhaustive recursion</p>
+
+This problem requires one to think about applying a decision tree to the inputs. Follow the steps for normal recursion where you identify the return value from the recursive call as well as the state you will recursively pass into the function, __note__ that this state must get smaller and eventually result in a base case which allows you to return from the recursion.
+- Start with identifying base case, this is the case where you know the solution without calculating any subproblems.
+- __EXHAUSTIVE RECURSION__ Here you need to include your decision tree logic, i.e. either include the element or exclude the element being exhausitvely recursed.
+- Recursively call the function on excluded elements.
+- __EXHAUSTIVE RECURSION__ Apply the __for...of (or map)__ over the excluded elements and create another set with excluded elements included.
+
+```javascript example
+
+const subsets = (elements) => {
+   // base case is when no elemtns exist return empty subset
+   if (!elements.length) return [[]]
+  
+  // either take the first letter, or don't take the first letter
+   const first = elements[0];
+   const rest = subsets(elements.slice(1))
+   const restWithFirst = rest.map(a => [first, ...a])
+  
+   return [...restWithFirst, ...rest]
+  
+};
+
+subsets(['a', 'b']);
+
+```
+
+
+#### [Generate parenthesis](https://leetcode.com/problems/generate-parentheses/)
+
+This is a classic combinatorial problem which requires searching all combinations and backtracking using dfs.
+- Think about your base case to populate one valid path. This is where drawing the state-space tree will help. 
+- In this case it is when the accumulated path is equal to the 2 braces (2) * n;
+- Update result, and return
+- then the two recursive cases are either validly inserting a open brace or inserting a valid close brace.
+- Then recursively call function, updating state, which is count of open or closed brace
+- and backtrack, after recursive call, so pop()
+
+__Javascript solution__ 
+
+```javascript
+    var generateParenthesis = function(n) {
+        
+        let result = [];
+        const gen = (braces = [], open = 0, closed = 0) => {
+            
+        if (braces.length === 2 * n) {
+            result.push(braces.join(""));
+            return;
+        } 
+            
+        if (open < n && open >= closed) {
+            braces.push("(");
+            gen(braces, open + 1, closed);
+            braces.pop();
+        }
+            
+        if (closed < n & open >= closed) {
+            braces.push(")");
+            gen(braces, open, closed + 1);
+            braces.pop();
+        } 
+        }
+        gen();
+        return result;
+    };
+```
+
+### [Word Break (Combinatorial problem using memoization)](https://algo.monster/problems/word_break)
+
+- This problem calls for using one state variable i, and then the state-space-tree is the words array choices one can make
+- There will be some overlapping subproblems which can be memoized
+
+```javascript
+        function wordBreak(s, words) {
+            // used to store the previous solutions found in teh decision state-space-tree
+            const memo = {};
+            // kick off the function call, returning the result wither true or false, pass in previous args, as well as 0, to track the recursive end condition
+            return dfs(s, words, 0, memo)
+            
+        }
+
+        const dfs = (s, words, i, memo) => {
+        // base case is if the length of the string is equal to the index i, then all options can fit in the original string
+        if (i === s.length) return true;
+        // short-circuit call if already seen this solution in the state-space-tree
+        if (i in memo) return memo[i];  
+            
+        // track the found state
+        let found = false;
+        // classic dfs search algorithm, for...of with recursive call based on condition
+        for (let word of words) {
+            // start at the ith index and slice until the end of string, i.e whatever still needs to be checked
+            // check if the string starts with the word, each word in list will be checked
+            // if it does then recursively call the dfs function to check the rest of the string, and increase i to just after the previously found word in string
+            if (s.slice(i).startsWith(word)) {
+            if (dfs(s, words, i + word.length, memo)) {
+                found = true;
+                break;  
+            };
+            }
+        }  
+        memo[i] = found;
+        return found;  
+        }
+```
+
+
+------------------------
+
+## Bottom up (tabulation)
+
+### Pattern of recurrence 
 
 This is used for bottom up approach to solving dp problems. The recurrence relation can be formulated as such:
 
@@ -912,54 +1148,44 @@ The below uses a bottom up (tabulation) approach to get the answer
         }
 
 ```
-### [Coin Change](https://algo.monster/problems/coin_change)
-This is part of the sequence type DP problems. The below solution uses a recrusive pattern.
+
+### [Largest divisible subset](https://leetcode.com/problems/largest-divisible-subset/)
+
+#### Things to take away
+- determine if a number divides by another use % operator and === 0 check.
+- the bottom up approach needs some sort of data structure to build up the solution, usually an array.
 
 ```javascript
-  // the recursive function call is separated from main logic as it could be the case that one of the calls results in Infinity, which means no solution could be found and -1 needs to be returned as final answer.
-  function coinChange(coins, amount) {
-            const answer = _minChange(coins, amount);
-            return answer === Infinity ? -1 : answer;
-         }
-        // Recursive call with memoization
-         const _minChange = (coins, amount, memo = {}) => {
-             // two base cases, either coin could not be used, more than amount
-             if (amount < 0) return Infinity; 
-             // or it is exact amount, so return from recursive call. Outside recursive call 1 is added to account for the edge in grpah.
-             if (amount === 0) return 0;
- 
-             if (amount in memo) return memo[amount];
+//SOLUTION USES BOTTOM UP DP APPROACH
+function findLargestSubset(nums) {
+  
+  // the problem requires a sorted set of distinct numbers for the DP algorithm 
+  nums.sort((a,b) => a - b);
+  // often in DP bottom up will require some state, usually an array to keep answers
+  const maxSubsets = [];
+  for (let i = 0; i < nums.length; i++) {
+    // restart the max subset count each time the largst next value in nums is assessed
+    let maxSubset = 0;
+    // assess each value (that is smaller due to sorting) from largest next value by dividing it
+    for(let j = 0; j < i; j++) {
+      // this console log shows how answer is built up  
+      console.log(`${nums[i]} divided by ${nums[j]} = ${nums[i] % nums[j]}, i:${i}, j:${j}, maxSubsets is ${maxSubsets}`);     
+      // check last largest value, against all previous (smaller) values if they divide with no remainder  
+      if (nums[i] % nums[j] === 0) {
+          maxSubset = Math.max(maxSubset, maxSubsets[j])
+      }
+    }
+    // the plus one is important
+    maxSubsets.push(maxSubset + 1)
+  }
+  return Math.max(...maxSubsets)
 
-             let minChange = Infinity;
-             // iterate over all coins and recursively call function to get either base case.
-             for (let coin of coins) {
-               const numCoins = 1 + _minChange(coins, amount - coin, memo)
-               // Min value logic to ensure on ly the minimum branch (edges) counted gets returned from the recursive calls.
-               minChange = Math.min(numCoins, minChange); 
-             }
-             // clever javascript trick, not intuitive but does assignment and return in on line.
-             return memo[amount] = minChange;
-         }
+}
+
+console.log(findLargestSubset([1,2,4,8]))
+
 ```
 
-## brute force
-
-- start with the classic reduction of the input in your recursive calls.
-- where there is an array that needs to get smaller, rather pass in an extra argument, like i that keeps track of the position of the single element you are on.
-- Think of this problem in terms of a binary tree, that has two branches, the input with the element, and the input with out the element.
-
-### Duplicate value avoidance pattern
- - Add a parameter to recursive function call, default to null.
- - Carry out a check (if statement) before the recursive call to check previous value with current value not the same.
- - update it with the current value in the recursive calling of the function
-
-<hr/>
-
-### Calculating complexity
-- Terms that can be used to describe complexity include: 
-    * Maximal efficient solution
-    * linear complexity O(n)
-    * Multi-linear comlpexity O(n+m), this would be the case where two __for loops__ follow each other.
 
  ## Dynamic programming - grid format problems 
  
@@ -1055,89 +1281,13 @@ __NOTE__ using new Array(SIZE_ROW_OR_COL).fill(1) syntax
       [["1","0","1","0","0"],["1","0","1","1","1"],["1","1","1","1","1"],["1","0","0","1","0"]])
 ```
 
-## Dynamic programming - Dynamic number of subproblems
-
-### [Longest increasing subsequence](https://algo.monster/problems/longest_increasing_subsequence)
-- The usual time complexity is O(n^2).
-- There is a way to get O(nlogn) but in a normal interview setting this should not be expected
-- The below solution solves this dp problem using a recursive approach but it can also be solved bottom up approach (tabulation) and a nested for loop
-
-```javascript
-         function longestSubLen(nums) {
-             // kick the recursive calls off, 
-             // pass in the array, the ith index starting at begining of array,
-             // the length of the array, as this is used to decide the base case, reaching end of array.
-             // and start with -Infinity so that at least first element is included in count
-             return calculate(nums, 0, nums.length, -Infinity)
-         }
-          
-         const calculate = (arr, i, n, prev) => {
-           // base case return 0 once end of array reached
-           if (i === n) return 0;
-
-           // either exclude current value, and recursively call
-           let exclude = calculate(arr, i + 1, n, prev)
-           
-           // or include it only if the value is actually greater than previous value
-           let include = 0;
-           if (arr[i] > prev) {
-             include = 1 + calculate(arr, i + 1, n, arr[i])
-           }
-           // finally return the current max value.
-           return Math.max(exclude, include)
-         }
-```
-### [Triangle](https://leetcode.com/problems/triangle/) [dp, recursion, memoization]
-
-```javascript
-      /**
-       * @param {number[][]} triangle
-       * @return {number}
-       */
-      var minimumTotal = function(triangle) {
-          
-          // the recursive function inside main function to close over the triangle 2D array.
-          
-          const dfs = (i,level, memo = {}) => {
-              
-              // memoization requires both the ith position in sub array and level. 
-              const pos = `${i},${level}`;
-              // base case once recursion reaches bottom level of triangle, or last subarray entry
-              if (level === triangle.length) {
-                  return 0
-              }
-              
-              if (pos in memo) return memo[pos]
-              
-              
-              const next_level = level + 1;
-              // magic happens here, return the minimum of the ith and ith +1 index, plus last known value.
-              return memo[pos] = Math.min(dfs(i, next_level, memo),
-              dfs(i + 1, next_level, memo)) + triangle[level][i]
-              
-          }
-          // kick off recursion starting at top of triangle
-          return dfs(0,0);
-      };
-
-      minimumTotal(
-      [[2],[3,4],[6,5,7],[4,1,8,3]]) // 11
-```
 
 
-## <div style="color: lightgreen; text-decoration: underline">Coding problems and their solutions (mostly taken from Leet code)</div>
 
-### 0 1 1 2 3 5 8 problem 🗃️
+-------------
 
-- The key to this is to remember that you need to start with two numbers you already know. Otherwise you have nothing to add. 
-- The recursive solution is WAAAY to ineficient, and a simple 0(n) for loop where you store the result in an array thus building up the Fibbonaci sequence.
-- If you do use a recursive solution, definitely make sure you use memoization strategy, 
-- If you want to look clever (or dumb) pull out Benet's formula to calculate the Fibonacci sequence.
+# The below problems still need to be placed in the correct spots above
 
-### Two sums problem 
- - The brute force approach suggests two for loops giving 0(n2)
- - the introduction of a hash or map allows one to capture the value as the key in the kv store which later can be checked if the complement (i.e. the difference) between target value and the value being iterated.
- - This can be done in one pass, if the checks for equality are done before the hash map is further constructed. 
 
 ### Reverse words in a string
 - Without using any of the ES5+ javascript functions such as split, filter, reverse and join one can create two for loops (2n) and construct the reversed words
@@ -1262,53 +1412,7 @@ __NOTE__ using new Array(SIZE_ROW_OR_COL).fill(1) syntax
     ```
  * Once sorted loop over nums and within your loop carry out the Two sum logic, with __2 pointers__
 
- ### [Letter Combinations problem](https://leetcode.com/problems/letter-combinations-of-a-phone-number/)
- * Uses backtracking pattern
- * recursively build the tree
- * the base case is when your current string length is equal to the length of input, i.e all letters used
- * recursively build letters for each character iterated over.
- * O(n*4^n) not ideal.
- ```javascript
-        var letterCombinations = function(digits) {
-          
-          const hash = {
-              2: ["a","b", "c"],
-              3: ["d","e", "f"],
-              4: ["g","h", "i"],
-              5: ["j","k", "l"],
-              6: ["m","n", "o"],
-              7: ["p","q", "r", "s"],
-              8: ["t","u", "v"],
-              9: ["w","x", "y", "z"]
-          };
-          
-          const output = [];
-          
-          const build = (i, currStr, store) => {
-              
-              if (store.has(currStr)) return currStr;
-              
-              if (currStr.length === digits.length) {
-                  store.add(currStr);
-                  output.push(currStr);
-                  return;
-              }
 
-              const letters = hash[digits[i]];
-              
-              for (letter of letters) {
-                  build(i + 1, currStr + letter, store);
-                  
-              }
-          }
-          
-          if (digits) {
-              build(0, "", new Set())
-          }
-          
-          return output;
-      };
-```
 
 ### [Remove Nth Node from end of list](https://leetcode.com/problems/remove-nth-node-from-end-of-list/)
 * This is a __singly linked list problem__
