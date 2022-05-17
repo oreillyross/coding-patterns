@@ -764,7 +764,7 @@ In essence when solving a problem with recursion either use the return value (pa
   - the Math.sqrt(n) ensures you only do just enough work based on perfect square in for...loop. Make sure it is less than or equal.
   - Classic dfs (recursion), you loop over all numbers, and pass in the difference of sum from current square into recursive call.
   - Think about the return values, which is counting the edges, so how many perfect squares to get to original answer.
-  - Base case is if n is 0. Thie can be visualised as a branching tree problem (state-space tree)
+  - Base case is if n is 0. This can be visualised as a branching tree problem (state-space tree)
 
 ```javascript
     var numSquares = function(n, memo = {}) {
