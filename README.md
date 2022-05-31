@@ -237,7 +237,7 @@ This solution uses a fast and slow pointer, the fast pointer moves twice as fast
 - It has a numbe of edgecases which can make it tricky. Remember the two input linked lists can be different lengths
 - The trickiest edge case is remembering at the end there might be a digit to carry over which needs to be added to Linked List which is returned.
 
-### [Reverse a linked list](https://www.structy.net/problems/reverse-list)
+### [Reverse a linked list](https://leetcode.com/problems/reverse-linked-list/)
     - This can be done iteratively or recursively. The iterative approach is more space efficient.
     - Start with a prev node set to null
     - setup up classic iteration
