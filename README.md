@@ -149,6 +149,63 @@ Two pointers come in a number of forms:
 
 Two pointers often allows us to move from the brute force solution of nested for...loops O(n^2) to a more efficient linear time complexity of O(n) passing only once through iterable data structure.
 
+## <p style="color: lightgreen"> Linked Lists </p>
+
+Know the default implementation to recurse a linked list. It can be done iterative, or recursively. While the recursive solution is more elegant it does consume O(n) space as each call is placed on the call stack.
+
+```python
+# iterative core pattern for traversal
+
+def traverse(head):
+   
+   current = head
+   while current is not None:
+      # do something with node
+      current = current.next
+   
+   
+```
+
+[Sum list problem](./sum-list.py)
+
+### [Remove Nth Node from end of list](https://leetcode.com/problems/remove-nth-node-from-end-of-list/)
+* This is a __singly linked list problem__
+* It uses the __two pointer pattern__
+* Make sure to declare a dummy node upfront
+* Solution in javascript below
+```javascript
+    var removeNthFromEnd = function(head, n) {
+        
+        // dummy node is the node added before the head node, and has a null value.
+        const dummyHead = new ListNode(null);
+        dummyHead.next = head;
+
+        let left = dummyHead;
+        let right = head;
+        // need to iterate through linked list to set the correct right pointer to the node at + n space apart
+        while (right && n > 0) {
+            right = right.next;
+            n -= 1;
+        }
+        // classic linked list iteration, stop when right pointer is at null, i.e. just past the end
+        while (right) {
+            left = left.next;
+            right = right.next;
+        }
+        
+        // by setting left node pointer to the next.next node it will remove the node inthe middle.
+        left.next = left.next.next;
+        
+        return dummyHead.next;
+};
+```
+### [Merge two lists](https://leetcode.com/problems/merge-two-sorted-lists/)
+- Classic linked list problem
+- key to this is create a dummyNode upfront, then a seperate reference to the tail which gets updated.
+- The dummy head can return the next right at the end which is the new correct head with merged lists
+- then loop while both not null and check which is smaller, update the link with smaller node's val and increment that pointer,
+- watch out for the catch where you need to also update the tail to the next node, so a tail = tail.next call at end (inside) of while loop
+
 ### <p style="color: lightgreen">Find middle node of linked list</p> 
 This solution uses a fast and slow pointer, the fast pointer moves twice as fast, which intuitively means the slow pointer will be half way to the end, then return the slow pointer's val when fast pointer hits end of linked list.
 
@@ -169,6 +226,10 @@ This solution uses a fast and slow pointer, the fast pointer moves twice as fast
                    return slow.val;
                }
 ```
+### [Remove linked list elements](https://leetcode.com/problems/remove-linked-list-elements/) ♻️ ✔️ 🔗
+- This can be solved recursively or iteratively
+- recursive base case is null
+- otherwise return either the head.next value to remove the current node if it is equal to the value to remove
 
 ### Add two numbers
 - This problem expects you to know singly linked lists. 
@@ -1398,10 +1459,6 @@ __NOTE__ using new Array(SIZE_ROW_OR_COL).fill(1) syntax
 - always remember the base case to ensure it exits
 - Remember the key is its only left leaves, so not all left nodes.
 
-### [Remove linked list elements](https://leetcode.com/problems/remove-linked-list-elements/) ♻️ ✔️ 🔗
-- This can be solved recursively or iteratively
-- recursive base case is null
-- otherwise return either the head.next value to remove the current node if it is equal to the value to remove
 
 ### [Binary Tree Inorder traversal](https://leetcode.com/problems/binary-tree-inorder-traversal/) 
 - remember the rules, inorder is left tree first, then root, then right tree.
@@ -1419,12 +1476,7 @@ __NOTE__ using new Array(SIZE_ROW_OR_COL).fill(1) syntax
 - This is a classic two pointers problem, one at start and one at end
 - keep a maxArea value, update as you move either the left or right pointer based on which value is lower.
 
-### [Merge two lists](https://leetcode.com/problems/merge-two-sorted-lists/)
-- Classic linked list problem
-- key to this is create a dummyNode upfront, then a seperate reference to the tail which gets updated.
-- The dummy head can return the next right at the end which is the new correct head with merged lists
-- then loop while both not null and check which is smaller, update the link with smaller node's val and increment that pointer,
-- watch out for the catch where you need to also update the tail to the next node, so a tail = tail.next call at end (inside) of while loop
+
 
 ### [Zigzag Conversion](https://leetcode.com/problems/zigzag-conversion/)
 - Think of this problem in ters of a 2D array, to give you the visual grid you need.
@@ -1467,34 +1519,3 @@ __NOTE__ using new Array(SIZE_ROW_OR_COL).fill(1) syntax
 
 
 
-### [Remove Nth Node from end of list](https://leetcode.com/problems/remove-nth-node-from-end-of-list/)
-* This is a __singly linked list problem__
-* It uses the __two pointer pattern__
-* Make sure to declare a dummy node upfront
-* Solution in javascript below
-```javascript
-    var removeNthFromEnd = function(head, n) {
-        
-        // dummy node is the node added before the head node, and has a null value.
-        const dummyHead = new ListNode(null);
-        dummyHead.next = head;
-
-        let left = dummyHead;
-        let right = head;
-        // need to iterate through linked list to set the correct right pointer to the node at + n space apart
-        while (right && n > 0) {
-            right = right.next;
-            n -= 1;
-        }
-        // classic linked list iteration, stop when right pointer is at null, i.e. just past the end
-        while (right) {
-            left = left.next;
-            right = right.next;
-        }
-        
-        // by setting left node pointer to the next.next node it will remove the node inthe middle.
-        left.next = left.next.next;
-        
-        return dummyHead.next;
-};
-```
