@@ -170,6 +170,38 @@ This solution uses a fast and slow pointer, the fast pointer moves twice as fast
                }
 ```
 
+### Add two numbers
+- This problem expects you to know singly linked lists. 
+- Store a reference to the current (dummy) linked list so you can get to it after the while loop terminates 
+- It has a numbe of edgecases which can make it tricky. Remember the two input linked lists can be different lengths
+- The trickiest edge case is remembering at the end there might be a digit to carry over which needs to be added to Linked List which is returned.
+
+### [Reverse a linked list](https://www.structy.net/problems/reverse-list)
+    - This can be done iteratively or recursively. The iterative approach is more space efficient.
+    - Start with a prev node set to null
+    - setup up classic iteration
+    - inside while loop store current.next node in a temp var
+    - assign the current.next to prev node
+    - move prev node to current node
+    - advance current node to next (temp var ) node
+  
+Here is python code:
+
+```python
+   def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        
+        prev = None
+        current = head
+        while current is not None:
+            next = current.next
+            current.next = prev
+            prev = current
+            current = next
+            
+        return prev
+        
+```
+
 #### Floyds cycle finding algorithm 
 
 This algo uses the two pointer pattern on a linked list to detect if there is a cycle.
@@ -1320,12 +1352,6 @@ __NOTE__ using new Array(SIZE_ROW_OR_COL).fill(1) syntax
 - Without using any of the ES5+ javascript functions such as split, filter, reverse and join one can create two for loops (2n) and construct the reversed words
 - space requirements include two arrays
 - an improvement would include starting at the back of the string and repeating same first for loop to end up with words reversed on the first iteration
-
-### Add two numbers
-- This problem expects you to know singly linked lists. 
-- Store a reference to the current (dummy) linked list so you can get to it after the while loop terminates 
-- It has a numbe of edgecases which can make it tricky. Remember the two input linked lists can be different lengths
-- The trickiest edge case is remembering at the end there might be a digit to carry over which needs to be added to Linked List which is returned.
 
 ### Longest Palindromic substring
 1. This problem can be solved using dynamic programming
