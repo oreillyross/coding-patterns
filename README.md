@@ -318,6 +318,14 @@ next True element (or the first true element) in a true or false array.
 }
   
 ```
+#### [Peak of mountain array](https://leetcode.com/problems/peak-index-in-a-mountain-array/)
+- This problem requires one to think of a condition which evaluates to true or false for each indexed item.
+- Looking at the mountain array structure [0,1,2,3,2,1,0] one can see the following holds true arr[i] > arr[i + 1]
+- The problem then is evaluated to finding the first true entry in the array.
+
+```python
+   
+```
 
 ### Topological order
 - Key to victory is to build a hash map of the parents and their connections, so numParents = {};
