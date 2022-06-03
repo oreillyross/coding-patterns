@@ -262,7 +262,35 @@ Here is python code:
         return prev
         
 ```
+### [Remove a node from linked list](https://leetcode.com/problems/delete-node-in-a-linked-list/)
 
+The below is the normal deletion given a head node to traverse. The leet code problem only gives you the actual node to delete. Trick question really, but solved in two lines of code.
+ - assign the current node.val to next node val
+ - and then assign current node.next to currentnode.next.next
+ - This removes the copied second node.
+  
+```python
+# class Node:
+#   def __init__(self, val):
+#     self.val = val
+#     self.next = None
+
+def remove_node(head, target_val):
+  # The below is the edge case for when the first node is the target
+  if head.val == target_val:
+    return head.next
+  current = head
+  # Gotcha 1: Make sure its None and not an Empty Node Node(None)
+  prevNode = None
+  while current is not None:
+    if current.val == target_val:
+      # Gotcha 2: Must be assigning prevNode.next to current.next, and not prevNode = current.next
+      prevNode.next = current.next
+      break  
+    prevNode = current
+    current = current.next
+  return head
+```  
 #### Floyds cycle finding algorithm 
 
 This algo uses the two pointer pattern on a linked list to detect if there is a cycle.
