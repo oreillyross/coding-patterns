@@ -492,6 +492,28 @@ next True element (or the first true element) in a true or false array.
     - each node can have 0, 1 or at most two children.
 
     __Remember an Empty tree is also a valid binary tree__
+    
+##### Comparing python code to javascript code for max root to leaf problem
+
+```python
+def max_path_sum(root):
+  
+  if root is None:
+    return float("-inf")
+  
+  if root.left is None and root.right is None:
+    return root.val
+  
+  maxLeft = max_path_sum(root.left)
+  maxRight = max_path_sum(root.right)
+  
+  return root.val + max(maxRight, maxLeft)
+```
+```javascript
+function maxPath(root)
+... TODO
+```
+
 
 
 ### [DFS Return all node values](https://structy.net/problems/depth-first-values)
