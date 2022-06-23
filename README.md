@@ -464,6 +464,8 @@ next True element (or the first true element) in a true or false array.
     -  
 
 * Key to reasoning about tree like structures is to think from the perspective of a node. Get inside recursive leap of faith logic.
+* Your first inuition to solving a path finding problem in a tree like data structure is to solve this recursively
+
 
 ```
   // TEMPLATE FOR DFS on TREE
@@ -514,6 +516,41 @@ function maxPath(root)
 ... TODO
 ```
 
+### [Tree path finder problem](https://www.structy.net/problems/premium/tree-path-finder)
+- Solved recursively
+- Write out the recursive stepping logic
+- Watch out ofr empty leaf nodes, return None
+- Know that your lists, using the splat operator (spread elements into new array) called recursively is an expensive operation. Rather append the items and then at the end use the classic trick of reversing the list
+
+```python
+def path_finder(root,target):
+  result = _path_finder(root,target)
+  if result is None:
+    return None
+  else:
+   # neat python reverse list syntax
+   return result[::-1]
+#using the convention of underscore to say this is internal function, not to interfere in coding challenge function calling correct signature above
+def _path_finder(root, target):
+  
+  if root is None:
+    return None
+    
+  if root.val == target:
+    return [ root.val ]
+  
+  left = _path_finder(root.left, target)
+  if left is not None:
+    left.append(root.val)
+    return left
+  
+  right = _path_finder(root.right, target)
+  if right is not None:
+    right.append(root.val)
+    return right
+  
+  return None
+```
 
 
 ### [DFS Return all node values](https://structy.net/problems/depth-first-values)
