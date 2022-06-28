@@ -579,6 +579,11 @@ def _path_finder(root, target):
     }
 ```
 
+### [Breadth First Search and iteration on Binary trees](https://www.structy.net/problems/premium/bottom-right-value) 
+- This can only be done with a queue, either using the javascript builtin array with push, shift methods or
+  using python deque class from collections library.
+  - here is a classic find bottom right val solution in python (./binary-tree.py)
+  
 ### [Lefty nodes problem](https://structy.net/problems/premium/lefty-nodes)
 - Start with a helper function that takes a node, and a count of what level you are on
 - put the helper function inside the main function to make use of the closure behaviour of javascript to get access to the returned values array.
