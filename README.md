@@ -551,6 +551,12 @@ def _path_finder(root, target):
   
   return None
 ```
+### [Tree levels problem](https://www.structy.net/problems/premium/tree-levels)
+- Get comfortable solving this using all three pattersn, of dfs, bfs iterative, and then a recursive dfs solution
+- Know the fact that if your current level is n, then children are level n + 1
+- The core check is to see if your current length of accumulated levels is same as the current level_num then create a new level
+  otherwise simply append to existing level.
+- See the python file (./binary-tree.py)  
 
 
 ### [DFS Return all node values](https://structy.net/problems/depth-first-values)
