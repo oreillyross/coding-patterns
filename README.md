@@ -38,6 +38,11 @@ Will Sentance has a great course on this on the [Frontend Masters platform](http
 
 ```
 
+#### Check for presence of an array.
+Because there is no native support for checking if an array exists you can use the two checks:
+let isArray = []
+typeof isArray === "object" && length in isArray // length is native in Array but not in Objects
+
 #### Serializing and deserializing an Array
 
 ``` 
