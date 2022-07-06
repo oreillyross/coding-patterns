@@ -1516,6 +1516,15 @@ __NOTE__ using new Array(SIZE_ROW_OR_COL).fill(1) syntax
 
 
 
+# Systems design type problems
+
+### [Rectangular Love](https://www.interviewcake.com/question/python3/rectangular-love?course=fc1&section=general-programming)
+- This problem can be solved by breaking it down into subproblems. 
+- The key is to think along a one dimension and figure out the ranges of with x or y ovelaps.
+- See the file (./rectangular-love.py)
+   * it involves creating a helper generic function which returns a tuple of the highest_starting overlap, and the width or height
+   * Check the edge cases where no overlap exists
+   * Return the right shape of data, an object with key/value pairs
 
 -------------
 
