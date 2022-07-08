@@ -1,4 +1,6 @@
-def generate_sums(weights, sums, sum, n):
+def generate_sums(weights, sums, sum, n, memo):
+  if memo[n][sum]:
+    return
   if n == 0:
     # set operations have a add as oppose to list which is append
     sums.add(sum)
@@ -10,6 +12,13 @@ def generate_sums(weights, sums, sum, n):
 def knapsack_weight_only(weights):
   sums = set()
   n = len(weights)
-  generate_sums(weights, sums, 0, n)
-  return list(sums)
+  total_sum = 0
+  for weight in weights:
+    sum += weight
+    memo = [[False for x in range(total_sum + 1,)] for y in range(n + 1)]
+  generate_sums(weights, sums, 0, n, memo)
+  ans = []
+  for sum in sums:
+    ans.append(sum)
+  return ans
   
