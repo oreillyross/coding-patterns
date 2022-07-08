@@ -35,3 +35,38 @@ def tree_levels(root):
       queue.append((current.right, level + 1))
   
   return levels
+
+ 
+ 
+ 
+ 
+from statistics import mean
+
+def level_averages(root):
+  levels = []
+  # the recursive solution for tree levels implementation easier
+  # done using a helper function
+  fill_levels(root, levels, 0)  
+  # below logic using mean function to calculate avg for each level
+  avgs = []
+  for level in levels:
+    avgs.append(mean(level))
+  return avgs
+    
+  
+def fill_levels(node, levels, level_num):
+  # base case  to finally exit recursive calls
+  if node is None:
+    return
+  
+  # logic to build the levels if first time
+  # note the append call using a [] with node.val
+  if len(levels) == level_num:
+    levels.append([node.val])
+  else:
+    # here we simply add the val, as [] already esists in [] levels
+    levels[level_num].append(node.val)
+  # recursive calls for left and right of binary tree    
+  fill_levels(node.left, levels, level_num + 1)
+  fill_levels(node.right, levels, level_num + 1)
+  
