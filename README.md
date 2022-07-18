@@ -699,6 +699,29 @@ This is the same as above with some slight changes (adding a boolean flag)
 A heap data structure is a type of binary tree, which is mostly complete. Being mostly complete (i.e. leaf nodes are on the far left) allows for O(log n) lookup, and O(log n) insert and delete. 
 A min and max heap, means the heap is mostly sorted, all levels are sorted, but not necessarily the values oneach level. This allows one to quickly start at the top (min heap will be smallest to largest going down) and find the node you are looking for, the real power over a normal a sorted array is that the insert and delete
 
+A common abstract data type (ADT) called a priority queue is used under the hood for implementing the actual heap datastructure. In python one can import the *PriorityQueue class* from Queue or import the functions *heapify, heappop, heappush from heapq package* to create a heap. start with heap = [].
+
+The below problem of MergeKSortedLists is solved using the builtin heap in python.
+
+```python
+from heapq import heappop, heappush
+from typing import List
+
+def merge_k_sorted_lists(lists: List[List[int]]) -> List[int]:
+    res = []
+    heap = []
+    for curr_list in lists:
+        heappush(heap, (curr_list[0], curr_list, 0))
+    while heap:
+        val, curr_list, index = heappop(heap)
+        res.append(val)
+        index += 1
+        if index < len(curr_list):
+            heappush(heap, (curr_list[index], curr_list, index))
+        
+    return res
+```
+
 # Graphs
 
 > * A depth first search of a graph uses a stack data structure behind the scenes
