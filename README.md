@@ -1226,8 +1226,19 @@ Think about the problem as using a binary tree as a framework to generate all po
       };
 ```
 
+### [Count paths problem](https://www.structy.net/problems/count-paths)
+ - Start by visualising this problem using a graph. Where 0,0 (the first row and column) is root node
+ - then you can either move down 1,0, or move right 0,1
+ -  draw out the state space tree, until you hit the base case (leaf nodes), in a 2x2 it will be 2,2
+ - Ask yourself if at the base case what value should you return, well its 1, as there is only one way to move from where you are to where you are
+ - Then recursively return the addition of the two paths until you bubble back up to get a sum of paths.
+ - The edge case is to return 0 if you hit a wall.
+ - Finally memoise duplicate function calls
+ 
+* See the file (./sum-paths.py) for a solution
+ 
 ### [Coin Change](https://algo.monster/problems/coin_change)
-This is part of the sequence type DP problems. The below solution uses a recrusive pattern.
+This is part of the sequence type DP problems. The below solution uses a recursive pattern.
 
 ```javascript
   // the recursive function call is separated from main logic as it could be the case that one of the calls results in Infinity, which means no solution could be found and -1 needs to be returned as final answer.
