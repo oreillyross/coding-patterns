@@ -119,7 +119,19 @@ typeof isArray === "object" && "length" in isArray // length is native in Array 
 ### Max value logic implementation
 
 * It is a common strategy to add max or min value logic into recursive solutions to problems
+```python
+   float("-inf") # for default max value logic, use positive infitity to default for min value
+   # then use builtin max or min function to test max / min value from each branch
+   max(left, right) # this left and right comes from your recursive calls
+```
 
+In javascript it is similar but different syntax
+```javascript
+  Math.max(left, right)
+  Math.min(left, right)
+  // and use the defualt Inifinity or -Inifinity
+  Inifinity || -Inifinity
+```
 
 
 ### Two pointers
