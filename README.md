@@ -116,6 +116,12 @@ typeof isArray === "object" && "length" in isArray // length is native in Array 
 
 ## Algorithms to know
 
+### Max value logic implementation
+
+* It is a common strategy to add max or min value logic into recursive solutions to problems
+
+
+
 ### Two pointers
 * A common strategy for keeping track in array and string based problems
 * Two pointers can be used to track slices of a string, the below snippet highlights a use case
