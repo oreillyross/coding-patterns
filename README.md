@@ -114,6 +114,43 @@ typeof isArray === "object" && "length" in isArray // length is native in Array 
 
 ------------
 
+## Specific patter to solving a problem
+
+### dynamic programming problem with recursion
+-------------------
+* Identify the base case
+```python
+   # here you also agree what the return value will be, and it needs to be consistent across all recursive calls
+   if len(nums) == 0:
+      return 0
+```
+* Make your recursive calls. Determine the part that reduces input to get to base case. Like a binary decision process in the non-adjacent-sum problem.
+Either include a value in your sum, or exclude a value in your sum
+```python
+  # python slicing syntax. Take from index up until end of list
+  include = nums[0] + non_adjacent_sum(nums[2:])
+  exclude = non+adjacent_sum(1:)
+  # built in max function to get max of the branch
+  return max(include, exclude)
+```
+* Now you have your brute force approach. get this working first, so your core logic is in place
+* Add memoisation, and deal with any edge cases and optimisations, such as getting rid of slices
+
+```python
+  # get rid of slice calls in recursion. bake in an extra argument called i
+  def _non_adjacent_sum(nums, 0):
+      # change base case to deal with index increasing
+      if i >= len(nums):
+         return 0
+      # deal with recursion on index and not slicing array each time
+      include = nums[0] + _non_adjacent_sum(nums, i + 2) # avoid the adjacent value
+      exclude ....
+```
+* finally build in classic memoisation, using the changing value, i as index in dictionary
+
+
+
+
 ## Algorithms to know
 
 ### Max value logic implementation
