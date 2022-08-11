@@ -114,7 +114,7 @@ typeof isArray === "object" && "length" in isArray // length is native in Array 
 
 ------------
 
-## Specific patter to solving a problem
+## Specific patterns to solving a problem
 
 ### dynamic programming problem with recursion
 -------------------
