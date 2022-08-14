@@ -211,6 +211,25 @@ Two pointers come in a number of forms:
 
 Two pointers often allows us to move from the brute force solution of nested for...loops O(n^2) to a more efficient linear time complexity of O(n) passing only once through iterable data structure.
 
+ ### [Two Sum II Sorted array](https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/)
+ - The solution recognizes the fact array is sorted and that a solution will always exist. 
+ - Uses two pointers approach
+ - while loop for left < right
+ - one pointer starts at index 0, the other pointer starts at end of array
+ - the algorithm either increases left pointer if sum of two values at each pointer is less than target
+ - or it decreases right pointer if sum is greater than target
+ - or returns tuple of indexes if a match is found
+
+ ### [Three Sum problem](https://leetcode.com/problems/3sum/)
+ * This is a combination of the Two sum problem.
+ * The first step is to sort the incoming list, be explicit about the sorting function otherwise it won't sort properly on integers
+    ```javascript
+      nums.sort( (a, b) => a - b)
+    ```
+ * Once sorted loop over nums and within your loop carry out the Two sum logic, with __2 pointers__
+
+-------------------
+
 ## <p style="color: lightgreen"> Linked Lists </p>
 
 Know the default implementation to recurse a linked list. It can be done iterative, or recursively. While the recursive solution is more elegant it does consume O(n) space as each call is placed on the call stack.
@@ -1719,22 +1738,7 @@ __NOTE__ using new Array(SIZE_ROW_OR_COL).fill(1) syntax
  - If there is a match (i.e match is true) then simply recursively call function incrementing each index (i +1, and j + 1)
  - If the recursive function is inside the main function, make sure to kick it off with a function call passing (0,0)
  
- ### [Two Sum II Sorted array](https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/)
- - The solution recognizes the fact array is sorted and that a solution will always exist. 
- - Uses two pointers approach
- - while loop for left < right
- - one pointer starts at index 0, the other pointer starts at end of array
- - the algorithm either increases left pointer if sum of two values at each pointer is less than target
- - or it decreases right pointer if sum is greater than target
- - or returns tuple of indexes if a match is found
 
- ### [Three Sum problem](https://leetcode.com/problems/3sum/)
- * This is a combination of the Two sum problem.
- * The first step is to sort the incoming list, be explicit about the sorting function otherwise it won't sort properly on integers
-    ```javascript
-      nums.sort( (a, b) => a - b)
-    ```
- * Once sorted loop over nums and within your loop carry out the Two sum logic, with __2 pointers__
 
 
 
