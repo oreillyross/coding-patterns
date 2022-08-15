@@ -1060,7 +1060,7 @@ In essence when solving a problem with recursion either use the return value (pa
 
 ## Dynamic programming - Dynamic number of subproblems
 
-## [Sum Possible problem](./sum_possible.py)
+### [Sum Possible problem](./sum_possible.py)
 - This is a DP problem, start with recursive pattern of base case is amount == 0 then return true
 - based on this your recursive leap of faith tells you to check the return value is true then return true
 - after looping through the array of numbers (can be used multiple times) and recursively calling sum_possible, passing in amount - num
@@ -1068,6 +1068,14 @@ In essence when solving a problem with recursion either use the return value (pa
 - Also have a base case fo amount < 0 return false
 - And finally memoise solution by recording memo[amount] for true and false return and return early if amount in memo
 
+
+### [Summing Squares](https://www.structy.net/problems/summing-squares)
+  - return the minimum number of perfect squares to reach the target amount
+  - You are given a target amount as input, so using recursion you are logically going to try reduce this amount until you reach a base case of 0
+  - you also know that perfect squares are formed by taking a number and multiply by itself (i * i)
+  - draw the state-space tree
+  
+  ![Image](summing_squares.drawio.png "icon")
 
 ###[Minimum perfect squares](https://leetcode.com/problems/perfect-squares/)
 - things to take away
