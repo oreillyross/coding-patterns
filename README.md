@@ -1076,6 +1076,11 @@ In essence when solving a problem with recursion either use the return value (pa
   - draw the state-space tree
   
   ![Image](summing_squares.drawio.png "icon")
+  
+  - framed as dyprog problem, some overlapping subproblems can be memoised
+  - bring it to a multi-linear solution, rather than exponential
+  
+  (./summing_squares.py) for solution
 
 ###[Minimum perfect squares](https://leetcode.com/problems/perfect-squares/)
 - things to take away
