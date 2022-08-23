@@ -1138,6 +1138,16 @@ In essence when solving a problem with recursion either use the return value (pa
            return Math.max(exclude, include)
          }
 ```
+
+### [longest Subsequence palindrome](https://www.structy.net/problems/max-palin-subsequence)
+ * Start by identifying a strategy to determine if a match on either side of the two ends exist
+ * draw out the state space tree to visualise the algorithm
+ 
+![Image](longest_subsequence_state_space_tree.drawio.png "icon")
+
+* identify your base case
+
+
 ### [Triangle](https://leetcode.com/problems/triangle/) [dp, recursion, memoization]
 
 ```javascript
