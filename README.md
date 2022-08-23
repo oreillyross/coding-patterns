@@ -1143,7 +1143,7 @@ In essence when solving a problem with recursion either use the return value (pa
  * Start by identifying a strategy to determine if a match on either side of the two ends exist
  * draw out the state space tree to visualise the algorithm
  
-![Image](longest_subsequence_state_space_tree.drawio.png "icon")
+![Image](longest_subseq.drawio.png "icon")
 
 * identify your base case
 
