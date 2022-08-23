@@ -1145,7 +1145,15 @@ In essence when solving a problem with recursion either use the return value (pa
  
 ![Image](longest_subseq.drawio.png "icon")
 
-* identify your base case
+* identify your base cases
+   - len of str is 0 then return 0
+   - len of str is 1 then return 1
+* identify logic to build solution
+  - take edge values, and use max value logic to decide which value to keep at the branch up
+* recognise it as an overlapping subproblem (dyprog)
+* Memoise accordingly, to ignore duplicate nodes and branches
+
+Python solution is (./longest_subsequence_palindrome.py)
 
 
 ### [Triangle](https://leetcode.com/problems/triangle/) [dp, recursion, memoization]
