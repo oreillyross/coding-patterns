@@ -375,6 +375,9 @@ def remove_node(head, target_val):
 #### Floyds cycle finding algorithm 
 
 This algo uses the two pointer pattern on a linked list to detect if there is a cycle.
+A slow pointer and a fast pointer
+The base case is if fast pointer reaches end of linked list, ie hits a None, then it is not a cyclic LL
+
 
 A problem where this is used to solve is called __[Happy Number](https://algo.monster/problems/happy_number)__
 
