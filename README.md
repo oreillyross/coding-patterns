@@ -320,8 +320,8 @@ This solution uses a fast and slow pointer, the fast pointer moves twice as fast
 
 ### [Reverse a linked list](https://leetcode.com/problems/reverse-linked-list/)
     - This can be done iteratively or recursively. The iterative approach is more space efficient.
-    - Start with a prev node set to null
-    - setup up classic iteration
+    - Start with a prev node set to null or None
+    - setup up classic iteration. Foundational code for traversing LL
     - inside while loop store current.next node in a temp var
     - assign the current.next to prev node
     - move prev node to current node
