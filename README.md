@@ -228,6 +228,37 @@ Two pointers often allows us to move from the brute force solution of nested for
     ```
  * Once sorted loop over nums and within your loop carry out the Two sum logic, with __2 pointers__
 
+
+### [Best time to buy / sell stock](https://leetcode.com/problems/best-time-to-buy-and-sell-stock)
+
+* The brute force intuition leads to a nested for loop which has O(n^2) complexity
+* It can be solved using the two ptr solution as a sliding window
+* See below python implementation with comments
+* It uses the two ptrs and max value logic
+
+```python
+    def maxProfit(self, prices: List[int]) -> int:
+        # two ptr, sliding window for time based problems which can only go in one direction
+        # initiliase two ptrs, one l for buy, and one right for sell after the l ptr
+        l, r = 0, 1
+        maxProfit = 0
+        # iterate over prices array once so O(n) is time complexity
+        while r < len(prices):
+            # if its a profitable trade
+            if prices[l] < prices[r]:
+                #calculate profit
+                profit = prices[r] - prices[l]
+                # is it current max
+                maxProfit = max(maxProfit, profit)
+            # only slide l ptr if there is a lower buy price in the future, move it then to lowest price
+            else:
+                l = r
+            r += 1
+        return maxProfit
+
+
+```
+
 -------------------
 
 ## <p style="color: lightgreen"> Linked Lists </p>
