@@ -351,8 +351,8 @@ This solution uses a fast and slow pointer, the fast pointer moves twice as fast
 
 ### [Reverse a linked list](https://leetcode.com/problems/reverse-linked-list/)
     - This can be done iteratively or recursively. The iterative approach is more space efficient.
-    - Start with a prev node set to null
-    - setup up classic iteration
+    - Start with a prev node set to null or None
+    - setup up classic iteration. Foundational code for traversing LL
     - inside while loop store current.next node in a temp var
     - assign the current.next to prev node
     - move prev node to current node
@@ -406,6 +406,9 @@ def remove_node(head, target_val):
 #### Floyds cycle finding algorithm 
 
 This algo uses the two pointer pattern on a linked list to detect if there is a cycle.
+A slow pointer and a fast pointer
+The base case is if fast pointer reaches end of linked list, ie hits a None, then it is not a cyclic LL
+
 
 A problem where this is used to solve is called __[Happy Number](https://algo.monster/problems/happy_number)__
 
@@ -1169,6 +1172,24 @@ In essence when solving a problem with recursion either use the return value (pa
            return Math.max(exclude, include)
          }
 ```
+
+### [longest Subsequence palindrome](https://www.structy.net/problems/max-palin-subsequence)
+ * Start by identifying a strategy to determine if a match on either side of the two ends exist
+ * draw out the state space tree to visualise the algorithm
+ 
+![Image](longest_subseq.drawio.png "icon")
+
+* identify your base cases
+   - len of str is 0 then return 0
+   - len of str is 1 then return 1
+* identify logic to build solution
+  - take edge values, and use max value logic to decide which value to keep at the branch up
+* recognise it as an overlapping subproblem (dyprog)
+* Memoise accordingly, to ignore duplicate nodes and branches
+
+Python solution is (./longest_subsequence_palindrome.py)
+
+
 ### [Triangle](https://leetcode.com/problems/triangle/) [dp, recursion, memoization]
 
 ```javascript
