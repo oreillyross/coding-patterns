@@ -498,6 +498,9 @@ A problem where this is used to solve is called __[Happy Number](https://algo.mo
  - algorithmic step is to find the midpoint (floored for whole number), check if it matches the target value, or if its lower than target value, move low pointer 
  to the midpoint index, if its higher, move the high pointer to the mid point index, repeat until target found or low matches high index. Then no match.
  - This gives a complexity of __O(log n)__ runtime.
+
+  * O(log n) represents a halving strategy, log is base 2. Your are cutting your problem size down by half each iteration.
+ 
  
     - pseudo code steps    
 ```
@@ -515,15 +518,15 @@ A problem where this is used to solve is called __[Happy Number](https://algo.mo
             let left = 0;
             let right = arr.length - 1;
             while (left <= right) {
-            const mid = left + Math.trunc((right - left) / 2);
-            if (arr[mid] < target) {
-                left = mid + 1;
-            } else if (arr[mid] > target) {
-                right = mid - 1;
-            } else {
-                return mid;
-            }
-            }
+              const mid = left + Math.trunc((right - left) / 2);
+              if (arr[mid] < target) {
+                  left = mid + 1;
+              } else if (arr[mid] > target) {
+                  right = mid - 1;
+              } else {
+                  return mid;
+              }
+            } 
     
           return -1;
         
