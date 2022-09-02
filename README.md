@@ -714,6 +714,26 @@ def _path_finder(root, target):
 - inside the helper function recursively call itself passing in the left and then the right nodes, and level + 1.
 - the base case is if node is null and you push a value if values.length === level.
 
+### [Sum of left Leaves](https://leetcode.com/problems/sum-of-left-leaves/) ♻️ ✔️
+- Many problems dealing with binary trees will involve a recursive solution
+- always remember the base case to ensure it exits
+- Remember the key is its only left leaves, so not all left nodes.
+
+
+### [Binary Tree Inorder traversal](https://leetcode.com/problems/binary-tree-inorder-traversal/) 
+- remember the rules, inorder is left tree first, then root, then right tree.
+- recursion is simplest, create a helper function to traverse.
+- This can also be solved iteratively using a stack.
+
+
+#### [Lowest common ancestor](https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/)
+* Find paths to both targets first
+* Find first common value among noth paths
+* Use dfs strategy which gives O(n) runtime complexity
+
+** See the python file at __(./lowest_common_ancestor.py)__ for a solution
+
+
 ## Binary Search trees
  - A type of binary tree with these properties
   - An empty tree is a valid BST
@@ -1760,16 +1780,6 @@ __NOTE__ using new Array(SIZE_ROW_OR_COL).fill(1) syntax
 - Either return the sum of the median two values divided by two if its an even length merged array or return single odd middle value.
 - The array must be sorted to ensure you can simlpy look up middle value.
 
-### [Sum of left Leaves](https://leetcode.com/problems/sum-of-left-leaves/) ♻️ ✔️
-- Many problems dealing with binary trees will involve a recursive solution
-- always remember the base case to ensure it exits
-- Remember the key is its only left leaves, so not all left nodes.
-
-
-### [Binary Tree Inorder traversal](https://leetcode.com/problems/binary-tree-inorder-traversal/) 
-- remember the rules, inorder is left tree first, then root, then right tree.
-- recursion is simplest, create a helper function to traverse.
-- This can also be solved iteratively using a stack.
 
 ### [Reverse Integer](https://leetcode.com/problems/reverse-integer/)
 - This can be done without converting number to a string
