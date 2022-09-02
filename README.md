@@ -733,6 +733,27 @@ def _path_finder(root, target):
 
 ** See the python file at __(./lowest_common_ancestor.py)__ for a solution
 
+Another elegant solution to the problem is below
+----------
+* It takes accoun of the BST property that values are lower in left subtree and higher in the right subtree
+* By checking both values as higher or lower you can update your curr node to left or right
+* then given you are guaranteed an answer in given input you can do a while loop
+* The terminating condition if either one of the curr nodes is also a LCA or the solution branches, i.e. it will be in both left and right subtree then you must have reached the LCA so return that node
+
+```python
+    def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
+        curr = root
+        while curr:
+            if p.val < curr.val and q.val < curr.val:
+                # go down the left sub tree
+                curr = curr.left
+            elif p.val > curr.val and q.val > curr.val:
+                #go down right subtree
+                curr = curr.right
+            else:
+                #we are at the branch, of LCA
+                return curr
+```
 
 ## Binary Search trees
  - A type of binary tree with these properties
