@@ -148,8 +148,14 @@ Either include a value in your sum, or exclude a value in your sum
 ```
 * finally build in classic memoisation, using the changing value, i as index in dictionary
 
+The complexity of this approach would be O(n) time and O(n) space. Both linear time.
+
+Usually to calcualte the complexity you first drwa out the state-space decision tree and then you can see how many decisions you have to make, this will be your coefficient. and then the height of the tree would be your factor. 
+
+To take an example to demonstrate this as well as the alternative approach of **Bottom UP** or **Tabulation** the below [Climbing Stairs](https://leetcode.com/problems/climbing-stairs/) problem has been used. The Bottom up approach can result also in O(n) runtime but using two vars to keep track of previous sub-problems that were calculated you can reduce the space complexity to O(1), constant time.
 
 
+  ![Image](climb.drawio.png "icon")
 
 ## Algorithms to know
 
