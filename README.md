@@ -157,6 +157,39 @@ To take an example to demonstrate this as well as the alternative approach of **
 
   ![Image](climb.drawio.png "icon")
 
+The below is the DFS recursive with memoisation solution Time: O(n) Space: O(n)
+```python
+def _climbStairs(n, memo):
+    
+    if n in memo:
+        return memo[n]
+    
+    if n < 0:
+        return 0
+    
+    if n == 0:
+        return 1
+    
+    memo[n] = _climbStairs(n - 1, memo) + _climbStairs(n - 2, memo)
+    return memo[n]
+    
+class Solution:
+    def climbStairs(self, n: int) -> int:
+        return _climbStairs(n, {})
+```
+The below is the bottom-up Time: O(n) Space: O(1)
+
+```python
+class Solution:
+    def climbStairs(self, n: int) -> int:
+        one = 1
+        two = 1
+        for i in range(n - 1):
+            one, two = one + two, one
+        return one
+        
+```
+
 ## Algorithms to know
 
 ### Max value logic implementation
