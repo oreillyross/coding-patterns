@@ -619,6 +619,10 @@ next True element (or the first true element) in a true or false array.
   - __Post order traversal__
     - This is used to determine if a tree is balanced.
     -  
+  - __Pre order traversal__
+    - Sometimes a interview question. It is root first then children, left to right in an n-ary tree.
+    - Collect the results in an array, start with root and then use a for children loop.
+    - base case is if root is None return None
 
 * Key to reasoning about tree like structures is to think from the perspective of a node. Get inside recursive leap of faith logic.
 * Your first inuition to solving a path finding problem in a tree like data structure is to solve this recursively
@@ -713,7 +717,19 @@ def _path_finder(root, target):
 - Know the fact that if your current level is n, then children are level n + 1
 - The core check is to see if your current length of accumulated levels is same as the current level_num then create a new level
   otherwise simply append to existing level.
-- See the python file (./tree-levels.py)  
+- See the python file (./tree-levels.py) 
+
+  #### pseudo code to solve problem
+    1. Think about base case and what values are returned. In this case its if node is none and then return an empty array. 
+    2. store return values in levels array
+    3. use a queue from deque class from collections
+    4. Think about what to store in it, in this case a tuple of the current node and the current level.
+    5. this is solved in a bfs manner to get each node at each level. So the logic is a while loop
+    6. inside while loop get the tuple from front of queue and destructure it into current node and level
+    7. DO the classic check if len(levels) == level then its a new level add it to levels otherwise add it to the key position in levels
+    8. finally check the left branch and then the right branch if it has a node
+    9. add it to the queue bummping up the level + 1
+    10. finally outside while loop return levels 
 
 
 ### [DFS Return all node values](https://structy.net/problems/depth-first-values)
