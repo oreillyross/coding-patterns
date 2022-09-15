@@ -1090,6 +1090,9 @@ This pattern appears for problems such as **flood fill** or **connected islands*
   * Use a nested for loop to iterate over every row and column and then apply a recursive pattern of exploring every neighbor, using a combination of visited logic and the delta pattern (up, down, left, right).
   * A good idea to remember with recursive code is **<span style="color: red">dont look before you leap</span>**. What we mean by this is dont check out of bounds conditions up front in your recursive functio calls. Rather just go into the function, passing in next values, or location in grid-graph that you explore and the in your base cases handle any out of bounds conditions. 
 
+**DEBUGGING RECURSIVE CASES**
+A common gotcha with recursive cases where you have defined your base case correctly but still get stack overflow errors, is where you are off by one in your counting logice or in or out of bounds checks, very, very carefully reason about these and usually this will solve the issue.
+
 ```javascript
         /* 
         #1 Iterative code as part of main algorithm
