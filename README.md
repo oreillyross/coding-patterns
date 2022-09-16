@@ -616,6 +616,18 @@ next True element (or the first true element) in a true or false array.
 ## Data Structures
 
 ### Trees
+
+<details>
+<summary>What is a tree data structure</summary>
+It is a data structure with the following properties:
++ nodes connected by edges
++ node can have any data type as values
++ nodes can be connected to 0 or more child nodes (depending on type of tree)
++ each child node must be connected to exactly one parent
++ this constrains trees to be acyclic
+
+</details>
+
 - know the difference between inorder (left, root, right), preorder (root, left, right) and postorder (left, right, root) traversal, this applies to depth-first searches. 
   - __Post order traversal__
     - This is used to determine if a tree is balanced.
