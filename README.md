@@ -618,13 +618,19 @@ next True element (or the first true element) in a true or false array.
 ### Trees
 
 <details>
-<summary>What is a tree data structure</summary>
-It is a data structure with the following properties:
-+ nodes connected by edges
-+ node can have any data type as values
-+ nodes can be connected to 0 or more child nodes (depending on type of tree)
-+ each child node must be connected to exactly one parent
-+ this constrains trees to be acyclic
+### <summary style="color: blue">What is a tree data structure</summary>
+
+   It is a data structure with the following properties:
+
+   + nodes connected by edges
+
+   + node can have any data type as values
+
+   + nodes can be connected to 0 or more child nodes (depending on type of tree)
+
+   + each child node must be connected to exactly one parent
+
+   + this constrains trees to be acyclic
 
 </details>
 
