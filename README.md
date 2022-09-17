@@ -194,11 +194,11 @@ TODO ADD MIN COST CLIMBING STAIRS STEPS
 <details>
 <summary>Describe pseudo steps to solve min cost problem?</summary>
 
-  + first step
-  + second step
-  + third step
-  + fourth step
-  + fifth step
+  + This is solved using a bottom up, DP solution
+  + It result in O(n) time and O(1) space
+  + Start at third to last item in list, and iterate backwards until -1
+  + keep adding the min amount and step once or step twice
+  + finally return the minimum of first or second value
 
 #### Python code
 ```python
@@ -213,6 +213,7 @@ TODO ADD MIN COST CLIMBING STAIRS STEPS
 
 ```
 </details>
+
 ## Algorithms to know
 
 ### Max value logic implementation
