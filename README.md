@@ -189,7 +189,24 @@ class Solution:
         return one
         
 ```
+TODO ADD MIN COST CLIMBING STAIRS STEPS
 
+<details>
+<summary>Describe pseudo steps to solve min cost problem?</summary>
+
+  + first step
+  + second step
+  + third step
+  + fourth step
+  + fifth step
+
+#### Python code
+```python
+
+ 
+
+```
+</details>
 ## Algorithms to know
 
 ### Max value logic implementation
