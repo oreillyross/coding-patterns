@@ -274,6 +274,14 @@ Two pointers come in a number of forms:
 
 Two pointers often allows us to move from the brute force solution of nested for...loops O(n^2) to a more efficient linear time complexity of O(n) passing only once through iterable data structure.
 
+###[Find all anagrams](https://leetcode.com/problems/find-all-anagrams-in-a-string/)
+ - This problem can be solved in O(s) time by using two pointers to track the current anagram (if any) in the s substring
+ - The key algorithm of the problem remains maintaining two hash maps.
+ - Taking advantage of Python ability to directly compare the hash maps makes it more trivial to solve
+ - while moving the right pointer you have to move the left pointer oneself, and make sure to remove an keys where value is 0 otherwise the two hash maps will not compare correctly.
+
+see [Find all anagrams file](./find_all_anagrams.py)
+
  ### [Two Sum II Sorted array](https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/)
  - The solution recognizes the fact array is sorted and that a solution will always exist. 
  - Uses two pointers approach
