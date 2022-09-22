@@ -107,6 +107,15 @@ typeof isArray === "object" && "length" in isArray // length is native in Array 
     - If your brute force solution results in a nested __for loop__ this should indicate you can almost certainly use a hashmap O(1) lookup to reduce the complexity from O(n^2) to O(n). Use the ```if (num in hash)``` check 
 
 ### Calculating complexity
+
+<details><summary>Describe Big O (three points): </summary>
+
+  * growth is with respect to the input
+  * Constants are dropped
+  * Worst case is expected in interview settings
+  
+</details>
+
 - Terms that can be used to describe complexity include: 
     * Maximal efficient solution
     * linear complexity O(n)
