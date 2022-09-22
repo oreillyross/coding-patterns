@@ -64,7 +64,7 @@ The ability to iterate through digits comes up from time to time. One effective 
     firstMinusLast = int(num / 10) # 1234
 
 ```
-This comes up in the *Happy Numbers* [click here](https://leetcode.com/problems/happy-number/?envType=study-plan&id=level-2)problem which is also solved using a slow and fast pointer, the number is slow, and the next calculation is fast. If the two meet then you have a problem (cycle), otherwise they converge on 1 which is solution.
+This comes up in the *Happy Numbers* [click here](https://leetcode.com/problems/happy-number/?envType=study-plan&id=level-2) problem which is also solved using a slow and fast pointer, the number is slow, and the next calculation is fast. If the two meet then you have a problem (cycle), otherwise they converge on 1 which is solution.
 
 
 ---
