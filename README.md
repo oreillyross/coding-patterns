@@ -16,6 +16,12 @@
 
 ------------
 
+### Great Courses that teach Algorithms and DS 
+
+Theprimeagen FEM
+Neetcode site has a course
+Stephen Grider course
+
 # General Programming concepts:
 Be able to define, describe and demonstrate through examples the following concepts:
 
@@ -45,6 +51,23 @@ let isArray = []
 typeof isArray === "object" && "length" in isArray // length is native in Array but not in Objects
 ```
 
+#### Math problems and manipulating numbers
+
+---
+
+The ability to iterate through digits comes up from time to time. One effective way in python is to do the following.
+
+```python
+
+    num = 12345
+    lastidigit = num % 10 # 5
+    firstMinusLast = int(num / 10) # 1234
+
+```
+This comes up in the *Happy Numbers* [click here](https://leetcode.com/problems/happy-number/?envType=study-plan&id=level-2) problem which is also solved using a slow and fast pointer, the number is slow, and the next calculation is fast. If the two meet then you have a problem (cycle), otherwise they converge on 1 which is solution.
+
+
+---
 #### Serializing and deserializing an Array
 
 ``` 
