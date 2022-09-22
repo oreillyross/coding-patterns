@@ -116,6 +116,8 @@ typeof isArray === "object" && "length" in isArray // length is native in Array 
   
 </details>
 
+---
+
 - Terms that can be used to describe complexity include: 
     * Maximal efficient solution
     * linear complexity O(n)
