@@ -521,6 +521,38 @@ A problem where this is used to solve is called __[Happy Number](https://algo.mo
 
 ## <p style="color: lightgreen">Sorting Algorithms</p>
 
+
+#### Bubble Sort
+
+<details>
+
+<summary>Whiteboard a bubble sort alogorithm and code it in your favourite language?</summary>
+
+ ![Picture of the bubble sort algorithm](./bubble_sort.png)
+
+ - Running time is O(n^2) because of property of summing a range of numbers formula
+ - N + 1 * N / 2 = N2 + N = N2
+ - Iterate through the list, and compare the the next two adjacent elements
+ - Stop when only one element left to sort, one lement in array always sorted
+
+```python
+
+	for (let i = 0; i < arr.length; i++) {
+		for (let j = 0; j < arr.length - 1 - i; j++) {
+			if (arr[j] > arr[j + 1]) {
+				const tmp = arr[j]
+				arr[j] = arr[j + 1]
+				arr[j + 1] = tmp
+			}
+		}
+	}
+
+```
+
+
+</details>
+
+
 #### Insertion sort
 
 * This has an O(n^2) complexity because of the two for loops.
@@ -680,6 +712,22 @@ next True element (or the first true element) in a true or false array.
 ------------
 
 ## Data Structures
+
+
+### Queue
+
+- A queue is a data structure that is implemented on top of a linked list
+- FIFO structure
+- Implement a linked list and constrain what it can do, get head, and append to tail
+- enqueue, deque, peek, print
+
+### Stack
+
+- A stack is opposite of a queue and can also be implemented using a linked list as underlying data structure
+- LIFO
+- has push, pop, peek methods
+- By constraining the linked list you get good running time
+
 
 ### Trees
 
