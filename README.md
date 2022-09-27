@@ -1291,9 +1291,40 @@ A common gotcha with recursive cases where you have defined your base case corre
 
 # <p style="color: hotpink">Hash maps</p>
 
-### Two sums problem 
+### [Contains Duplicate](https://leetcode.com/problems/contains-duplicate/)
+<details>
+<summary>Given an integer array nums, return true if any value appears at least twice in the array, and return false if every element is distinct.</summary>
+
+- In order to know if every value is unique you need to iterate at least once
+- You can check if you have seen the digit before by storing each element in a **hash map**
+- Then you will possibly exit early, but worst case is O(n)
+- See Leet code submission for answer.
+</details>
+
+---
+
+### [Valid Anagram](https://leetcode.com/problems/valid-anagram/)
+<details>
+<summary>Given two strings s and t, return true if t is an anagram of s, and false otherwise </summary>
+
+- uses a **hashmap**, use the Counter class to construct a dict, or for...in over first string
+- for...in over second string and decrement count if char found, if its 0 use del keyword to remove element.
+- return check of len(dict) == 0, i.e. all chars used and both input strings *( edge case )* the same 
+</details>
+
+---
+### [Two Sums Problem](https://leetcode.com/problems/two-sum/)
+
+<details>
+<summary>Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.</summary>
  - The brute force approach suggests two for loops giving 0(n2)
  - the introduction of a hash or map allows one to capture the value as the key in the kv store which later can be checked if the complement (i.e. the difference) between target value and the value being iterated.
+ - create an empty dictionary, enumerate over nums, get difference, check if its in the dict
+ - if its in the dict return its value (is index of complement), and the current index (i)
+ - each iteration then also add the current value as key, and current index as value in KV pair.
+ - NOTE THE ABOVE STEP, Its a tricky gotcha, make sure to add the current value, NOT the complement.
+
+</details>
  - This can be done in one pass, if the checks for equality are done before the hash map is further constructed. 
 
 
