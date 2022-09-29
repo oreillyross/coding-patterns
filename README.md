@@ -66,6 +66,21 @@ The ability to iterate through digits comes up from time to time. One effective 
 ```
 This comes up in the *Happy Numbers* [click here](https://leetcode.com/problems/happy-number/?envType=study-plan&id=level-2) problem which is also solved using a slow and fast pointer, the number is slow, and the next calculation is fast. If the two meet then you have a problem (cycle), otherwise they converge on 1 which is solution.
 
+---
+
+<details>
+<summary>[Product of Array except self]([https://](https://leetcode.com/problems/product-of-array-except-self/))</summary>
+
+---
+
+- The easy way would be to get the product of the entire array and then divide each number at the index to get value. As division is not allowed there is a less intuitive way.
+- It involves to passes of the array, O(n), prefix, and postfix totals are calcualated one by one as you iterate the list.
+- The output can be obtained by multiplying the prefix value, to the left of idx and the postfix to the right of idx.
+- The solution can also be done in memory O(1) as postfix and prefix can be calculated on the fly
+
+
+---
+</details>
 
 ---
 #### Serializing and deserializing an Array
@@ -150,7 +165,31 @@ This comes up in the *Happy Numbers* [click here](https://leetcode.com/problems/
 
 ## Specific patterns to solving a problem
 
-### dynamic programming problem with recursion
+
+### Python tips and tricks commonly used
+
+<details>
+<summary>generate an empty multidimensional array using a list comprehension of size n</summary>
+
+---
+```python
+    freq = [[] for n in range(len(n) + 1)]
+```
+---
+
+</details>
+
+<details>
+<summary>update an item in a dict, and add a first entry if it is not present</summary>
+
+---
+```python
+    dict[n] = 1 + dict.get(n, 0)
+```
+---
+</details>
+
+
 -------------------
 * Identify the base case
 ```python
@@ -1327,6 +1366,95 @@ A common gotcha with recursive cases where you have defined your base case corre
 </details>
  - This can be done in one pass, if the checks for equality are done before the hash map is further constructed. 
 
+
+### [Group Anagrams](https://leetcode.com/problems/group-anagrams/)
+
+<details>
+<summary>Given an array of strings strs, group the anagrams together. You can return the answer in any order.</summary>
+
+- identify the datastructure required, which is a hashmap mapping charCount -> list of Anagrams
+- Deal with the edge case of index out of bounds by using a defaultdict(list) instead of the usual {} dict.
+- To keep a unique key of each word, create a array initialised to 0s for each character in the alphabet
+- then inside the for loop for each word, check each character and increase the count of each character in the 0...25 list, giving you a unique signature for each word. 
+- This key will match every other word or anagram uniquely. NOTE store it as a tuple so as to be able to reference it as a key.
+- finally after looping through the list of words return the resulting dict's values() as answer
+- This can be solved in O(m * n)
+
+```python
+   def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+        # use to store lists of words
+        res = defaultdict(list)
+        # check each word
+        for s in strs:
+            # for every word, create a 0...25 array initialized to 0s
+            count = [0] * 26
+            
+            # check each char in the word, and update the 0...25 list increasing occurence of char
+            for c in s:
+                count[ord(c) - ord("a")] += 1
+            # count is now a unique signature to identify anagrams, typecast it to tuple so it can be used as a hashing key
+            # append the anagram words at each unique signature, giving your dict of lists
+            res[tuple(count)].append(s)
+        # return the lists stored in values, giving a list of lists
+        return res.values()
+
+```
+
+
+</details>
+
+---
+### [Top K Frequent Elements](https://leetcode.com/problems/top-k-frequent-elements/) 
+
+<details>
+<summary>Given an integer array nums and an integer k, return the k most frequent elements. You may return the answer in any order.</summary>
+
+- This can be solved using a max Heap, but less intuitively also using a modified bucket sort
+- The idea is to use the index of the bucket sort array as the count and the values as an array which holds the nums that appear n number of times as per the correct index value
+- You will need a hashmap, array of arrays, and a result array.
+- You need to know how to **generate an empty multidimensional array using a list comprehension of size n**
+- You need to know how to **iterate over  list backwards**
+- YOu need to know how to **update an item in a dict, and add a first entry if it is not present**
+
+```python
+
+    count = {}
+        freq = [[] for n in range(len(nums) + 1)]
+        
+        for n in nums:
+            count[n] = 1 + count.get(n, 0)
+        
+        for n,c in count.items():
+            freq[c].append(n)
+            
+        res = []
+        for i in range(len(freq) - 1, 0, -1):
+            for n in freq[i]:
+                res.append(n)
+                if len(res) == k:
+                    return res
+
+```
+
+</details>
+
+
+---
+
+<details>
+<summary>[Longest Consecutive Sequence](https://leetcode.com/problems/longest-consecutive-sequence/)</summary>
+
+- Convert list to a set
+- Iterate through list, does it have a left neighbour (i.e. one less then num)
+- if yes, while the length = 0, one less than num + length, increment length by 1
+- check max(current longest, and stored longest)
+- return longest
+
+---
+answer
+---
+</details>
+---
 
 # <p style="color: hotpink">Dynamic Programming patterns</p>
 
