@@ -372,6 +372,24 @@ see [Find all anagrams file](./find_all_anagrams.py)
     ```
  * Once sorted loop over nums and within your loop carry out the Two sum logic, with __2 pointers__
 
+---
+
+The python solution is below with pseudo code:
+
+- init result array
+- sort the input so negative numbers come first
+- skip the repeated first negative numbers, so get to last -3, -3, -3, etc
+  ```python
+     if i > 0 and num == nums[i - 1] # not first element and two els equal, continue
+  ```
+- setup two pointers just past next negative, l = i, r = len(nums) - 1
+- while the l < r, get sum, if its > 0, move right pointer, need to get closer to 0
+- if it < 0 move left pointer need to get up from neg nums to closer to 0
+- if its equal, append three nums, multi array
+- then while l+=1, then check if it is same as last value nums[l] == nums[l - 1],
+- whiel keep moving l += 1
+
+---
 
 ### [Best time to buy / sell stock](https://leetcode.com/problems/best-time-to-buy-and-sell-stock)
 
