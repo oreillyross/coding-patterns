@@ -345,6 +345,41 @@ Two pointers come in a number of forms:
     - opposite direction (used for Two sum sorted)
     - sliding window (used for Longest substring without repeating characters)
 
+
+### Sliding window pattern with example
+
+####[Longest Repeating Character Replacement](https://leetcode.com/problems/longest-repeating-character-replacement/)
+
+---
+
+```python
+
+    def characterReplacement(self, s: str, k: int) -> int:
+        
+        # Hashmap to record number of occurances of a char
+        count = {}
+        # 1/ Set the left pointer of sliding window
+        l = 0
+        # highest count of non-repeating chars so far replaced
+        res = 0
+        
+        # 2/ right pointer moves through string starting at 0
+        for r in range(len(s)):
+            # Hashmap hack to set initial value to 0 if does not yet exist, otherwise increase count of char
+            count[s[r]] = 1 + count.get(s[r], 0)
+            
+            # 3/ Condition to decrease sliding window from the left
+            # if the width of windw minus the highest occuring char count is greater than allowed chars to replace then decrease the count of left char, and move left pointer inwards, decrease size of window so the count is still valid
+            if (r - l + 1) - max(count.values()) > k:
+                count[s[l]] -= 1
+                l += 1
+            # Check if we have a higher count
+            res = max(res, r - l + 1)
+        return res
+            
+```
+---
+
 Two pointers often allows us to move from the brute force solution of nested for...loops O(n^2) to a more efficient linear time complexity of O(n) passing only once through iterable data structure.
 
 ###[Find all anagrams](https://leetcode.com/problems/find-all-anagrams-in-a-string/)
