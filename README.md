@@ -82,6 +82,19 @@ This comes up in the *Happy Numbers* [click here](https://leetcode.com/problems/
 ---
 </details>
 
+
+---
+#### isPrime problem 
+
+- use the fact that sqrt of a number will give you all the pssible pairs to lead that to a factor.
+- often convert a number after sqrt, to floro, to get a rounded down integer
+- Use the modulo oerator to see if it is a factor.
+- EDGE CASE: 1 is not a prime number.
+
+```python
+for i in range(2, floor(sqrt(n)))):
+	if n % i == 0
+```
 ---
 #### Serializing and deserializing an Array
 
