@@ -203,7 +203,12 @@ for i in range(2, floor(sqrt(n)))):
 ---
 </details>
 
+---
+Be aware of immutable updates to a string variable in a for loop. Rather use a List which is mutable and later pass back a string.
 
+![image](https://user-images.githubusercontent.com/8973660/194291134-e2f9a77f-359f-4ff8-ae15-b7bb913bd41a.png)
+
+---
 -------------------
 * Identify the base case
 ```python
