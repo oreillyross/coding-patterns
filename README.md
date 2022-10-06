@@ -1,6 +1,3 @@
-<html>
-<script src="https://gist.github.com/oreillyross/1b33d2d3409207bd5725851474d62ef6.js"></script>
-</html>
 
 <p align="center">
 <h1> coding-patterns to help as an aide-memoire </h1>
