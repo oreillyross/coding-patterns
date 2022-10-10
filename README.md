@@ -494,6 +494,33 @@ def traverse(head):
    
 ```
 
+#### Also know the dummy node, or recursive index tracking logic for adding nodes
+
+```python
+class Node:
+  def __init__(self, val):
+    self.val = val
+    self.next = None
+# Iterative solution with dummy head logic
+# def create_linked_list(values):
+  
+#   dummy = Node(None)
+#   tail = dummy
+#   for val in values:
+#     tail.next = Node(val)
+#     tail = tail.next
+#   return dummy.next
+  
+# recursive solution avoids dummy head logic, but make sure 
+# to include index tracking logic to avoid O(n2) from slicing a values array
+def create_linked_list(values, i = 0):
+  if i == len(values):
+    return None
+  head = Node(values[i])
+  head.next = create_linked_list(values, i + 1)
+  return head
+```
+
 [Sum list problem](./sum-list.py)
 
 ### [Remove Nth Node from end of list](https://leetcode.com/problems/remove-nth-node-from-end-of-list/)
