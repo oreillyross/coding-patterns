@@ -1255,6 +1255,14 @@ The terminology differs slightly with trees. When talking about graphs we say vi
 
 ### Graph traversals
 
+#### Depth first traversal
+	- directed graph, follow the vertices all the way to a node with no neighbors
+	- Uses a stack under the hood (FILO)
+
+#### Breadth first traversal
+	- Uses a queue under the hood (FIFO)
+	- 
+
 ### Path finding
 
 
