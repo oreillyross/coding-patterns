@@ -1253,7 +1253,9 @@ The terminology differs slightly with trees. When talking about graphs we say vi
 
 * Use <code>for ... of</code> to get the values of an object, so in this case it would be the adjacency list itself
 
+### Graph traversals
 
+### Path finding
 
 
 ## Cyle detection algorithm
