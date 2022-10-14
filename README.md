@@ -656,6 +656,18 @@ The base case is if fast pointer reaches end of linked list, ie hits a None, the
 
 A problem where this is used to solve is called __[Happy Number](https://algo.monster/problems/happy_number)__
 
+#### Pattern for connecting nodes in a linked list recursively
+
+```python
+
+def connect(node: Node):
+	if node is None:
+		return None
+	newNode = Node(node.val + some logic)
+	newNode.next = connect(node.next)
+	return newNode
+```
+
 
 ## <p style="color: lightgreen">Sorting Algorithms</p>
 
