@@ -87,8 +87,8 @@ This comes up in the *Happy Numbers* [click here](https://leetcode.com/problems/
 ---
 #### isPrime problem 
 
-- use the fact that sqrt of a number will give you all the pssible pairs to lead that to a factor.
-- often convert a number after sqrt, to floro, to get a rounded down integer
+- use the fact that sqrt of a number will give you all the possible pairs to lead that to a factor.
+- Often convert a number after sqrt, to floor, to get a rounded down integer
 - Use the modulo oerator to see if it is a factor.
 - EDGE CASE: 1 is not a prime number.
 
