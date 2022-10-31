@@ -1751,7 +1751,7 @@ Think about the problem as using a binary tree as a framework to generate all po
 
 - Three steps:
 1. Identify the state(s)
-2. Draw the state-space-tree
+2. Draw the state-space-tree. Or decision tree, take the item or don't take the item
 3. DFS/backtrack on the state space tree
 
   ### Backtracking
@@ -1760,6 +1760,42 @@ Think about the problem as using a binary tree as a framework to generate all po
 * upon reaching the leaf nodes you can _backtrack_ up the tree to the root node to get each and every variation.
 * problems solved with this approach include the [Letter Combinations](https://leetcode.com/problems/letter-combinations-of-a-phone-number/) problem from Leetcode.
 * use a recursive function inside your main function to build the result recursively.
+
+
+##### Working out the big O complexity for maximum recursion (all possible combinations)
+- The size of your input (len of list) is = to the hight of the tree
+- Depending on the number of decisions you take (in many cases its either to include the item or to exclude the item, binary decision), *2
+- To generalise (say for an input of 3 items) given n items, you end up with 2 ^n subsets
+
+```python
+
+def subsets(elements):
+  
+  if len(elements) == 0:
+    return [[]]
+  
+  first = elements[0]
+  subs_without_first = subsets(elements[1:])
+  subs_with_first = []
+  for sub in subs_without_first:
+    subs_with_first.append([first, *sub])
+  
+  return subs_without_first + subs_with_first
+  
+  
+subsets(['a', 'b', 'c']) # ->
+# [
+#   [],
+#   [ 'c' ],
+#   [ 'b' ],
+#   [ 'b', 'c' ],
+#   [ 'a' ],
+#   [ 'a', 'c' ],
+#   [ 'a', 'b' ],
+#   [ 'a', 'b', 'c' ]
+# ]
+
+```
 
 ##### Backtracking template pseudocode
 ```javascript
