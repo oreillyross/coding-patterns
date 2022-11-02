@@ -171,8 +171,10 @@ for i in range(2, floor(sqrt(n)))):
 ---
 
 - Terms that can be used to describe complexity include: 
+    * Constant time O(1) - time does not increase in proportion to input, independant
     * Maximal efficient solution
-    * linear complexity O(n)
+    * linear complexity O(n) - direct relation
+    * Quadratic complexity O(2^n) or exponential 
     * Multi-linear comlpexity O(n+m), this would be the case where two __for loops__ follow each other.
 
 ------------
