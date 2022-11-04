@@ -59,6 +59,16 @@ def printList2(head):
         curr = next
     head = prev
         
-
+def recursive_reverse(curr, prev):
+	if not curr:
+		return prev
+	nextval = curr.next
+    curr.next = prev
+    
+    prev = curr
+    curr = nextval
+    
+    return recursive_reverse(curr, prev)
+	
 # printList(a)
 printList2(a)
