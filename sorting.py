@@ -76,6 +76,40 @@ print(insertionsort(nums))
 assert(insertionsort(nums) == testsortednums)
 
 
+# Shell sort
+# Shell sort uses insertion sort and the entire list is divided and those sublists are sorted
+# exact complexity depends on increment values chosen
+# somewhere between O(n) and O(n^2)
+
+# Merge Sort
+
+# This is a divide and conquer algorithm, create smaller sub-problems
+# list broken down into smaller and smaller lists recursively
+# list should finally contain only one element, this is the one element which is sorted
+# Then move into conquer phase, so merge sublists into each other to get a single sorted list
+# Divide and conquer with recursion, solve trivial case, then build up as recursion unwinds
+# O(nlogn) time O(n) space, stable algorithm, but not adaptive
+
+TODO IMPLEMENT THE MERGE SORT ALGO
+
+# Quick Sort
+# ===================================================================================
+# Often the native sort functions is the quick sort
+# divide and conquer approach, unlike merge sort, the index is based rather on a pivot.
+# The pivot is one element from the list
+# All elements smaller, go on one side, all larger go on the opposite side of the pivot
+# The sub lists all have their own pivots
+# no exact science, can pick first, last, or middle of list.
+# recursively apply this divide, slect pivot, and apply finding the rightful place for each pivot element
+# Needs a partition function, to find the pivot, and move elements before or after pivot
+# Also needs a quicksort function which makes the recursive calls to the sub-lists and calls the partition function above
+# O(nlogn) with base of logarithm of 2, divide, sapce is O(logn) and worst case O(n)
+# unstable sort, and not adaptive
+
+TODO IMPLEMENT THE QUICK SORT ALGO
+
+
+
 
 
 
