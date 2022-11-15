@@ -3,7 +3,6 @@ class Node:
     self.val = val
     self.left = None
     self.right = None
-
 from collections import deque
 
 def bottom_right_value(root):
@@ -55,3 +54,8 @@ c.right = f
 # 4   -2     1
 
 bottom_right_value(a) # -> 1
+
+# =========================================
+
+
+# =========================================
