@@ -93,7 +93,37 @@ assert(insertionsort(nums) == testsortednums)
 # Two branch recursion, divide problem by two until base case is one item, then solve sub problmes, compare two items at a time
 
 
+def merge(left, right):
+    # declare sorted array to populate
+    sorted = []
+    l = r = 0
+    # while either list still has indexable elements
+    while (l < len(left) and (r < len(right))):
+        # check which is smaller and append it to sorted list, increment wither l or r pointer
+        if left[l] <= right[r]:
+            sorted.append(left[l])
+            l +=1
+        else:
+            sorted.append(right[r])
+            r += 1
+    
+    #use built-in extend method to tack on which ever list is left
+    sorted.extend(left[l:]) 
+    sorted.extend(right[r:]) 
+    
+    return sorted
 
+def sortArray(nums: List[int]) -> List[int]:
+        # base case if one element in list, list is sorted
+        if len(nums) <= 1:
+            return nums
+        # divide step, find mid point
+        mid = len(nums) // 2
+        # get left and right side, with list indexing
+        left = sortArray(nums[:mid])
+        right = sortArray(nums[mid:])
+        # call and return the merge step on each recursive split list, so going up 
+        return merge(left, right)
 
 
 # Quick Sort
