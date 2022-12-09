@@ -56,7 +56,7 @@ assert(bubblesort(nums) == testsortednums)
 # compare two numbers adjacent to each other, move smaller number to the left, keep iterating
 # sublist is sorted and grows to be equal to the entire list
 # assume sorted list is size of 1, and grows to be size of original list
-# O(n^2) stable sort
+# O(n^2) stable sort, same values remain in the same spot, no swops happen
 # Nearly sorted lists complete very quickly like in bubble sort, adaptive sorting algorithm
 
 nums = [15,32,26,11,36,19,42,44,14]
