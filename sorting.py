@@ -89,8 +89,12 @@ assert(insertionsort(nums) == testsortednums)
 # Then move into conquer phase, so merge sublists into each other to get a single sorted list
 # Divide and conquer with recursion, solve trivial case, then build up as recursion unwinds
 # O(nlogn) time O(n) space, stable algorithm, but not adaptive
+# The algo is only stable if we handle the equality case in the merge step of the algorithm left <= right
+# Two branch recursion, divide problem by two until base case is one item, then solve sub problmes, compare two items at a time
 
-TODO IMPLEMENT THE MERGE SORT ALGO
+
+
+
 
 # Quick Sort
 # ===================================================================================
