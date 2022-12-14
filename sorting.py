@@ -9,6 +9,9 @@
 # place at front of array, swop the 15 with 11
 # shift search area plus one, so start at 32 -> to end 
 
+from ast import List
+
+
 nums = [15,32,26,11,36,19,42,44,14]
 testsortednums = [11,14,15,19,26,32,36,42,44]
 
@@ -35,6 +38,8 @@ nums = [15,32,26,11,36,19,42,44,14]
 # Keep bubbling up the biggest element.
 # once biggest element to the right, repeat, the process, untill all elements are sorted
 # O(n^2) but its a stable sort, same values will not be swapped., O(1) space
+# This algorithm is similar to the selection sort, but this algo is adaptive, can get better at eac iteration
+# the number of comparisons remain O(n) but the number of actual swaps might decrease.
 
 nums = [15,32,26,11,36,19,42,44,14]
 testsortednums = [11,14,15,19,26,32,36,42,44]
@@ -58,6 +63,7 @@ assert(bubblesort(nums) == testsortednums)
 # assume sorted list is size of 1, and grows to be size of original list
 # O(n^2) stable sort
 # Nearly sorted lists complete very quickly like in bubble sort, adaptive sorting algorithm
+# Often used with other divide and conquer algos
 
 nums = [15,32,26,11,36,19,42,44,14]
 testsortednums = [11,14,15,19,26,32,36,42,44]
@@ -90,7 +96,7 @@ assert(insertionsort(nums) == testsortednums)
 # Divide and conquer with recursion, solve trivial case, then build up as recursion unwinds
 # O(nlogn) time O(n) space, stable algorithm, but not adaptive
 
-TODO IMPLEMENT THE MERGE SORT ALGO
+# TODO IMPLEMENT THE MERGE SORT ALGO
 
 # Quick Sort
 # ===================================================================================
@@ -106,7 +112,31 @@ TODO IMPLEMENT THE MERGE SORT ALGO
 # O(nlogn) with base of logarithm of 2, divide, sapce is O(logn) and worst case O(n)
 # unstable sort, and not adaptive
 
-TODO IMPLEMENT THE QUICK SORT ALGO
+def quicksort(nums: List[int]) -> List[int]:
+
+
+# Bucket Sort
+# =========================================================================
+# This is a sorting algorithm which comes with constraints.
+# The values being sorted need to be in a bounded range, usually in 10s of thousands or less.
+# it is a O(n) time sorting as it passes only once over the original list
+
+  def bucketsort(nums): # [0,1,2,0,2,2,2,1,0,3,4,3,2]
+    bucket = [0] * max(nums)
+
+    # count every distinct number, increment its count in the bucket
+    for num in nums:
+      bucket[num] += 1
+
+    #need a j pointer to move things along correctly
+    j = 0
+    #iterate over the original list, which will be modified to sorted
+    for i in range(len(nums)):
+      # iterate x amount of times depending on the count in each bucket location
+      for c in range(bucket[i]):
+        # update original list with correct sorted numbers
+        nums[j] = i 
+        j += 1
 
 
 
