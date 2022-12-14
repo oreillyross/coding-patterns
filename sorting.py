@@ -61,7 +61,7 @@ assert(bubblesort(nums) == testsortednums)
 # compare two numbers adjacent to each other, move smaller number to the left, keep iterating
 # sublist is sorted and grows to be equal to the entire list
 # assume sorted list is size of 1, and grows to be size of original list
-# O(n^2) stable sort
+# O(n^2) stable sort, same values remain in the same spot, no swops happen
 # Nearly sorted lists complete very quickly like in bubble sort, adaptive sorting algorithm
 # Often used with other divide and conquer algos
 
@@ -95,8 +95,42 @@ assert(insertionsort(nums) == testsortednums)
 # Then move into conquer phase, so merge sublists into each other to get a single sorted list
 # Divide and conquer with recursion, solve trivial case, then build up as recursion unwinds
 # O(nlogn) time O(n) space, stable algorithm, but not adaptive
+# The algo is only stable if we handle the equality case in the merge step of the algorithm left <= right
+# Two branch recursion, divide problem by two until base case is one item, then solve sub problmes, compare two items at a time
 
-# TODO IMPLEMENT THE MERGE SORT ALGO
+
+def merge(left, right):
+    # declare sorted array to populate
+    sorted = []
+    l = r = 0
+    # while either list still has indexable elements
+    while (l < len(left) and (r < len(right))):
+        # check which is smaller and append it to sorted list, increment wither l or r pointer
+        if left[l] <= right[r]:
+            sorted.append(left[l])
+            l +=1
+        else:
+            sorted.append(right[r])
+            r += 1
+    
+    #use built-in extend method to tack on which ever list is left
+    sorted.extend(left[l:]) 
+    sorted.extend(right[r:]) 
+    
+    return sorted
+
+def sortArray(nums: List[int]) -> List[int]:
+        # base case if one element in list, list is sorted
+        if len(nums) <= 1:
+            return nums
+        # divide step, find mid point
+        mid = len(nums) // 2
+        # get left and right side, with list indexing
+        left = sortArray(nums[:mid])
+        right = sortArray(nums[mid:])
+        # call and return the merge step on each recursive split list, so going up 
+        return merge(left, right)
+
 
 # Quick Sort
 # ===================================================================================
