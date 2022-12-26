@@ -10,6 +10,29 @@
   In order to maintain this balance there are two important functions that a heap 
   needs namely bubble up and bubble down. 
 
+===================================================================================
+
+Heap is the structure underneath the concept of a Priority queue. Hoever many will use these terms
+interchangeably.
+
+There are tow parts to a priority queue 
+
+1. Structure property
+2. Order property.
+
+The structure is important in that recursively each node must be bigger than its left and
+right substree values. If its a max heap. vice versa for a min heap. 
+The tree needs to be a binary complete tree, so full levels or if there are gaps in the node structure
+they must come at the end to the the right.
+
+The formula used in the underyling array which keep sthe order, note it must be a 1 based array.
+leftchild = 2 * i
+rightchild = 2 * i + 1
+parent = i / 2
+
+===================================================================================
+
+
   Bubble up: 
   This function takes a node and moves it up the tree until it obeys the heap property.
   This is done by comparing the node with its parent and swapping them if the parent is
