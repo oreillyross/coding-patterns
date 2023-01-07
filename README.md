@@ -1384,6 +1384,12 @@ This pattern appears for problems such as **flood fill** or **connected islands*
   * Use a nested for loop to iterate over every row and column and then apply a recursive pattern of exploring every neighbor, using a combination of visited logic and the delta pattern (up, down, left, right).
   * A good idea to remember with recursive code is **<span style="color: red">dont look before you leap</span>**. What we mean by this is dont check out of bounds conditions up front in your recursive functio calls. Rather just go into the function, passing in next values, or location in grid-graph that you explore and the in your base cases handle any out of bounds conditions. 
 
+---
+* These are also commonly called matrix problems. The time and space complexity is the following:
+  - Time = O(4^n.m) 
+    - This is because there are four decision to make up, down, left, right if thought of as a decision tree. And the height of the tree is going to be the size of the matrix, which is n X m.
+  - Space = O(n.m) because it is the maximum number of recurive calls to make and each is pushed onto the stack.
+  
 **DEBUGGING RECURSIVE CASES**
 A common gotcha with recursive cases where you have defined your base case correctly but still get stack overflow errors, is where you are off by one in your counting logice or in or out of bounds checks, very, very carefully reason about these and usually this will solve the issue.
 
