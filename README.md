@@ -478,7 +478,31 @@ The python solution is below with pseudo code:
 ```
 
 -------------------
+### <p style="color:lightgreen">Kadanes Algorithm<p>
 
+This is an algorithm that mirrors or has overlap with the sliding window pattern and some form of dynamic problem in that it considers the previous sub problems results.
+
+The brute force solution often intuitively formed is to create a O(n^2) solution, or nested for loops to work out the solution. But this can be improved to a O(n) solution using Kadanes Algorithm. 
+
+The solution is deceptively simple, although to work it out is not as simple. 
+
+If we take the following problem example:
+
+<pre>
+  Calculate the maximum sum of the largest sub array given an array of n numbers, which could be postive or negative, [1,-2,-3,5,7,-12,4,5]
+</pre>
+------------
+#### The algorithmic thinking steps
+
+1. Start by defining a variable to hold the maximum sum so far, because we cannot have an empty sub-array we can default the maximum sum so far to the first value in the array so nums[0]
+2. Declare a variable to hold the currSum value, default it to 0
+3. Iterate over the array and keep growing the window.
+4. Inside the iteration step check if currSum is the maximum with 0, i.e. its greater than 0. We can never have a negative currSum which will make the next addition of the array value bigger. If currSum is negative we reset the currSum with the current array[n] value
+5. we check if maxSum is overtaken by the new currSum value
+6. upon exiting the for..loop we return the maximum sum found.
+
+
+See [Kadanes algorithm file](file://kadanes.py)
 ## <p style="color: lightgreen"> Linked Lists </p>
 
 Know the default implementation to recurse a linked list. It can be done iterative, or recursively. While the recursive solution is more elegant it does consume O(n) space as each call is placed on the call stack.
