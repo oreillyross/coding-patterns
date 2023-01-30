@@ -366,6 +366,7 @@ Two pointers come in a number of forms:
     - opposite direction (used for Two sum sorted)
     - sliding window (used for Longest substring without repeating characters)
 
+The key to using two pointers pattern in a two sum type problem is knowing the porerties of the sorted array. It is such that by setting the L and R bounds on the boundaries, you can work on the fact that if the sum of these two values is greater than the target, then no matter what L values you add will the sum get smaller, only bigger. SO you need to decrement the R value, and look in the smaller side of the array. Ditto if the sum is smaller, no R value to the left will make it bigger, and so you need to move the L value to the right (i.e. look for a bigger value). This property and the fact that there is always one solution means you can solve this in O(n) time. The condition where L oversteps the R bound will never be reached and you only then need one return statement in the while loop once the sum == the target, then return the L and R indexes.
 
 ### Sliding window pattern with example
 
