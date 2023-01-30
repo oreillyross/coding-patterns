@@ -83,6 +83,30 @@ This comes up in the *Happy Numbers* [click here](https://leetcode.com/problems/
 ---
 </details>
 
+----
+#### prefix and postfix pattern
+
+This is a pattern that is likely to come up often with coding interviews. The below implementation of a data structure that deals with, or utilises this pattern, where one can easily calculate prefix or postfix sums from previously calculated sub problems makes implementing solutions of this type operate in O(1) time as oppose to the brute force O(n) runtime complexity.
+
+```python
+
+class PrefixSum:
+
+  def __init__(self, nums):
+    self.prefix = []
+    total = 0
+    for n in nums:
+      total += n
+      self.prefix.append(total)
+  
+  def rangequery(self, l, r):
+    preRight = self.prefix[r]
+    preLeft = self.prefix[l - 1] if l > 0 else 0
+    return preRight - preLeft
+
+
+```
+----
 
 ---
 #### isPrime problem 
