@@ -83,6 +83,30 @@ This comes up in the *Happy Numbers* [click here](https://leetcode.com/problems/
 ---
 </details>
 
+----
+#### prefix and postfix pattern
+
+This is a pattern that is likely to come up often with coding interviews. The below implementation of a data structure that deals with, or utilises this pattern, where one can easily calculate prefix or postfix sums from previously calculated sub problems makes implementing solutions of this type operate in O(1) time as oppose to the brute force O(n) runtime complexity.
+
+```python
+
+class PrefixSum:
+
+  def __init__(self, nums):
+    self.prefix = []
+    total = 0
+    for n in nums:
+      total += n
+      self.prefix.append(total)
+  
+  def rangequery(self, l, r):
+    preRight = self.prefix[r]
+    preLeft = self.prefix[l - 1] if l > 0 else 0
+    return preRight - preLeft
+
+
+```
+----
 
 ---
 #### isPrime problem 
@@ -366,6 +390,7 @@ Two pointers come in a number of forms:
     - opposite direction (used for Two sum sorted)
     - sliding window (used for Longest substring without repeating characters)
 
+The key to using two pointers pattern in a two sum type problem is knowing the porerties of the sorted array. It is such that by setting the L and R bounds on the boundaries, you can work on the fact that if the sum of these two values is greater than the target, then no matter what L values you add will the sum get smaller, only bigger. SO you need to decrement the R value, and look in the smaller side of the array. Ditto if the sum is smaller, no R value to the left will make it bigger, and so you need to move the L value to the right (i.e. look for a bigger value). This property and the fact that there is always one solution means you can solve this in O(n) time. The condition where L oversteps the R bound will never be reached and you only then need one return statement in the while loop once the sum == the target, then return the L and R indexes.
 
 ### Sliding window pattern with example
 
