@@ -680,6 +680,27 @@ A slow pointer and a fast pointer
 The base case is if fast pointer reaches end of linked list, ie hits a None, then it is not a cyclic LL
 
 
+---
+   ##### Fast and Slow pointers (expanded)
+   The fast and slow pointer pattern can be expanded to understandnig the algorithm to solve the problem where you are asked to find the head of a cycle in a linked list. The algorithm is simple but not intuitive. It can be solved with a math proof though.
+
+   The general idea is that you use a fast and slow pointer in the usual way to detect a cycle. Once the cycle is detected then you break from this loop and do a final check of the terminating condition, i.e. if your fast pointer reached the end of the list, as there was no cycle detected. Once it is sure there is a cycle, then you introduce a second slow pointer a tthe head. The original slow pointer is still pointing to its original location which is the point at which the fast and slow pointers met. So the fast pointer had done a full cycle of the cycle and then intersected the slow pointer.
+   Setting up a second while loop, with a terminating conditon being when the slow one and slow two pointers meet that is the point or the head of the cycle. 
+
+   This can be understood in a math proof below:
+
+   <pre>
+    2 * (p + c - x) = p + c + c - x
+    slow pointer       fast pointer
+    using algebra, the above forumula is simplified down to 
+    p = x
+
+    p = distance before cycle detected
+    c = distance of cycle
+    c - x = distance between head of cycle and where intersection happened.
+   </pre>
+---
+
 A problem where this is used to solve is called __[Happy Number](https://algo.monster/problems/happy_number)__
 
 #### Pattern for connecting nodes in a linked list recursively
