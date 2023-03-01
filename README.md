@@ -2325,7 +2325,20 @@ __NOTE__ using new Array(SIZE_ROW_OR_COL).fill(1) syntax
       [["1","0","1","0","0"],["1","0","1","1","1"],["1","1","1","1","1"],["1","0","0","1","0"]])
 ```
 
+## Interval type problems
 
+### Merge intervals
+
+	#### [Pattern to merge lsit of lists with intervals](https://algo.monster/problems/merge_intervals)
+	
+	- Start with first sorting the lists, usually the start time should be sorted. This can be done trivially using the sort function in Python.
+	- Write a helper function that takes two lists and returns True or False if there is an overlap.
+	- Iterate over the list of lists, and either append a new interval if the result list is empty (i.e. needs a first interval to start) or there is no overlap.
+	- If there is a overlap, replace the result ending interval with the max of wither the current interval end, or the new interval being iterated over, its end time.
+	
+	see Algo monster for a solution.
+	
+	
 
 # Systems design type problems
 
