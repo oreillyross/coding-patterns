@@ -698,6 +698,20 @@ def remove_node(head, target_val):
     current = current.next
   return head
 ```  
+#### Union find data structure
+
+These are also known as Disjoint sets. This data structure can be used to detect a cycle in a graph. 
+
+- Union find is a **forest of trees**, so asically we have a bunch of trees.
+- Follow the union by **rank (height)** process to get a more balanced union of trees.
+- Union find doesnt accurately reflect the underlying structure. 
+
+To determine if there is a cycle, if you connect edges, and they are already connected in your union find DS, then you have a cycle.
+
+see **union_find.py** file to see implementation.
+
+
+
 #### Floyds cycle finding algorithm 
 
 This algo uses the two pointer pattern on a linked list to detect if there is a cycle.
