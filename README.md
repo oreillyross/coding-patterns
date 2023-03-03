@@ -710,6 +710,17 @@ To determine if there is a cycle, if you connect edges, and they are already con
 
 see **union_find.py** file to see implementation.
 
+----
+The time complexity without further optimisations is going to be O(n) time. But the optimisation made in the Union-find DS usually 
+includes the two following code optimisations:
+
+1. path compression, this is added in the find method of the class. 
+2. find by rank
+
+** Implementing ** just one of these would lead to a time complexity of O(log n), but implementing both optimisations would get to O(1). The mathematical reason or proof comes from inverse ackerman.  O(α(n))
+
+----
+
 
 
 #### Floyds cycle finding algorithm 
