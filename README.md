@@ -1760,7 +1760,12 @@ In essence when solving a problem with recursion either use the return value (pa
         return memo[n] = min;
 };
 ```
-
+### [Knapsack weight only](https://github.com/oreillyross/coding-patterns/blob/main/Knapsack.py)
+  - The brute force approach with top-down memoization
+  - Start with either not taking a weight, and taking a weight
+  - visualise the state-space tree, which leads to O(2^n)
+  - add memoisation which has state of keeping the level, and also the weight
+  
 ### [Longest increasing subsequence](https://algo.monster/problems/longest_increasing_subsequence)
 - The usual time complexity is O(n^2).
 - There is a way to get O(nlogn) but in a normal interview setting this should not be expected
