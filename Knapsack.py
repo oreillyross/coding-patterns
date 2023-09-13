@@ -1,3 +1,9 @@
+# Notes on unbounded knapsack and grokking this algorithm
+# This pattern is very similar to the classic 0/1 Knapsack pattern
+# Common interview questions are the backpack or knapsack problem
+# 
+
+
 def generate_sums(weights, sums, sum, n, memo):
   if memo[n][sum]:
     return
