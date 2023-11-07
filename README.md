@@ -700,8 +700,9 @@ def remove_node(head, target_val):
 ```  
 #### Union find data structure
 
-These are also known as Disjoint sets. This data structure can be used to detect a cycle in a graph. 
+These are also known as Disjoint sets. This data structure can be used to detect a cycle in a graph. The reason they are also called union find is because of the two methods the DS commonly implements namely, union and find.
 
+The idea is to think about it as a set like a tree datastructure, if an element shares the root node it can be considiered part of the set, if it does not then it is disjoint. 
 - Union find is a **forest of trees**, so asically we have a bunch of trees.
 - Follow the union by **rank (height)** process to get a more balanced union of trees.
 - Union find doesnt accurately reflect the underlying structure. 
