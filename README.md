@@ -1941,7 +1941,22 @@ subsets(['a', 'b', 'c']) # ->
         }
     }
 ```
+Backtracking can also be applied to aggregation type problems.
+The below pseudo code template can be applied to these types of problems:
+```python
 
+function dfs(start_index, [...additional states]):
+	if is_leaf(start_index):
+		return 1
+	ans = initial_value
+	for edge in get_edges(start_index, [...additional states]):
+		if additional states:
+			update([...additional states])
+		ans = aggregate(ans, dfs(start_index + len(edge), [...additional states])
+		if additional states:
+			revert([...additional states])
+	return ans
+```
 ### Solving the permutation problem with pseudocode
 
 1. Identify the states, so you need to know the full path, and when it has been reached to record this, pass it along, and second state is to know which letters have been used.
