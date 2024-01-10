@@ -1318,6 +1318,26 @@ def merge_k_sorted_lists(lists: List[List[int]]) -> List[int]:
     return res
 ```
 
+### [Min cost to connect all points](https://leetcode.com/problems/min-cost-to-connect-all-points/)
+
+This is solved in a maximally efficient way using *Prims algorithm*
+
+It is expected to understand the properties of a minimum spanning tree:
+
+It is an acyclic undirected graph. The number of edges will always be n - 1, where n is the number of nodes or vertices.
+
+One needs to build an adjacency list, so knowing this is important, additionally the structure of Prims algorithm:
+The time complexity is O(n2.logn)
+
+```python
+
+```
+Practically the following is necessary:
+  - adjacency list
+  - visited set
+  - Minheap DS, used to determine the minimum cost to travel next on traversal
+  - Perform a BFS search technique
+
 # Graphs
 
 > * A depth first search of a graph uses a stack data structure behind the scenes
@@ -1466,6 +1486,22 @@ The terminology differs slightly with trees. When talking about graphs we say vi
     
     shortestPath(graph, 0,3))
 ```
+
+## <p style="color: lightgreen">Dijkstras (shortest path)</p>
+  - This is like the breadth first search only that your edges have weights.
+  - weighted graph
+  - keep jumping breadth first node by nodes
+  - BFS is not sufficient to find the cost of traversal, thus Dijkstras algo solves this
+  - Essentially run a greedy breadth first search, need to male the assumption that no weights are negative
+  - One of the use cases for minheap is to implement this algorithm. Use a key of cost, and the value of the node. Use a hashmap
+  - And also use an adjacency list to implement this algo.
+  - 
+```
+  E = V^2 // is usually the rule for time and space
+  Time: 2 E . log v or O(elogv)
+
+```
+
 
 ## <p style="color: lightgreen">Island hopping logic</p>
   - You will need a graph in the form of an object where the keys are nodes and the values are adjacency lists.
