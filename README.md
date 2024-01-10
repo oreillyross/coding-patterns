@@ -51,7 +51,15 @@ Because there is no native support for checking if an array exists you can use t
 let isArray = []
 typeof isArray === "object" && "length" in isArray // length is native in Array but not in Objects
 ```
-
+A more robust way to check for an array is the following code:
+```javascript
+const isArray = value => {
+	return typeof value.reduce == "function" &&
+	       typeof value.filter == "function" &&
+               typeof value.map == "function" &&
+               typeof value.length == "number";
+}
+```
 #### Math problems and manipulating numbers
 
 ---
