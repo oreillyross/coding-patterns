@@ -1,7 +1,5 @@
 import abc
 
-import numpy as np
-
 class Graph(abc.ABC):
 
     def __init__(self, num_vertices, directed=False) -> None:

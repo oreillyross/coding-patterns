@@ -3,6 +3,11 @@
 <h1> coding-patterns to help as an aide-memoire </h1>
 </p>
 
+<p>
+    The idea behind this manual with accompanying code samples is to try to distill the most used algorithms and data structures that are required for coding interviews and well getting a job. But also more so that the study of algorithms and DSs should not end once one has a job, as they are really fun to play with, and they can lead to all sorts of fun places with advanced data structures and algorithms, whilst sometimes esoteric should also help you as a developer broaden your understanding and deepen your knowledge of this wonderful place called "computer land".
+    
+</p>
+
 
 
 ## Online tools to practice for technical interviews
