@@ -3,6 +3,11 @@
 <h1> coding-patterns to help as an aide-memoire </h1>
 </p>
 
+<p>
+    The idea behind this manual with accompanying code samples is to try to distill the most used algorithms and data structures that are required for coding interviews and well getting a job. But also more so that the study of algorithms and DSs should not end once one has a job, as they are really fun to play with, and they can lead to all sorts of fun places with advanced data structures and algorithms, whilst sometimes esoteric should also help you as a developer broaden your understanding and deepen your knowledge of this wonderful place called "computer land".
+    
+</p>
+
 
 
 ## Online tools to practice for technical interviews
@@ -14,6 +19,7 @@
 * [Leet code](https://leetcode.com/)
 * [Neet code](https://www.youtube.com/channel/UC_mYaQAE6-71rjSN6CeCA-g) A youtube channel from a a guy who is now a Google engineer who created videos in python of many Leet code challenges
 * [Algo.monster](https://algo.monster/) A site which distills essential algorithms, data structures and techniques for interviewing. Created by former Google engineers.
+* [Replit](https://replit.com/) A online IDE with some awesome capabilities and powerful online compiling and interpreting capabilities. Good for testing projects, proof of concept etc.
 
 ------------
 
