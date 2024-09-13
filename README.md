@@ -998,7 +998,7 @@ next True element (or the first true element) in a true or false array.
 
    It is a data structure with the following properties:
 
-   + nodes connected by edges
+   + nodes connected by edges, the edges are always N - 1, so if 7 nodes, 6 edges.
 
    + node can have any data type as values
 
