@@ -1528,7 +1528,19 @@ Sometimes you will be presented with a grid graph, such as
 This pattern appears for problems such as **flood fill** or **connected islands** problem.
 
   * Use a nested for loop to iterate over every row and column and then apply a recursive pattern of exploring every neighbor, using a combination of visited logic and the delta pattern (up, down, left, right).
-  * A good idea to remember with recursive code is **<span style="color: red">dont look before you leap</span>**. What we mean by this is dont check out of bounds conditions up front in your recursive functio calls. Rather just go into the function, passing in next values, or location in grid-graph that you explore and the in your base cases handle any out of bounds conditions. 
+  * A good idea to remember with recursive code is **<span style="color: red">dont look before you leap</span>**. What we mean by this is dont check out of bounds conditions up front in your recursive functio calls. Rather just go into the function, passing in next values, or location in grid-graph that you explore and the in your base cases handle any out of bounds conditions.
+
+---
+A good way to visualise this is to think about the **delta_row** and **delta_col** as something akin to the following:
+     r -1  			c + 0			
+   r + 0  r  r + 0	c - 1	c 	c + 1
+     r + 1		      c + 0
+
+The idea is then that you go in a clockwise direction and place these in a delta array, 
+```python
+	delta_row = [-1, 0, 1, 0]
+	delta_col = [0, 1, 0, -1]
+```
 
 ---
 * These are also commonly called matrix problems. The time and space complexity is the following:
