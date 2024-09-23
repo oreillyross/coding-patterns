@@ -1532,11 +1532,11 @@ This pattern appears for problems such as **flood fill** or **connected islands*
 
 ---
 A good way to visualise this is to think about the **delta_row** and **delta_col** as something akin to the following:
-|        | r + 1  |        |
+|        | r - 1  |        |
 |--------|--------|--------|
 | r + 0   | r   | c + 1  |
 | c - 1   | c   | r + 0  |
-|         | r - 1 c + 0  |        |
+|         | r + 1 c + 0  |        |
 
 
 The idea is then that you go in a clockwise direction and place these in a delta array, 
