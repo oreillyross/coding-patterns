@@ -96,6 +96,10 @@ This can be used to represent directed and undirected relationships.
 Take all the indegree from each node, remove the nodes with 0, then recalculate indegrees, and repeat to 
 get a traversal. Only applies to directed and acyclic graphs.
 
+| Description                                                                                                                                                       |
+|-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| One of the best explanations I have found on Khan's algorithm, which is a classic topological sort algorithm, can be found [here](https://ilque.me/2024/07/02/kahns-algorithm-for-topological-sorting-a-comprehensive-guide/). |
+
 ---
 
 # Traversal of Trees and Graphs
