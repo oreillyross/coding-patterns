@@ -123,6 +123,21 @@ class PrefixSum:
 ----
 
 ---
+## Prime numbers (Primality)
+
+The following is a reasonable way to compute prime numbers,
+
+```python
+	primes = set()
+	for a in range(2, 999):
+		if all(a % p != 0 for p in primes):
+			primes.add(a)
+```
+There are a number of rules for prime numbers:
+1. A prime number has only two divisors, 1 and itself
+2. Checking prime numbers before (or less than the current number) will always result in a good check to see if it divides the number. If it does then it can't be a prime
+3. Every composite number can be factored down to a product of primes
+
 #### isPrime problem 
 
 - use the fact that sqrt of a number will give you all the possible pairs to lead that to a factor.
